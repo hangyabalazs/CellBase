@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>CellBase setup</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #990000; 
+  font-size: 36;
+}
+h2 {
+  color: #990000;
+  font-size: 24;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">Initialize CellBase<a name="1"></a></h1>
+<p>Copy CellBase functions to you computer. Add the directories containing your CellBase functions to the top of your Matlab path (see <a href="matlab:doc addpath"><tt>addpath</tt></a>). Call <a href="initcb.html"><tt>initcb</tt></a> to initialize your CellBase. You have to specify a main CellBase directory and a main CellBase mat file. This mat file will contain the list of cells in your CellBase (<tt>CELLIDLIST</tt>), the list of the analyses you performed (<tt>ANALYSES</tt>) and the output of your analyses (<tt>TheMatrix</tt>).
+<br>
+<br>
+</p>
+<h2 align="left">Directory Sturcture<a name="2"></a></h2>
+<p>Your main directory (e.g. mPFC Data) is the directory you  specify when initializing cellbase.</p>
+<p>
+Use the following naming convention for subdirectories: animal/subject name and number, e.g. 'd025' ('d' as your personal or project identifier, '025' for the animal/subject ID). Please use four-character directory names!</p>
+<p>
+Session-directories: within each animal/subject subdirectory, there may be session directories for that animal/subject. Use a YYMMDDs naming convention (s is a single character; e.g. 100313a is the first session on 13th March 2010).
+NOTE: Even if there is only 1 session on a given day, it should still be named with the suffix 'a'!
+</p>
+<p>
+Files within a session directory may contain various file types pertaining to that session, e.g. behavioral data, raw recording files, MClust files for clustered spikes, information files on stimulation protocols. 
+</p>
+
+<h2 align="left">Multiple instances of CellBase<a name="3"></a></h2>
+<p>You can have multiple CellBases on your computer. You have to initialize all CellBases with <a href="initcb.html"><tt>initcb</tt></a>. You will be required to give a unique name to each CellBase.</p>
+<p>You can specify your current (default) CellBase using <a href="choosecb.html"><tt>choosecb</tt></a>. <a href="whichcb.html"><tt>whichcb</tt></a> returns the name of your current CellBase. <a href="whoscb.html"><tt>whoscb</tt></a> returns the names of all initialized CellBases. You can rename a CellBase with <a href="renamecb.html"><tt>renamecb</tt></a> or change the path of a CellBase with <a href="relocatecb.html"><tt>relocatecb</tt></a> .
+ You can delete a CellBase with <a href="deletecb.html"><tt>deletecb</tt></a>.
+</p>
+
+<p><a href="CellBase_variables.html">Core variables of CellBase</a>
+</p>
+<p><a href="CellBase_application.html">How to use CellBase</a>
+</p>
+
+
+</body>
+</html>

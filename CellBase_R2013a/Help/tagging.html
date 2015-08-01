@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>tagging</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">tagging</h1>
+<align="left">Cluster quality and tagging index.
+<h2>Syntax</h2>
+<blockquote><p>
+<tt>tagging(i)</tt><br />
+<tt>tagging(i,is)</tt>
+</blockquote>
+<h2>Description</h2>
+<p><tt>tagging</tt> calculates cluster quality measures, tagging index and spike
+ shape correlation between spontaneous and light-evoked action
+ potentials for all cells in CellBase (see also CellBase documentation).
+ It calls <tt>LRatio, nbisstim</tt> and <tt>spikeshapecorr</tt>.</p>
+<p><tt>tagging(i)</tt> runs only for the cell IDs in <tt>i</tt>. <tt>i</tt> can also be an index set to <tt>CELLIDLIST</tt>.</p>
+<p><tt>tagging(i,is)</tt> accepts a second, logical input argument determining
+ whether to save the results of the analysis. Default beahvior is not
+ saving.</p>
+<h2>See Also</h2>
+<p>
+<a href="LRatio.html"><tt>LRatio</tt></a>, <a href="nbisstim.html"><tt>nbisstim</tt></a>, <a href="spikeshapecorr.html"><tt>spikeshapecorr</tt></a>
+</p>
+
+</body>
+</html>

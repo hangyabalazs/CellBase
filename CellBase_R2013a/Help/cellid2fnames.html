@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>cellid2fnames</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">cellid2fnames</h1>
+<align="left">Convert cell IDs to data file names.
+<h2>Syntax</h2>
+<p><blockquote><tt>[fname_spikes, fname_events] = cellid2fnames(cellid)</tt><br>
+<tt>[fname_spikes, fname_events] = cellid2fnames(cellid,filename)</tt><br>
+<tt>[fname_spikes, fname_events] = cellid2fnames(cellid,filename,csc_chan)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[fname_spikes, fname_events] = cellid2fnames(cellid)</tt> returns spike data
+ and event filenames for <tt>cellid</tt>.</p>
+<p><tt>[fname_spikes, fname_events] = cellid2fnames(cellid,filename)</tt> uses
+ <tt>filename</tt> input argument to genearte <tt>fname_spikes.</tt> Specials cases for
+ <tt>filename</tt> are handled differentially:</p>
+<blockquote>
+<p><tt>'TrialEvent'</tt>, behavioral session name (<tt>'TrialEvents2.mat'</tt>) is returned</p>
+<p><tt>'StimEvent'</tt>, stimulation filename is returned</p>
+<p><tt>'Session'</tt>, directory path for the session</p>
+<p><tt>'Position'</tt>, <tt>'POSITION'</tt> string is used</p>
+<p><tt>'Spikes'</tt>, <tt>'cell_pattern'</tt> preference is used to generate .mat filename</p>
+<p><tt>'tfile'</tt>, <tt>'cell_pattern'</tt> preference is used to generate .t filename</p>
+<p><tt>'Ntt'</tt>, <tt>.Ntt</tt> filename is returned</p>
+<p><tt>'wv'</tt>, <tt>'cell_pattern'</tt> preference is used to return *wv.mat filename</p>
+<p><tt>'quality'</tt>, <tt>*ClusterQual.mat</tt> filename is returned</p>
+<p><tt>'Waveform'</tt>, waveform data filename is returned</p>
+<p><tt>'Events'</tt>, <tt>'EVENTS'</tt> string is used</p>
+<p><tt>'Eventspikes'</tt>, <tt>'EVENTSPIKES'</tt> string is used</p>
+<p><tt>'Stimspikes'</tt>, <tt>'STIMSPIKES'</tt> string is used</p>
+<p><tt>'Continuous', <tt>CSCx_x.mat</tt> or <tt>CSCx.mat</tt> filename is returned</p>
+<p><tt>'Evewaves', <tt>EVENTSPIKESxcx.mat</tt> filename is returned</p>
+<p><tt>'stimwaves', <tt>STIMWAVESxcx.mat</tt> filename is returned.</p>
+<p>For the <tt>'Continuous'</tt>, <tt>'Evewaves'</tt> and <tt>'stimwaves'</tt> options, LFP channel names should be provided as a third input argument, using<br />
+ <tt>[fname_spikes, fname_events] = cellid2fnames(cellid,filename,csc_chan)<br />
+</tt> syntax.</p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="cellid2tags.html"><tt>cellid2tags</tt></a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>plot_timecourse</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">plot_timecourse</h1>
+<align="left">Plot PSTH.
+<h2>Syntax</h2>
+<p><blockquote><tt>f0 = plot_timecourse(time,psth,psthse)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>f0 = plot_timecourse(time,psth,psthse)</tt> plots <tt>psth</tt> as a function of <tt>time
+</tt> and uses <tt>psthse</tt> to generate error shade around the line; the figure
+ handle <tt>f0</tt> is returned. Additional parameters can be passed as
+ parameter, value pairs (with default values):</p>
+<blockquote>
+<p><tt>'TitleStr', ''</tt> - title string</p>
+<p><tt>'XLabel', 'Time'</tt> - x axis label</p>
+<p><tt>'YLabel', 'Response'</tt> - y axis label</p>
+<p><tt>'ShowPsthYLabel', 1</tt> - controls y axis labeling</p>
+<p><tt>'Legend', ''</tt> - figure legend</p>
+<p><tt>'PSTHstd', 'off'</tt> - controls error shading</p>
+<p><tt>'PSTHlinewidth', 2</tt> - line width</p>
+<p><tt>'LineStyle', ''</tt> - line style</[>
+<p><tt>'PlotZeroLine', 'on'</tt> - controls whether to plot a line at zero</p>
+<p><tt>'PlotZeroLineColor', [0 0 0]</tt> - color for the line at zero.</p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="viewcell2b.html"><tt>viewcell2b</tt></a>, <a href="plot_raster2a.html"><tt>plot_raster2a</tt></a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>plotwaveforms</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">plotwaveforms</h1>
+<align="left">Plot spontaneous and/or light-evoked spike shape.
+<h2>Syntax</h2>
+<p><tt>hs = plotwaveforms(cellid,'spont',true,'evoked',true)</tt><br>
+<tt>hs = plotwaveforms(cellid,'correlation','true')</tt><br>
+</p>
+<h2>Description</h2>
+<p><tt>plotwaveforms(cellid)</tt> plots the waveform of spontaneous and putative light-evoked spikes. It finds the latency of putative light-evoked spikes as peaks of firing rate after light pulses. The period for putative light-evoked spikes is defined by half-hight crossings around the peak (see <tt>findStimPeriod</tt> for details). If there is no detectable
+ activation, 1 and 6 ms are used, which include typical latencies of light-evoked spikes. Spontaneous spikes are extracted from 2 s periods before light bursts. Only 2000 randomly chosen spikes are plotted. This number can be changed using the <tt>'maxnum', value</tt> optional input parameter-value pair.</p>
+<p>Two optional input parameter value pairs control whether to plot both spontaneous and evoked waveforms or only one of those:
+<tt>hs = plotwaveforms(cellid,'spont',true,'evoked',true)</tt> plots both waveforms and a third plot to compare them. Setting either of the input values to <tt>false</tt> will prevent plotting that type. Handles of the resulting figures are returned in the output structure <tt>hs</tt> with the
+ following fieldnames: <tt>hs.H_spont</tt> for spontaneous waveforms, <tt>hs.H_evoked</tt> for light-evoked waveforms and <tt>hs.H_compare</tt> for the compound figure.</p>
+<p><tt>hs = plotwaveforms(cellid,'correlation','true')</tt> also returns waveform correlation for the largest channel (see <tt>spikeshapecorr)</tt> in <tt>hs.R</tt> field of the output structure.</p>
+<p>Optional input parameter-value paris with default values:</p>
+<blockquote>
+<p><tt>'spont', true</tt> - plot spontaneous waveform</p>
+<p><tt>'evoked', true</tt> - plot light-evoked waveform</p>
+<p><tt>'maxnum', 2000</tt> - maximum number of spikes to plot</p>
+<p><tt>'correlation', false</tt> - return waveform correlation</p>
+<p><tt>'stim_period', []</tt> - start and end of stimulation period after each light pulse</p>
+</blockquote>
+<p>Output (fields of <tt>hs</tt> struct):</p>
+<blockquote>
+<p><tt>H_spont</tt> - figure handle for spontaneous spike waveform</p>
+<p><tt>H_evoked</tt> - figure handle for evoked spike waveform</p>
+<p><tt>H_compare</tt> - figure handle for comparison plot</p>
+<p><tt>R</tt> - spike shape correlation of spont. and evoked waveform</p>
+<p><tt>activation_start</tt> - start of the detected stimulation period</p>
+<p><tt>activation_end</tt> - end of the detected stimulation period</p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="findStimPeriod.html"><tt>findStimPeriod</tt></a>, <a href="abs2reltimes.html"><tt>abs2reltimes</tt></a>, <a href="extractSegSpikes.html"><tt>extractSegSpikes</tt></a>, <a href="extractSpikeWaveforms.html"><tt>extractSpikeWaveforms</tt></a>, <a href="spikeshapecorr.html"><tt>spikeshapecorr</tt></a>
+</p>
+
+</body>
+</html>

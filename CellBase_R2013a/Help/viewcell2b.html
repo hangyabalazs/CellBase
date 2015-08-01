@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>viewcell2b</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">viewcell2b</h1>
+<align="left">Raster plot and PSTH.
+<h2>Syntax</h2>
+<p><blockquote><tt>viewcell2b(cellid,'triggername',trigevent,'sortevent',sevent,'eventtype
+ ',evtype)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>viewcell2b(cellid,'triggername',trigevent,'sortevent',sevent,'eventtype
+ ',evtype)</tt> plots a light triggered or event triggered raster and PSTH for a given cell. <tt>trigevent</tt> is used as trigger and trials are sorted according to <tt>sevent</tt>. <tt>'eventtype'</tt> can be <tt>'stim'</tt> or <tt>'behav'</tt>. <p>Optional input argument pairs:</p>
+<blockquote>
+<p><tt>'ShowEvets'</tt>, events indicated on the raster plots</p>
+<p><tt>'ShowEventsColors'</tt>, specifies colors for the events shown</p>
+<p><tt>'FigureNum'</tt>, specifies the figure handle to plot on</p>
+<p><tt>'window'</tt>, window size for the plots</p>
+<p><tt>'dt'</tt>, time resoultion</p>
+<p><tt>'sigma'</tt>, determines the smoothing kernel for the smoothed PSTH (see <tt>smoothed_psth</tt>)</p>
+<p><tt>'isadaptive'</tt>, default = <tt>false</tt> - if <tt>true</tt>, adaptive PSTH algorithm is used (see <tt>apsth</tt> and <tt>binraster2apsth</tt>)</p>
+<p><tt>'PSTHstd'</tt>, <tt>'on'</tt> or <tt>'off'</tt>, controls whether SD is plotted on the PSTH panel</p>
+<p><tt>'Partitions'</tt>, e.g. <tt>'all'</tt>, <tt>'#ResponseType'</tt>, can be used to partition the trials according to different variables, multiple rasters are plotted</p>
+<p><tt>'EventMarkerWidth'</tt>, specifies marker size for events shown</p>
+<p><tt>'PlotZeroLine'</tt>, <tt>'on'</tt> or <tt>'off'</tt>, controls whether a line
+ indicating zero appears on the plots</p>
+</blockquote>
+<p>For example calls, see <tt>quickanalisys2</tt>.</p>
+<h2>See Also</h2>
+<p>
+<a href="prealignSpikes.html"><tt>prealignSpikes</tt></a>,
+<a href="stimes2binraster.html"><tt>stimes2binraster</tt></a>,
+<a href="binraster2psth.html"><tt>binraster2psth</tt></a>,
+<a href="plot_raster2a.html"><tt>plot_raster2a</tt></a>
+</p>
+
+</body>
+</html>

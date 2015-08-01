@@ -1,0 +1,192 @@
+<toc version="2.0"> 
+<tocitem target="CellBase_functions.html">Functions 
+  <tocitem target="CellBase_functions.html#1">Setup
+	<tocitem target="initcb.html"><name>initcb</name><purpose>Initialize CellBase</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#2">Databse functions
+	<tocitem target="switchcb.html"><name>switchcb</name><purpose>Switch CellBase data path and file name</purpose></tocitem> 
+	<tocitem target="choosecb.html"><name>choosecb</name><purpose>Choose between CellBases</purpose></tocitem>
+	<tocitem target="deletecb.html"><name>deletecb</name><purpose>Delete CellBase</purpose></tocitem>
+	<tocitem target="renamecb.html"><name>renamecb</name><purpose>Rename CellBase</purpose></tocitem>
+	<tocitem target="relocatecb.html"><name>relocatecb</name><purpose>Change CellBase path</purpose></tocitem>
+	<tocitem target="findcb.html"><name>findcb</name><purpose>Find CellBase</purpose></tocitem>
+	<tocitem target="whichcb.html"><name>whichcb</name><purpose>Name of the active CellBase</purpose></tocitem>
+	<tocitem target="whoscb.html"><name>whoscb</name><purpose>List of CellBases</purpose></tocitem>
+	<tocitem target="loadcb.html"><name>loadcb</name><purpose>Load the CellBase files</purpose></tocitem>
+	<tocitem target="checknmcb.html"><name>checknmcb</name><purpose>Check whether a CellBase name is valid</purpose></tocitem>
+	<tocitem target="checkcb.html"><name>checkcb</name><purpose>Check main CellBase files</purpose></tocitem>
+	<tocitem target="upgradecb.html"><name>upgradecb</name><purpose>Upgrade CellBase to new version</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#3">Cell-level interface functions
+	<tocitem target="addcell.html"><name>addcell</name><purpose>Add a cell to the database and perform all the analyses</purpose></tocitem> 
+	<tocitem target="addnewcells.html"><name>addnewcells</name><purpose>Add new cells to CellBase</purpose></tocitem>
+	<tocitem target="delcell.html"><name>delcell</name><purpose>Delete cells from CellBase</purpose></tocitem>
+	<tocitem target="findcell.html"><name>findcell</name><purpose>Locate animals, sessions, or tetrodes in CellBase</purpose></tocitem>
+	<tocitem target="findcellpos.html"><name>findcellpos</name><purpose>Locate animal, session or tetrode positions in CellBase</purpose></tocitem>
+	<tocitem target="findallcells.html"><name>findallcells</name><purpose>Find all clustered cells on the CellBase path</purpose></tocitem>
+	<tocitem target="listtag.html"><name>listtag</name><purpose>List CellBase tags</purpose></tocitem>
+	<tocitem target="listcell.html"><name>listcell</name><purpose>List all property values associated with a cell</purpose></tocitem>
+	<tocitem target="selectcell.html"><name>selectcell</name><purpose>Find cells satisfying certain criteria</purpose></tocitem>
+	<tocitem target="tetrodepairs.html"><name>tetrodepairs</name><purpose>Find cells from the same tetrode in a session</purpose></tocitem>
+	<tocitem target="nontetrodepairs.html"><name>nontetrodepairs</name><purpose>Find cells from different tetrodes in a session</purpose></tocitem> 
+	<tocitem target="iscellid.html"><name>iscellid</name><purpose>Check if CellBase cell ID exists</purpose></tocitem>
+	<tocitem target="validcellid.html"><name>validcellid</name><purpose>Check if CellBase cell ID is valid</purpose></tocitem>
+	<tocitem target="loadcb.html"><name>loadcb</name><purpose>Load the CellBase files</purpose></tocitem>
+	<tocitem target="loadcell.html"><name>loadcell</name><purpose>Load spike and event times of a cell</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#4">Analysis-level interface functions
+	<tocitem target="addanalysis.html"><name>addanalysis</name><purpose>Add an analysis to CellBase</purpose></tocitem> 
+	<tocitem target="delanalysis.html"><name>delanalysis</name><purpose>Delete an analysis from CellBase</purpose></tocitem>
+	<tocitem target="runanalysis.html"><name>runanalysis</name><purpose>Run an analysis on CellBase</purpose></tocitem>
+	<tocitem target="findanalysis.html"><name>findanalysis</name><purpose>Find an analysis in CellBase</purpose></tocitem>
+	<tocitem target="findprop.html"><name>findprop</name><purpose>Find a property in CellBase</purpose></tocitem>
+	<tocitem target="insertdata.html"><name>insertdata</name><purpose>Insert data into CellBase directly</purpose></tocitem>
+	<tocitem target="exportdata.html"><name>exportdata</name><purpose>Export all data introduced to CellBase by the 'insertdata' function</purpose></tocitem>
+	<tocitem target="writedata.html"><name>writedata</name><purpose>Write CellBase to Excel</purpose></tocitem>
+	<tocitem target="getvalue.html"><name>getvalue</name><purpose>Extract all values associated with a property</purpose></tocitem>
+	<tocitem target="setvalue.html"><name>setvalue</name><purpose>Set value associated with a property</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#5">Conversion functions
+	<tocitem target="cellid2fnames.html"><name>cellid2fnames</name><purpose>Convert cell IDs to data file names</purpose></tocitem> 
+	<tocitem target="cellid2tags.html"><name>cellid2tags</name><purpose>Convert cell IDs to separate tags</purpose></tocitem>
+	<tocitem target="cellid2vals.html"><name>cellid2vals</name><purpose>Convert cell IDs to numbers</purpose></tocitem>
+	<tocitem target="fname2cellid.html"><name>fname2cellid</name><purpose>Convert filenames to cell IDs</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#6">Helper functions
+	<tocitem target="findpos.html"><name>findpos</name><purpose>Find trials with specific properties</purpose></tocitem> 
+	<tocitem target="findcellstr.html"><name>findcellstr</name><purpose>STRCMP for CellBase cell IDs</purpose></tocitem>
+	<tocitem target="unique_cell.html"><name>unique_cell</name><purpose>Unique list of cells</purpose></tocitem> 
+	<tocitem target="unique_session_cells.html"><name>unique_session_cells</name><purpose>Select one cell per session</purpose></tocitem>
+	<tocitem target="cellcmp.html"><name>cellcmp</name><purpose>Compare two cell arrays</purpose></tocitem>
+	<tocitem target="nancell2struct.html"><name>nancell2struct</name><purpose>Convert cell of structures with NaNs to struct</purpose></tocitem>
+	<tocitem target="nancell2mat.html"><name>nancell2mat</name><purpose>Convert cell of equal size matrices with NaNs to double</purpose></tocitem>
+	<tocitem target="listdir.html"><name>listdir</name><purpose>List descending directories</purpose></tocitem>
+	<tocitem target="listfiles.html"><name>listfiles</name><purpose>List files in a directory</purpose></tocitem>
+	<tocitem target="match_list.html"><name>match_list</name><purpose>Find exact matches of a string in a cell array of strings</purpose></tocitem>
+	<tocitem target="parse_args.html"><name>parse_args</name><purpose>Parse input arguments</purpose></tocitem>
+	<tocitem target="nargvout.html"><name>nargvout</name><purpose>Number of output arguments</purpose></tocitem>
+	<tocitem target="abs2reltimes.html"><name>abs2reltimes</name><purpose>Calculate relative time windows relative to events</purpose></tocitem>
+	<tocitem target="rel2abstimes.html"><name>rel2abstimes</name><purpose>Calculate absolute time windows relative to events</purpose></tocitem>
+	<tocitem target="restrict2.html"><name>restrict2</name><purpose>Restrict vector to a range</purpose></tocitem>
+	<tocitem target="iprctile.html"><name>iprctile</name><purpose>Percentile</purpose></tocitem>
+	<tocitem target="isbinary.html"><name>isbinary</name><purpose>Determine whether an array is binary</purpose></tocitem>
+	<tocitem target="valuecrossing.html"><name>valuecrossing</name><purpose>Interpolate value-crossings of a function</purpose></tocitem>
+	<tocitem target="nearest.html"><name>nearest</name><purpose>Find nearest point in vector</purpose></tocitem>
+	<tocitem target="linterp.html"><name>linterp</name><purpose>1D linear interpolation</purpose></tocitem>
+	<tocitem target="smooth.html"><name>smooth</name><purpose>Smooth with a moving average</purpose></tocitem>
+	<tocitem target="standardize.html"><name>standardize</name><purpose>Standardization</purpose></tocitem>
+	<tocitem target="noblank.html"><name>noblank</name><purpose>Remove blanks</purpose></tocitem>
+	<tocitem target="sq.html"><name>sq</name><purpose>Squeeze</purpose></tocitem>
+	<tocitem target="nan2zero.html"><name>nan2zero</name><purpose>Replace NaNs with zeros</purpose></tocitem>
+	<tocitem target="zero2nan.html"><name>zero2nan</name><purpose>Replace zeros with NaNs</purpose></tocitem>
+	<tocitem target="formatforExcel.html"><name>formatforExcel</name><purpose>Helper function for writing numbers to Excel files</purpose></tocitem>
+	<tocitem target="writefigs.html"><name>writefigs</name><purpose>Write figures to pdf</purpose></tocitem>
+	<tocitem target="createdoc.html"><name>createdoc</name><purpose>Create documentation html file for functions</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#7">Data processing functions
+	<tocitem target="solo2trialevents4_auditory_gonogo.html"><name>solo2trialevents4_auditory_gonogo</name><purpose>Create trial events structure</purpose></tocitem>
+	<tocitem target="solo2trialevents4_auditory_pavlovian.html"><name>solo2trialevents4_auditory_pavlovian</name><purpose>Create trial events structure</purpose></tocitem>
+	<tocitem target="MakeStimEvents2.html"><name>MakeStimEvents2</name><purpose>Create stimulus events structure</purpose></tocitem>
+	<tocitem target="MakeTrialEvents2_gonogo.html"><name>MakeTrialEvents2_gonogo</name><purpose>Synchronize trial events to recording times</purpose></tocitem>
+	<tocitem target="defineEventsEpochs_default.html"><name>defineEventsEpochs_default</name><purpose>Define events and epochs for spike extraction</purpose></tocitem>
+	<tocitem target="defineEventsEpochs_gonogo.html"><name>defineEventsEpochs_gonogo</name><purpose>Define events and epochs for spike extraction</purpose></tocitem>
+	<tocitem target="defineEventsEpochs_pavlovian.html"><name>defineEventsEpochs_pavlovian</name><purpose>Define events and epochs for spike extraction</purpose></tocitem>
+	<tocitem target="defineEventsEpochs_laserstim.html"><name>defineEventsEpochs_laserstim</name><purpose>Define events and epochs for spike extraction</purpose></tocitem>
+	<tocitem target="defineEventsEpochs_pulseon.html"><name>defineEventsEpochs_pulseon</name><purpose>Define events and epochs for spike extraction</purpose></tocitem>
+	<tocitem target="prealignSpikes.html"><name>prealignSpikes</name><purpose>Align spikes to events and calculates rates for each epoch</purpose></tocitem>
+	<tocitem target="dynamicSpikeWindow.html"><name>dynamicSpikeWindow</name><purpose>Restrict spike times to event windows</purpose></tocitem>
+	<tocitem target="trialevents2relativetime.html"><name>trialevents2relativetime</name><purpose>Calculate time values relative to reference event</purpose></tocitem>
+	<tocitem target="findSegs3.html"><name>findSegs3</name><purpose>Find segments of a session</purpose></tocitem>
+	<tocitem target="extractSegSpikes.html"><name>extractSegSpikes</name><purpose>Extract spikes between specific timestamps</purpose></tocitem>
+	<tocitem target="extractEventSpikes.html"><name>extractEventSpikes</name><purpose>Extract and align spikes in each trial relative to trial events</purpose></tocitem>
+	<tocitem target="extractEpochRates.html"><name>extractEpochRates</name><purpose>Calculate spike rates in fixed or variable epochs</purpose></tocitem>
+	<tocitem target="extractSpikeWaveforms.html"><name>extractSpikeWaveforms</name><purpose>Peak-aligned waveforms</purpose></tocitem>
+	<tocitem target="parseValidTrials.html"><name>parseValidTrials</name><purpose>Trial selection</purpose></tocitem>
+	<tocitem target="selecttrial.html"><name>selecttrial</name><purpose>Execute logical expression to filter trials</purpose></tocitem>
+	<tocitem target="filterTrials.html"><name>filterTrials</name><purpose>Filtering trials</purpose></tocitem>
+	<tocitem target="partition_trials.html"><name>partition_trials</name><purpose>Sort all trials to partitions</purpose></tocitem>
+	<tocitem target="parseTTLs.html"><name>parseTTLs</name><purpose>Parse TTLs to channels</purpose></tocitem>
+	<tocitem target="parse_token.html"><name>parse_token</name><purpose>Parse arguments</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#8">Plot functions
+	<tocitem target="fstamp.html"><name>fstamp</name><purpose>Put a title below all subplots</purpose></tocitem>
+	<tocitem target="focusfigure.html"><name>focusfigure</name><purpose>Bring figure and subplot into focus</purpose></tocitem>
+	<tocitem target="errorshade.html"><name>errorshade</name><purpose>Shaded error bar plot</purpose></tocitem>
+	<tocitem target="defineLabelsColors_default.html"><name>defineLabelsColors_default</name><purpose>Labels and colors for plotting</purpose></tocitem>
+	<tocitem target="makeColorsLabels.html"><name>makeColorsLabels</name><purpose>Colors, labels and line style</purpose></tocitem>
+	<tocitem target="set_subplots.html"><name>set_subplots</name><purpose>Make subplots with defined distances</purpose></tocitem>
+	<tocitem target="gcolor.html"><name>gcolor</name><purpose>Get color string</purpose></tocitem>
+	<tocitem target="setmyfigure.html"><name>setmyfigure</name><purpose>Set figure properties</purpose></tocitem>
+	<tocitem target="setmyplot.html"><name>setmyplot</name><purpose>Set axis properties</purpose></tocitem>
+	<tocitem target="maximize_figure.html"><name>maximize_figure</name><purpose>Maximize figure window</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#9">Analysis functions
+	<tocitem target="quickanalysis2.html"><name>quickanalysis2</name><purpose>Analysis of tetrode data</purpose></tocitem>
+	<tocitem target="detect_bursts.html"><name>detect_bursts</name><purpose>Burst detection</purpose></tocitem>
+	<tocitem target="reliability_latency_jitter.html"><name>reliability_latency_jitter</name><purpose>Reliability, latency and jitter of spiking</purpose></tocitem>
+	<tocitem target="efficiency.html"><name>efficiency</name><purpose>Efficiency of evoking spikes</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#10">Analysis functions - spike clusters
+	<tocitem target="check_channel_validity.html"><name>check_channel_validity</name><purpose>Check tetrode channels</purpose></tocitem>
+	<tocitem target="LRatio.html"><name>LRatio</name><purpose>L-ratio and Isolation Distance</purpose></tocitem>
+	<tocitem target="LRatio2.html"><name>LRatio2</name><purpose>L-ratio and Isolation Distance</purpose></tocitem>
+	<tocitem target="plot_mclust_projections2.html"><name>plot_mclust_projections2</name><purpose>Plot feature data for clusters</purpose></tocitem>
+	<tocitem target="plotwaveforms.html"><name>plotwaveforms</name><purpose>Plot spontaneous and/or light-evoked spike shape</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#11">Analysis functions - raster and PSTH
+	<tocitem target="apsth.html"><name>apsth</name><purpose>Spike density function with adaptive Gaussian kernel</purpose></tocitem>
+	<tocitem target="dapsth.html"><name>dapsth</name><purpose>Spike density function with 'doubly adaptive' Gaussian kernel</purpose></tocitem>
+	<tocitem target="stimes2binraster.html"><name>stimes2binraster</name><purpose>Calculate binraster from spike times</purpose></tocitem>
+	<tocitem target="binraster2psth.html"><name>binraster2psth</name><purpose>PSTH from binned spike raster</purpose></tocitem>
+	<tocitem target="binraster2apsth.html"><name>binraster2apsth</name><purpose>Adaptive PSTH from binned spike raster</purpose></tocitem>
+	<tocitem target="binraster2dapsth.html"><name>binraster2dapsth</name><purpose>'Doubly adaptive' PSTH from binned spike raster</purpose></tocitem>
+	<tocitem target="smoothed_psth.html"><name>smoothed_psth</name><purpose>Smoothed PSTH</purpose></tocitem>
+	<tocitem target="plot_raster2a.html"><name>plot_raster2a</name><purpose>Plot spike raster</purpose></tocitem>
+	<tocitem target="plot_raster_psth.html"><name>plot_raster_psth</name><purpose>Plot raster plots and PSTHs</purpose></tocitem>
+	<tocitem target="plot_timecourse.html"><name>plot_timecourse</name><purpose>Plot PSTH</purpose></tocitem>
+	<tocitem target="viewcell2b.html"><name>viewcell2b</name><purpose>Raster plot and PSTH</purpose></tocitem>
+	<tocitem target="viewlick.html"><name>viewlick</name><purpose>Lick raster and PSTH</purpose></tocitem>
+	<tocitem target="rasterplot.html"><name>rasterplot</name><purpose>Raster plot (fast)</purpose></tocitem>
+	<tocitem target="ultimate_psth.html"><name>ultimate_psth</name><purpose>Peri-stimulus time histogram</purpose></tocitem>
+	<tocitem target="psth_stats.html"><name>psth_stats</name><purpose>Statistics for firing rate change</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#12">Analysis functions - optical tagging
+	<tocitem target="salt.html"><name>salt</name><purpose>Stimulus-Associated spike Latency Test</purpose></tocitem>
+	<tocitem target="findStimPeriod.html"><name>findStimPeriod</name><purpose>Find time period of stimulated spikes</purpose></tocitem>
+	<tocitem target="spikeshapecorr.html"><name>spikeshapecorr</name><purpose>Correlation of spontaneous and light-evoked spike shape</purpose></tocitem>
+	<tocitem target="lightcluster.html"><name>lightcluster</name><purpose>Clustering of light-evoked spikes</purpose></tocitem>
+	<tocitem target="tagging.html"><name>tagging</name><purpose>Cluster quality and tagging index</purpose></tocitem>
+	<tocitem target="taggedprop.html"><name>taggedprop</name><purpose>Properties of putative tagged neurons</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#13">Analysis functions - spike correlations
+	<tocitem target="acg.html"><name>acg</name><purpose>Auto-correlations</purpose></tocitem>
+	<tocitem target="ccg.html"><name>ccg</name><purpose>Cross-correlations</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#14">Analysis functions - anatomy
+	<tocitem target="reconstruction.html"><name>reconstruction</name><purpose>Anatomical reconstruction of electrode position</purpose></tocitem>
+  </tocitem>
+
+  <tocitem target="CellBase_functions.html#15">Analysis functions - behavior
+	<tocitem target="psych_gonogo.html"><name>psych_gonogo</name><purpose>Average performance and reaction time</purpose></tocitem>
+	<tocitem target="psych_gonogo2.html"><name>psych_gonogo2</name><purpose>Average performance and reaction time</purpose></tocitem>
+	<tocitem target="psych_gonogo_learningcurve.html"><name>psych_gonogo_learningcurve</name><purpose>Average learning curve</purpose></tocitem>
+  	<tocitem target="psychplot_gonogo.html"><name>psychplot_gonogo</name><purpose>Plot psychometric performance</purpose></tocitem>
+	<tocitem target="psychplot_pavlovian.html"><name>psychplot_pavlovian</name><purpose>Plot performance</purpose></tocitem>
+   </tocitem>
+
+
+</tocitem>
+</toc>

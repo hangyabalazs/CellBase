@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>ultimate_psth</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">ultimate_psth</h1>
+<align="left">Peri-stimulus time histogram.
+<h2>Syntax</h2>
+<p><blockquote><tt>[psth spsth spsth_se] = ultimate_psth(cellid,event_type,event,window,varargin)</tt><br>
+<tt>[psth spsth spsth_se tags] = ultimate_psth(cellid,event_type,event,window,varargin)</tt><br>
+<tt>[psth spsth spsth_se tags spt] = ultimate_psth(cellid,event_type,event,window,varargin)</tt><br>
+<tt>[psth spsth spsth_se tags spt stats] = ultimate_psth(cellid,event_type,event,window,varargin)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[psth spsth spsth_se] = ultimate_psth(cellid,event_type,event,window,varargin)
+</tt> calculates peri-stimulus time histogram (PSTH) for the cell passed in <tt>cellid</tt>. Smoothed PSTH (<tt>spsth</tt>) and SE of smoothed PSTH (<tt>spsth_se</tt>) are also returned.</p>
+<p><tt>[psth spsth spsth_se tags] = ultimate_psth(cellid,event_type,event,window,varargin)
+</tt> returns partition tags (<tt>tags</tt>) corrsponding to PSTHs when trials are partitioned; see <tt>partition_trials</tt>.</p>
+<p><tt>[psth spsth spsth_se tags spt] = ultimate_psth(cellid,event_type,event,window,varargin)
+</tt> returns the bin raster (<tt>spt</tt>); see <tt>stimes2binraaster</tt>.</p>
+<p><tt>[psth spsth spsth_se spt tags stats] = ultimate_psth(cellid,event_type,event,window,varargin)
+</tt> calculates and returns test results for significant firing rate changes after the event (see <tt>psth_stats</tt> for details).</p>
+<p><tt>ultimate_psth</tt> is also capable of using two different events for the periods before and after 0, usefull for statistical testing with a baseline period aligned to a different event than the test period (see below and <tt>psth_stats</tt>).</p>
+<p>Mandatory input arguments:</p>
+<blockquote>
+<p><tt>cellid:</tt> defines the cell (see CellBase documentation) or session (for lick-PSTH)</p>
+<p><tt>event:</tt> the event to which the PSTH is aligned; if <tt>event</tt> is a cell array of two strings, the first event is used for the PSTH and binraster before 0 and the second event is used for the PSTH and binraster after 0; if <tt>event</tt> is a function handle, the function is called for <tt>cellid</tt> to define the aligning event (dynamic event definition)</p>
+<p><tt>event_type:</tt> the type of event, <tt>'stim'</tt>, <tt>'trial'</tt> or <tt>'lick'</tt> (for lick-PSTH)</p>
+<p><tt>window:</tt> window for calculation relative to the event in seconds</p>
+</blockquote>
+<p>Default behavior of <tt>ultimate_psth</tt> can be modified by using a set of paramter-value pairs as optional input parameters. The following parameters are implemented (with default values):</p>
+<blockquote>
+<p><tt>'dt', 0.001</tt> - time resolution in seconds</p>
+<p><tt>'sigma', 0.02</tt> - smoothing kernel for the smoothed PSTH, in seconds</p>
+<p><tt>'margin',[-0.01 0.01]</tt> margins for PSTH calculation to get rid of edge effect due to smoothing</p>
+<p><tt>'event_filter', 'none'</tt> - filter light-stimulation trials; see <tt>filterTrials</tt> for implemented filter types</p>
+<p><tt>'filterinput',[]</tt> - some filters require additional input; see <tt>filterTrials</tt> for details</p>
+<p><tt>'maxtrialno', 5000</tt> - maximal number of trials included; if ther are more valid trials, they are randomly down-sampled</p>
+<p><tt>'first_event', []</tt> - event name used to exclude spikes before previous event </p>
+<p><tt>'last_event', []</tt> - event name used to exclude spikes after following event</p>
+<p><tt>'parts', 'all'</tt> - partitioning the set of trials; input to <tt>partition_trials</tt>, see details therein (default, no partitioning)</p>
+<p><tt>'isadaptive', 1</tt> - 0, classic PSTH algorithm is applied; 1, adaptive PSTH is calculated (see <tt>apsth</tt>); 2, <tt>'doubly adaptive'</tt> PSTH algorithm is used (see <tt>dapsth</tt>)</p>
+</p><tt>'baselinewin', [-0.25 0]</tt> - limits of baseline window for statistical testing (see <tt>psth_stats</tt>), time relative to 0 in 
+ seconds</p>
+<p><tt>'testwin', [0 0.1]</tt> - limits of test window for statistical testing (see <tt>psth_stats</tt>), time relative to 0 in seconds</p>
+<p><tt>'relative_threshold', 0.5</tt> - threshold used to assess start and end points of activation and inhibition intervals in <tt>psth_stats</tt>; in proportion of the peak-baseline difference (see <tt>psth_stats</tt>)</p>
+<p><tt>'display', false</tt> - controls plotting</p>
+</blockquote>
+
+<h2>See Also</h2>
+<p>
+<a href="psth_stats.html"><tt>psth_stats</tt></a>, <a href="stimes2binraster.html"><tt>stimes2binraster</tt></a>, <a href="binraster2psth.html"><tt>binraster2psth</tt></a>, <a href="binraster2apsth.html"><tt>binraster2apsth</tt></a>, <a href="apsth.html"><tt>apsth</tt></a>, <a href="viewcell2b.html"><tt>viewcell2b</tt></a>, <a href="partition_trials.html"><tt>partition_trials</tt></a>, <a href="filterTrials.html"><tt>filterTrials</tt></a>
+</p>
+
+</body>
+</html>

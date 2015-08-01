@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<toc version="2.0">
+
+<tocitem target="CellBase_top.html" image="$toolbox/matlab/icons/book_mat.gif">CellBase
+
+<tocitem target="CellBase_getting_started.html" image="HelpIcon.GETTING_STARTED">Getting Started
+
+<tocitem target="CellBase_about.html">About CellBase</tocitem>
+
+</tocitem>
+
+<tocitem target="CellBase_top.html" image="HelpIcon.USER_GUIDE">User's Guide
+    <tocitem target="CellBase_setup.html">Installing CellBase</tocitem>
+    <tocitem target="CellBase_choose.html">Multiple instances of CellBase</tocitem>
+    <tocitem target="CellBase_variables.html">Core variables of CellBase</tocitem>
+    <tocitem target="CellBase_database_management.html">Database management</tocitem>
+    <tocitem target="CellBase_application.html">Using CellBase</tocitem>       
+    <tocitem target="CellBase_programming.html">Programming in CellBase</tocitem>       
+</tocitem>
+
+<tocreference target="helpfuncbycat.xml"></tocreference>
+
+<tocitem target="CellBase_R2013a_Release_Notes.html" image="HelpIcon.RELEASE_NOTES">CellBase_R2013a Release Notes</tocitem>
+
+</tocitem>
+
+</toc>

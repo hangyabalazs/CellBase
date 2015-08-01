@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>addanalysis</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">addanalysis</h1>
+<align="left">Add an analysis to CellBase.
+<h2>Description</h2>
+<p><tt>addanalysis(funhandle)</tt> adds an analysis to CellBase with the specified
+ function handle. <tt>addanalysis</tt> also executes the analysis function passed
+ by <tt>funhandle</tt> on the cells included in CellBase. Note that the analysis
+ specified by <tt>funhandle</tt> should take a cell ID as its first input
+ argument.</p>
+<p><tt>addanalysis(funhandle,'property_names',pr)</tt> passes the list of property
+ names <tt>(pr,</tt> cell array of strings) to <tt>addanalysis.</tt> The property name
+ 'default' is used if no property names are specified. The number of
+ property names listed should match the number of outputs of the
+ analysis function.</p>
+<p><tt>addanalysis(funhandle,'property_names',pr,'arglist',argval)</tt> also passes
+ input argument-value pairs <tt>(argval,</tt> N-by-2 cell array) to <tt>addanalysis.
+</tt> These will be passed on to the analysis function.</p>
+<h2>Examples</h2>
+<p><blockquote><tt>addanalysis(@LRatio2,'property_names',{'ID_PC','Lr_PC'},...<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'arglist',{'feature_names' {'WavePC1' 'Energy'}})
+;</tt></blockquote></p>
+<h2>See Also</h2>
+<p>
+<a href="findanalysis.html"><tt>findanalysis</tt></a>
+</p>
+
+</body>
+</html>

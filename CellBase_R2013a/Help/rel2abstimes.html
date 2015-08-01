@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>rel2abstimes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">rel2abstimes</h1>
+<align="left">Calculate absolute time windows relative to events.
+<h2>Syntax</h2>
+<p><blockquote><tt>abstimes = rel2abstimes(cellid,reltimes,event_type,event)</tt><br>
+<tt>abstimes = rel2abstimes(cellid,reltimes,event_type,event,'valid_trials',vt)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>abstimes = rel2abstimes(cellid,reltimes,event_type,event)</tt> calculates
+ time stamps <tt>(abstimes)</tt> corresponding to <tt>reltimes</tt> (time values relative
+ to an <tt>event,</tt> in seconds) for a given cell <tt>(cellid). event_type</tt> should
+ determine whether <tt>event</tt> is a field of stimulus events ('stim') or trial
+ events ('trial'). Alternatively, <tt>reltimes</tt> can contain time stamps
+ relative to all trials separately in a cell arrray <tt>(stimspikes
+</tt> structure, see <tt>prealignspikes</tt>).</p>
+<p><tt>abstimes = rel2abstimes(cellid,reltimes,event_type,event,'valid_trials',vt)
+</tt> filters the trials according to the <tt>'valid_trials'</tt>, parameter</tt> value
+ pair.</p>
+<h2>See Also</h2>
+<p>
+<a href="abs2reltimes.html"><tt>abs2reltimes</tt></a>, <a href="findSegs3.html"><tt>findSegs3</tt></a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>insertdata</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">insertdata</h1>
+<align="left">Insert data into CellBase directly.
+<h2>Syntax</h2>
+<p><blockquote><tt>nf = insertdata(data,param,value)</tt><br>
+<tt>not_found = insertdata([],'type','prop','name','validity');</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>nf = insertdata(data,param,value)</tt> inserts <tt>data</tt> into <tt>TheMatrix</tt>
+ and <tt>ANALYSES</tt> (see CellBase documentation). It optionally returns the
+ list of entries in <tt>data</tt> which did not provide a match with <tt>CELLIDLIST</tt> (<tt>nf</tt>).</p>
+
+<p.Input arguments:</p>
+<blockquote>
+ <p><tt>'data'</tt> - either a Matlab variable or a full pathname to a .mat or an Excel file. It can optionally contain a header row with <tt>'property_names'</tt> in the first column and corresponding property names for data columns. First column should contain cellIDs. If property names are added as both input argument and data header, the user is forced to choose which one to use.</p>
+<p><tt>'type', t</tt> - Parameter indicating whether an analysis or a set of properties are added. <tt>t</tt> should start with the letter 'a' or 'p' accordingly.</p>
+<p><tt>'name', nm</tt> - Name of the analysis or properti(es). For analysis: it should be the name of a valid <tt>.m</tt> file. For properties: either a character array (one property) or a cell array of strings (multiple properties).</p>
+<p><tt>'input_arguments', ls1</tt> - Input arguments for analysis, cell array.</p>
+<p><tt>'output_arguments', ls2</tt> - Names of output arguments for analysis, cell array of strings. This determines the property names when an analysis is added.</p>
+</blockquote>
+<p>The number of properties or output arguments (in case of adding values to an analysis) must match the number of data columns (number of all
+ columns minus one) in <tt>data</tt>.</p>
+<p>Missing input arguments are asked for interactively. If <tt>data</tt> is empty,
+ the user has to browse for the data file. If 'Cancel' is selected for
+ browsing result, data values will interactively be prompted for
+ according to a selected tag type (animal, session, tetrode or cell).</p>
+<p>If a property or an analysis is already added to CellBase, the user is
+ asked whether to overwrite previous data. An analysis is only
+ considered the same if the name of the m file and both the list of 
+ input and output arguments are the same. If the data is overwritten,
+ the timestamp property in <tt>ANALYSES</tt> is updated.</p>
+<p>New data is inserted into <tt>TheMatrix</tt> and <tt>ANALYSES</tt> according to the
+ corresponding cellIDs. A backup of the previous cellbase file is stored
+ before overwriting.</p>
+<h2>Examples</h2>
+<p><blockquote><tt>
+ insertdata(data,'type','analysis','name','LRatio','input_arguments',...<br />
+ {{'Amplitude','Energy'}},'output_arguments',{'ID_amp','Lr_amp'})</tt></p>
+<p><tt>not_found = insertdata([],'type','prop','name','validity');</tt></p>
+<p><tt>insertdata('c:\Balazs\_analysis\NB\tagging\validity.xls','type',...<br />
+ 'prop','name','validity')</tt></p>
+ <p><tt>insertdata('c:\Balazs\_analysis\NB\tagging2\spikeshapecorr.xls','type',...<br />
+ 'analysis','name','nbspikeshapecorr')</tt></blockquote></p>
+<h2>See Also</h2>
+<p>
+<a href="addanalysis.html"><tt>addanalysis</tt></a>, <a href="runanalysis.html"><tt>runanalysis</tt></a>
+</p>
+
+</body>
+</html>

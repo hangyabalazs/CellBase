@@ -1,0 +1,66 @@
+
+function ClusterChecker (clname,sessionpath)
+
+%Output a pdf 
+
+if nargin ==0;
+    [clname,sessionpath] = uigetfile(fullfile('.clusters'), 'Select a .clusters file'); 
+end  
+	clpath = fullfile(sessionpath, clname); %.clusters path name
+    tname = strtok(clname, '.clusters');    %TT* file name
+    [ratpath]=fileparts(sessionpath);
+    [sp sessionname]=fileparts(sp);
+    [sp ratname]=fileparts(sp);
+    
+%% DefineParameters
+    global MClust_NeuralLoadingFunction
+    global MClust_FDdn MClust_FDext MClust_ChannelValidity MCLUST_DEBUG
+    global MClust_TTfn MClust_TTdn MClust_TText MClust_TTData
+    global MClust_Clusters MClust_FeatureTimestamps MClust_FeatureSources
+    global MClust_ClusterSeparationFeatures
+    
+    %Variables
+    pdfname = 'ClusterInfo.pdf';
+    MClust_Directory='C:\Users\JUNYA\Documents\MClust-3.5\MClust';
+    MClust_FDdn=fullfile(sessionpath,'\FD');
+    featureList = {'Amplitude'; 'Energy'; 'Peak'; 'Time'};
+%     MClust_ClusterSeparationFeatures = {'Amplitude'; 'Energy'; 'Peak'};
+    MClust_ClusterSeparationFeatures = {'Amplitude'};
+    MClust_ChannelValidity = [1 1 1 1];
+    MClust_TTdn=sessionpath;
+    
+    %Constant
+    MClust_NeuralLoadingFunction=char([MClust_Directory '\LoadingEngines\LoadTT_NeuralynxNT']);
+    MClust_TText = '.ntt';
+    MClust_FDext = '.fd';
+    MClust_TTData = [];      % data from tt file
+    MClust_FeatureSources = {}; % <filenames, number pairs> for finding features in fd files
+    MClust_FeatureTimestamps=[];
+    MCLUST_DEBUG=1;
+    MClust_Clusters=[];
+    MClust_TTfn=[];
+
+
+%% LoadClusterData
+	temp = load(clpath,'-mat');
+    MClust_Clusters=temp.MClust_Clusters;
+	nClusters = length(MClust_Clusters);
+    
+%% LoadFeatureData
+    featureFiles =  sortcell(FindFiles('feature_*.m', ...
+    'StartingDirectory', fullfile(MClust_Directory, 'Features') ,'CheckSubdirs', 0));
+
+%% MakeFigures
+
+MClust_TTfn=tname;
+for iClust=1:nClusters;
+CalculateFeatures(MClust_TTfn, featureList)
+CO_01_CheckCluster(iClust)
+text(30,2000,[ratname '_' sessionname] ,'HorizontalAlignment', 'center','VerticalAlignment', 'top', 'fontsize', 20)
+set(gcf, 'Color', 'w');
+
+export_fig(gcf,'-append',[ratname '_' sessionname '_' pdfname], '-zbuffer'); % just filename (cd) or specify fullpath
+
+clf(gcf); close; %clear figure for each time after saving to release memory
+end
+

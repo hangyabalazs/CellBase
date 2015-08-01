@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>filterTrials</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">filterTrials</h1>
+<align="left">Filtering trials.
+<h2>Syntax</h2>
+<p><tt>valid_trials = filterTrials(cellid,param,value)</tt><br>
+</p>
+<h2>Description</h2>
+<p><tt>valid_trials = filterTrials(cellid,param,value)</tt> filters the events for
+ a given cell <tt>(cellid)</tt> based on the following parameter, value pairs
+ (default values are given below):</p>
+<blockquote>
+<p><tt>'event_type', 'stim'</tt> - select whether which event type (<tt>'stim'</tt> or <tt>'trial'</tt>) will be used</p>
+<p><tt>'event', 'PulseOn'</tt> - reference event</p>
+<p><tt>'event_filter', 'none'</tt> - filter name; see implemented filter types below; intersection of filters is used for a cell array of filter names</p>
+<p><tt>'filterinput', []</tt> - some filters require additional input - see below; filter input has to be given as a struct, with
+ appropriate fields</p>
+</blockquote>
+<p>Implemented event filters for <tt>'stim'</tt> events:</p>
+<blockquote>
+<p><tt>'BurstNPulse'</tt> - only light pulse trains with a specified number of pulses are used; this number has to be specified as a <tt>'BurstNPulse'</tt>, <tt>n</tt> (numeric) parameter, value pair given as a struct (<tt>s.BurstNPulse = 1</tt>)</p>
+<p><tt>'BurstNPulse_maxPower'</tt> - the same as<tt>'BurstNPulse'</tt> but light bursts are further restricted to pulses with maximal power applied</p>
+<p><tt>'minNPulse_maxPower'</tt> - the light bursts with minimal number of pulses and maximal power are used</p>
+</blockquote>
+<p>Implemented event filters for <tt>'trial'</tt> events:</p>
+<blockquote>
+<p><tt>'animalactive'</tt> - filters for minimal percentage of hits (40%=4 hits over a 10 go-trial moving window)</p>
+<p><tt>'selectGoRT'</tt> - GoRT is limited to a percentile range; <tt>'filterinput'</tt> specifies the lower and upper percentile threshold</p>
+<p><tt>'selectRT'</tt> - response time (hits or false alarms) is limited to a percentile range; 'filterinput' specifies the lower and upper percentile threshold</p>
+</blockquote>
+<p><tt>'custom'</tt> filter:</p>
+<blockquote>
+Set event_filter to <tt>'custom'</tt> and use the <tt>'filterinput'</tt> argument to pass a logical expression for filtering trials (e.g. <tt>TE.Hit==1&TE.GoRT<0.5</tt>) - see <tt>selectTrial</tt> for details.</p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="parseValidTrials.html"><tt>parseValidTrials</tt></a>, <a href="selecttrial.html"><tt>selecttrial</tt></a>
+</p>
+
+</body>
+</html>

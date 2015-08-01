@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>somccg_conf_filter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">somccg_conf_filter</h1>
+<align="left">Cross-correlation.
+<h2>Syntax</h2>
+<p><blockquote><tt>h = somccg_conf_filter(vd1,vd2)</tt><br>
+<tt>h = somccg_conf_filter(vd1,vd2,wn)</tt><br>
+<tt>[h1 ccr lwr upr rccg] = somccg_conf_filter(vd1,vd2,wn)</tt><br>
+<tt>[h1 ccr lwr upr rccg] = somccg_conf_filter(vd1,vd2,wn,shuff_min,shuff_max)</tt><br>
+<tt>[h1 ccr lwr upr rccg] = somccg_conf_filter(vd1,vd2,wn,shuff_min,shuff_max,cutoff)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>somccg_conf_filter(vd1,vd2)</tt> calculates cross-correlogram for
+ discriminated units <tt>vd1</tt> and <tt>vd2,</tt> using a <tt>+-50</tt> ms time window.
+ Confidance intervals are calculated based on cross-correlations of
+ shifted data. <tt>somccg_conf_filter</tt> calculates confidence interval from
+ high-pass filtered <tt>ccg,</tt> adding the low-pass filtered part back
+ afterwards (see <tt>xcorr_wrand_filter).</tt> Filtering is at <tt>cutoff</tt> Hz (see
+ below).</p>
+<p><tt>h = somccg_conf_filter(vd1,vd2)</tt> returns the handles of the resulting
+ plot.</p>
+<p><tt>h = somccg_conf_filter(vd1,vd2,wn)</tt> uses <tt>wn</tt> input argument as time
+ window for the cross-correlogram. <tt>wn</tt> should be given in milliseconds.
+ Normalized cross-correlogram will not be effected.</p>
+<p><tt>[h1 ccr lwr upr rccg] = somccg_conf_filter(vd1,vd2,wn)</tt> returns
+ cross-correlogram <tt>(ccr),</tt> lower and upper confidance intervals <tt>(lwr</tt> and
+ <tt>upr)</tt> and shifted cross-correlations <tt>(rccg)</tt>.</p>
+<p><tt>[h1 ccr lwr upr rccg] = somccg_conf_filter(vd1,vd2,wn,shuff_min,shuff_max)</tt> 
+ accepts input arguments for minimal and maximal shifts for shuffled
+ crosscorrelations in ms (default: 100 ms and 5 s).</p>
+<p><tt>[h1 ccr lwr upr rccg] = somccg_conf_filter(vd1,vd2,wn,shuff_min,shuff_max,cutoff)
+</tt> accepts a <tt>cutoff</tt> parameter for filtering CCGs (see <tt>xcorr_wrand_filter</tt>; default is 4 Hz).</p>
+<h2>See Also</h2>
+<p>
+<a href="xcorr_wrand_filter.html"><tt>xcorr_wrand_filter</tt></a>, <a href="matlab:doc xcorr"><tt>xcorr</tt></a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>nbisstim</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">nbisstim</h1>
+<align="left">Assessment of optic tagging.
+<h2>Syntax</h2>
+<p><blockquote><tt>[p i] = nbisstim(cellid)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[p i] = nbisstim(cellid)</tt> calculates information distances and
+ corresponding p values for light tagging for the cell given in <tt>cellid
+</tt>. Briefly, a spike raster is calculated
+ with 1 ms resolution. The raster is devided to 10 ms time bins and
+ spike latency distribution for first spikes is computed within each
+ bin. Pairwise information divergence measures are calculated for the
+ before-light distributions to form a null-hypothesis distribution for
+ distances. The distances of the first after-light distribution (using <tt>'BurstOn'</tt> events) from all before-light
+ distributions is calculated and the median of these values is tested
+ against the null-hypothesis distribution. Output arguments <tt>p</tt> and <tt>i</tt>
+ correspond to a modified version of Jensen-Shannon divergence (see
+ Endres and Schindelin, 2003)</p>
+<p><tt>nbisstim</tt> takes a different bin raster (typically aligned to <tt>'BurstOn'</tt>
+ events) for baseline distribution than the the one for testing against
+ baseline (typically aligned to <tt>'PulseOn'</tt> events). Number of test trials
+ used is maximized to 5000.</p>
+
+<h2>Reference</h2>
+ Endres DM, Schindelin JE (2003) A new metric for probability
+ distributions. IEEE Transactions on Information Theory 49:1858-1860.</p>
+<h2>See Also</h2>
+<p>
+<a href="tagging.html"><tt>tagging</tt></a>, <a href="stimes2binraster.html"><tt>stimes2binraster</tt></a>, <a href="JSdiv.html"><tt>JSdiv</tt></a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>How to use CellBase</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #990000; 
+  font-size: 36;
+}
+h2 {
+  color: #990000;
+  font-size: 24;
+}
+h3 {
+  color: #990000;
+  font-size: 18;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">How to use CellBase</h1>
+
+<h2>Contents</h2>
+<div>
+   <ul>
+      <li><a href="#1">Database</a></li>
+      <li><a href="#2">Data preprocessing</a></li>
+      <li><a href="#3">Data analysis</a></li>
+   </ul>
+</div>
+<h2>Database<a name="1"></a></h2>
+<p>CellBase stores a hierarchical structure of three different entities: animals, sessions and cells. This hierarchy is reflected in the directory structure of CellBase as well as the animal, session and cell identifiers. Raw data and all derived files for each session are stored in the corresponding directories (see <a href="CellBase_setup.html#1">Directory Structure</a>).
+</p>
+<p>List of cell identifiers, analyses performed and user-defined information (analyses results and other properties) for each cell are stored in the three core variables of CellBase: <tt>CELLIDLIST</tt>, <tt>ANALYSES</tt> and <tt>TheMatrix</tt>. These variables can be accessed in Matlab via <a href="loadcb.html"><tt>loadcb</tt></a> (see <a href="CellBase_variables.html">Core variables of CellBase</a>).
+</p>
+<p>New cells can be added or removed by using <a href="addcell.html"><tt>addcell</tt></a>, <a href="addnewcells.html"><tt>addnewcells</tt></a> and <a href="delcell.html"><tt>delcell</tt></a> functions (see also <a href="CellBase_database_management.html">Database management</a>).  Cells or specific subgroups can be located by using <a href="findcell.html"><tt>findcell</tt></a>, <a href="findcellpos.html"><tt>findcellpos</tt></a>, <a href="findallcells.html"><tt>findallcells</tt></a>, <a href="selectcell.html"><tt>selectcell</tt></a>, <a href="tetrodepairs.html"><tt>tetrodepairs</tt></a> and <a href="nontetrodepairs.html"><tt>nontetrodepairs</tt></a>. Information about certain cells or other elements of CellBase can be obtained by <a href="listcell.html"><tt>listcell</tt></a>, <a href="getvalue.html"><tt>getvalue</tt></a> and <a href="listtag.html"><tt>listtag</tt></a>. Cell properties can be added or changed with <a href="insertdata.html"><tt>insertdata</tt></a> and <a href="setvalue.html"><tt>setvalue</tt></a>. Analyses and properties can be located by using <a href="findanalysis.html"><tt>findanalysis</tt></a> and <a href="findprop.html"><tt>findprop</tt></a>. They can be edited by <a href="addanalysis.html"><tt>addanalysis</tt></a> and <a href="delanalysis.html"><tt>delanalysis</tt></a>.
+</p>
+<p>A number of conversion functions help switching between cell identifiers, file names or animal, session and tetrode tags: <a href="cellid2fnames.html"><tt>cellid2fnames</tt></a>, <a href="fname2cellid.html"><tt>fname2cellid</tt></a>, <a href="cellid2tags.html"><tt>cellid2tags</tt></a> and <a href="cellid2vals.html"><tt>cellid2vals</tt></a>.
+</p>
+
+<h2>Data preprocessing<a name="2"></a></h2>
+<p>The first step of data analysis in CellBase is usually data preprocessing (see the list of functions aiding data preprocessing <a href="CellBase_functions.html#7">here</a>). The raw data files are first converted to CellBase format. 
+</p>
+<p>TTL pulses recorded in Neuralynx systems are converted to an <tt>EVENTS.mat</tt> file storing TTL pulse times and corresponding event strings. This step is performed by converter files provided by Neuralynx.
+</p>
+<p>Behavioral data is converted to a structure called <tt>'TrialEvents'</tt>. <tt>TrialEvents</tt> is a general format of CellBase, in which different fields store different behavioral variables, e.g. reaction time, response type, stimulus difficulty. Each field contains a numeric or cell array with length corresponding to the number of trials. The analysis programs provided in CellBase rely on this format. Hence, it is advisable to convert all behavioral data of any source into <tt>TrialEvents</tt> format. Per convention, trial start time stamps are saved as absolute times and all other time stamps are saved as relative times with respect to trial starts (all time stamps are in seconds). Some analysis functions rely on this property (see <a href="abs2reltimes.html"><tt>abs2reltimes</tt></a> and <a href="rel2abstimes.html"><tt>rel2abstimes</tt></a> for conversion between absolute and relative time stamps). See <a href="solo2trialevents4_auditory_gonogo.html"><tt>solo2trialevents4_auditory_gonogo</tt></a> for an example converter. If behavioral and neural data are collected using separate systems, the time stamps of the two systems should be synchronized for neuronal analysis with respect to behavior. In this case, the final <tt>TrialEvents</tt> file should reflect the synchronized time stamps. See <a href="MakeTrialEvents2_gonogo.html"><tt>MakeTrialEvents2_gonogo</tt></a> for an example on synchronization.
+</p>
+<p>In Cellbase there is an opportunity to store stimulation data separately. This option is extremely useful for optogenetic applications. The stimulation data is converted into a structure called <tt>'StimEvents'</tt>. This structure is similar to <tt>TrialEvents</tt>: it contains fields corresponding to stimulation parameters like stimulus onset time, duration, intensity, etc. Each field holds an array with length corresponding to the number of unitary stimulation events - e.g. light pulses. See <a href="MakeStimEvents2.html"><tt>MakeStimEvents2</tt></a> for an example converter.
+</p>
+<p>As a next step, neural data (spike times) are aligned to predefined events based on <tt>TrialEvents</tt> and <tt>StimEvents</tt>. A subset of the fields containing time stamps are chosen in event definition files like <a href="defineEventsEpochs_gonogo.html"><tt>defineEventsEpochs_gonogo</tt></a> and <a href="defineEventsEpochs_laserstim.html"><tt>defineEventsEpochs_laserstim</tt></a>. These functions are passed to <a href="prealignSpikes.html"><tt>prealignSpikes</tt></a>, which saves spike times relative to the defined events in <tt>STIMSPIKES</tt> and <tt>EVENTSPIKES</tt> files (see <a href="abs2reltimes.html"><tt>abs2reltimes</tt></a> and <a href="rel2abstimes.html"><tt>rel2abstimes</tt></a> for conversion between absolute and relative time stamps). This data preprocessing step speeds up most subsequent analyses.
+</p>
+<p>Other data preprocessing functions include trial selection, segment selection, spike time or waveform extraction based on selected segments, etc. See a list of data preprocessing functions <a href="CellBase_functions.html#7">here</a>.
+</p>
+<p>See <a href="quickanalysis2.html"><tt>quickanalysis2</tt></a> for an example on data preprocessing and basic analysis.
+</p>
+
+<h2>Data analysis<a name="3"></a></h2>
+<p>CellBase provides a set of data analyses and plotting functions. These include various types of peri-stimulus and peri-event time histograms, raster plots, spike clustering, waveform analysis, optogenetic tagging, auto- and cross-correlation functions. See a list of currently implemented analyses <a href="CellBase_functions.html#9">here</a>. The modular structure of CellBase is meant to encourage users to expand the analysis functions with their own code (see also <a href="CellBase_programming.html">Programming in CellBase</a>).
+</p>
+
+<p><a href="CellBase_programming.html">Programming in CellBase</a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>rasterplot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">rasterplot</h1>
+<align="left">Raster plot.
+<h2>Syntax</h2>
+<p><blockquote><tt>h = rasterplot(binraster)</tt><br>
+<tt>h = rasterplot(binraster,time)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>h = rasterplot(binraster)</tt> plots spike raster from <tt>binraster.</tt> It shows a
+ 'histogram' view if spikes are overlapping on the plot (more spikes
+ appear in darker colors). Zoom is implemented as buttondown function
+ (usage is the same as the usual zoom).</p>
+<p><tt>h = rasterplot(binraster,time)</tt> uses the <tt>time</tt> array for specifying
+ x-coordinates.</p>
+<p><tt>rasterplot(binraster,time,h)</tt> and <tt>rasterplot(binraster,[],h)</tt> plots in
+ the figure with handle <tt>h</tt>.</p>
+<h2>See Also</h2>
+<p>
+<a href="stimes2binraster.html"><tt>stimes2binraster</tt></a>, <a href="viewcell2b.html"><tt>viewcell2b</tt></a>, <a href="plot_raster2a.html"><tt>plot_raster2a</tt></a>
+</p>
+
+</body>
+</html>

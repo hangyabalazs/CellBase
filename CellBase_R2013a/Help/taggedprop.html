@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>taggedprop</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">taggedprop</h1>
+<align="left">Properties of putative tagged neurons.
+<h2>Syntax</h2>
+<p><blockquote><tt>error_list = taggedprop(i,issave)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>taggedprop(i,issave)</tt> performs analysis aiding the definite decision about tagging.</p> 
+<p>Input parameters:</p>
+<blockquote>
+<tt>i</tt> - list of cell IDs or index set to <tt>CELLIDLIST</tt>; if empty or not specified, putative tagged
+ cells are selected (ID>20,L-ratio<0.15, H-index<0.01, R>0.9;
+see <tt>tagging, LRatio, nbisstim</tt> and <tt>spikeshapecorr</tt> for details on these measures)</p>
+<p><tt>issave</tt> - controls saving</p>
+</blockquote>
+<p>The following analyses are performed (output variables saved in <tt>.mat</tt> files and figures in <tt>.pdf</tt>):</p>
+<blockquote>
+<p>Reliability, latency and jitter of evoked spikes after <tt>'BurstOn', 'PulseOn'</tt> and frequency-restricted <tt>'PulseOn'</tt> events; see <tt>reliability_latency_jitter</tt> for details</p>
+<p>H-index for <tt>'BurstOn', 'PulseOn'</tt> and frequency-restricted <tt>'PulseOn'</tt> events; see <tt>tagging_index</tt> for details</p>
+<p>Waveforms of spontaneous and light-evoked spikes; see <tt>plotwaveforms</tt> for details</p>
+<p>All projections of feature data in the Energy-Amplitue space with the putative tagged cells shown in orange and the light-evoked spikes overlayed in blue; see <tt>plot_mclust_projections2</tt> for details</p>
+<p>Cluster quality indices restricted to light-evoked spikes in the Energy-Amplitude as well as in the Energy-WavePC1 space; see
+ <tt>lightcluster</tt> and <tt>LRatio</tt> for details</p>
+<p>Raster plot and PSTH aligned to <tt>'BurstOn'</tt> and <tt>'PulseOn'</tt> events (only 1000 pulses shown in the latter); see <tt>plot_raster_psth, viewcell2b</tt> and <tt>plot_raster2a</tt> for details.</p>
+</blockquote>
+<p><tt>error_list = taggedprop(i,issave)</tt> returns a structure with all caught errors. <tt>error_list</tt> includes cell IDs, error messages and the captured exception variables. A time stamped <tt>error_list</tt> is also assigned in base
+ workspace and saved to the results directory automatically.</p>
+<h2>See Also</h2>
+<p>
+<a href="tagging.html"><tt>tagging</tt></a>, <a href="plot_raster_psth.html"><tt>plot_raster_psth</tt></a>, <a href="LRatio.html"><tt>LRatio</tt></a>, <a href="spikeshapecorr.html"><tt>spikeshapecorr</tt></a>, <a href="reliability_latency_jitter.html"><tt>reliability_latency_jitter</tt></a>, <a href="tagging_index.html"><tt>tagging_index</tt></a>, <a href="plotwaveforms.html"><tt>plotwaveforms</tt></a>, <a href="plot_mclust_projections2.html"><tt>plot_mclust_projections2</tt></a>, <a href="lightcluster.html"><tt>lightcluster</tt></a>, <a href="viewcell2b.html"><tt>viewcell2b</tt></a>, <a href="plot_raster2a.html"><tt>plot_raster2a</tt></a>
+</p>
+
+</body>
+</html>

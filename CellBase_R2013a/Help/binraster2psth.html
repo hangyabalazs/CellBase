@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>binraster2psth</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">binraster2psth</h1>
+<align="left">PSTH from binned spike raster.
+<h2>Syntax</h2>
+<p><blockquote><tt>[psth, spsth, spsth_se] = binraster2psth(binraster,dt,sigma,comp,valid_trials)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[psth, spsth, spsth_se] = binraster2psth(binraster,dt,sigma,comp,valid_trials)
+</tt> calculates peri-event stimulus histogram (<tt>psth</tt>), smoothed PSTH (<tt>spsth</tt>) and standard error of smoothed
+ PSTH (<tt>spsth_se</tt>) from <tt>binraster</tt> at time resolution <tt>dt</tt>. The output is
+ restricted to <tt>valid_trials</tt> (1 x <tt>num_trials</tt>). <tt>comp</tt>: M x <tt>num_trials</tt> matrix
+ of integers (0...<tt>n_condition</tt>), the matrix for partitioning trials.
+ <tt>sigma</tt> determines the smoothing kernel for the smoothed PSTH (see <tt>smoothed_psth</tt>).</p>
+<h2>See Also</h2>
+<p>
+<a href="smoothed_psth.html"><tt>smoothed_psth</tt></a>, <a href="stimes2binraster.html"><tt>stimes2binraster</tt></a>, <a href="viewcell2b.html"><tt>viewcell2b</tt></a>
+</p>
+
+</body>
+</html>

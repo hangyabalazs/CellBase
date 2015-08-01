@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>smoothed_psth</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">smoothed_psth</h1>
+<align="left">Smoothed PSTH.
+<h2>Syntax</h2>
+<p><blockquote><tt>[spsth, conv_psth] = smoothed_psth(psth,dt,sigma)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[spsth, conv_psth] = smoothed_psth(psth,dt,sigma)</tt> calculates smoothed
+ PSTH (<tt>spsth</tt>) from <tt>psth</tt> at time resolution <tt>dt. sigma</tt> determines the smoothing
+ Kernel (3*<tt>sigma</tt> wide). Filtered PSTH without normalization is returned
+ in <tt>conv_psth</tt>.</p>
+<h2>See Also</h2>
+<p>
+<a href="binraster2psth.html"><tt>binraster2psth</tt></a>
+</p>
+
+</body>
+</html>

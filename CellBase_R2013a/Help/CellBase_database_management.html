@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>CellBase Database Management</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #990000; 
+  font-size: 36;
+}
+h2 {
+  color: #990000;
+  font-size: 24;
+}
+h3 {
+  color: #990000;
+  font-size: 18;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">Managing CellBase data</h1>
+
+<h2 align="left">Add/remove cells<a name="1"></a></h2>
+<p>
+CellBase maintains the list of included cells in <tt>CELLIDLIST</tt> (see <a href="CellBase_variables.html">Core variables of CellBase</a>). A single cell or a list of cells can be added with the <a href="addcell.html"><tt>addcell</tt></a> function. Cell identifiers are of the form 'animalID_sessionID_tetrode#.cell#'.  (See <a href="CellBase_setup.html">Initializing CellBase</a> for animal/subject and session identifier formats.) <tt>addcell</tt> also attempts to perform default analyses for the newly added cells. (Default analyses are determined by the <tt>ANALYSES</tt> variable - see <a href="CellBase_variables.html">Core variables of CellBase</a>). The results are added to <tt>TheMatrix</tt> variable (see <a href="CellBase_variables.html">Core variables of CellBase</a>).
+</p>
+<p><a href="addnewcells.html"><tt>addnewcells</tt></a> looks for all cells newly added to CellBase directories. Specifically, it looks for filenames matching the pattern defined by the "pattern" preference of CellBase (see <a href="CellBase_preferences.html">CellBase preferences</a>). By default, this typically means filenames containing the 'TT' pattern, output <tt>mat</tt> files of the MClust software (A. D. Redish, University of Minnesota). <tt>addnewcells</tt> calls <a href="findallcells.html"><tt>findallcells</tt></a> to find filenames that include the preferred pattern and <tt>addcell</tt> to add the cells to CellBase.
+</p>
+<p>
+<a href="delcell.html"><tt>delcell</tt></a> deletes a cell or a list of cells from CellBase, removing the cell identifiers from <tt>CELLIDLIST</tt> and all corresponding entries from <tt>TheMatrix</tt>. <tt>delcell</tt> always saves a dated backup file before overwriting the previous database file.
+</p>
+
+<h2 align="left">Add/remove analysis<a name="2"></a></h2>
+<p>CellBase stores analysis results in <tt>TheMatrix</tt> and information pertaining onto each analysis performed in <tt>ANALYSES</tt> (see <a href="CellBase_variables.html">Core variables of CellBase</a>). A new analysis can be added by passing a valid function handle of an .m file on the Matlab path to <a href="addanalysis.html"><tt>addanalysis</tt></a>. <tt>addanalysis</tt> runs the specified function on all cells and adds the results to <tt>TheMatrix</tt> and the analysis information to <tt>ANALYSES</tt>. It saves a time-stamped back-up copy of CellBase before overwriting it. The analysis specified by the function handle should take a cell ID as its first input argument. Additional input arguments of the analysis function can be specified and passed to <tt>addanalysis</tt>. An analysis can also be added with <a href="insertdata.html"><tt>insertdata</tt></a> (see below).<br />
+There is an opportunity to run an analysis with similar syntax but without adding it permanently to the CellBase using <a href="runanalysis.html"><tt>runanalysis</tt></a>. <tt>runanalysis</tt> can be called for the full CellBase or a specified list of cell IDs. In this case, results are returned in an output argument and are not stored.<br />
+An analysis can be removed from CellBase by passing a function handle to <a href="delanalysis.html"><tt>delanalysis</tt></a>. <tt>delanalysis</tt> can also be used for removing a property. <tt>delanalysis</tt> always saves a time-stamped back-up of CellBase before replacing it.
+</p>
+
+<h2 align="left">Import/export data<a name="3"></a></h2>
+<p>The primamry way of adding data to <tt>TheMatrix</tt> is with <a href="insertdata.html"><tt>insertdata</tt></a>. Both new analysis and new properties can be added this way. New data is passed as input argument, inserted from an Excel file or typed in interactively. Also, existing data can optionally be overwritten in CellBase. An analysis is only considered the same if the name of the analysis .m file and both the list of input and output arguments (i.e. the names of the resulting properties) are the same. If the data is overwritten, the timestamp field in <tt>ANALYSES</tt> is updated. New data is inserted into <tt>TheMatrix</tt> and <tt>ANALYSES</tt> according to the corresponding cell IDs. A back-up of the previous CellBase file is stored before updating.<br />
+Values corresponding to a certain property in <tt>TheMatrix</tt> can be queried by <a href="getvalue.html"><tt>getvalue</tt></a>. Similarly, all property values associated with a cell can be queried by <a href="listcell.html"><tt>listcell</tt></a>. <a href="exportdata.html"><tt>exportdata</tt></a> exports all data from <tt>TheMatrix</tt> that was introduced by <tt>insertdata</tt>.<br />
+Entries of <tt>TheMatrix</tt> can be used to find cells fulfilling certain criteria using <a href="selectcell.html"><tt>selectcell</tt></a>. The criteria has to be speified as a logical expression.
+</p>
+
+<p><a href="CellBase_application.html">How to use CellBase</a>
+</p>
+
+
+
+</body>
+</html>

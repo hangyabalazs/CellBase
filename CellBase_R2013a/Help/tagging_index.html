@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>tagging_index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">tagging_index</h1>
+<align="left">Assessment of optic tagging.
+<h2>Syntax</h2>
+<p><blockquote><tt>[p i] = tagging_index(cellid)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[p i] = tagging_index(cellid)</tt> calculates information distances and
+ corresponding p-values for light tagging for the cell given in <tt>cellid</tt>. Briefly, a spike raster is calculated
+ with 1 ms resolution. The raster is devided to 10 ms time bins and spike latency distribution for first spikes is computed within each bin. Pairwise information divergence measures are calculated for the before-light distributions to form a null-hypothesis distribution for distances. The distances of the first after-light distribution (using <tt>'BurstOn'</tt> events) from all before-light distributions is calculated and the median of these values is tested against the null-hypothesis distribution. Output arguments <tt>p</tt> and <tt>i</tt> correspond to a modified version of Jensen-Shannon divergence (see
+ Endres and Schindelin, 2003).</p>
+<p><tt>tagging_index</tt> takes a different bin raster (typically aligned to <tt>'BurstOn'</tt> events) for baseline distribution than the the one for testing against baseline (typically aligned to <tt>'PulseOn'</tt> events).
+ Number of test trials used is maximized to 5000 by default.</p>
+<p>Default behavior of <tt>tagging_index</tt> can be modified by using a set of paramter, value pairs as optional input parameters. The folowing parameters are implemented (with default values):</p>
+<blockquote>
+<p><tt>'event', 'PulseOn'</tt> - the event to which the window is locked</p>
+<p><tt>'window', [-0.6 0.6]</tt> - extent of baseline and test period relative to the event; in seconds</p>
+<p><tt>'dt', 0.001</tt> - time resolution of the bin raster; in seconds</p>
+<p><tt>'display', false</tt> - control of plotting event-locked raster plot</p>
+<p><tt>'event_filter', 'none'</tt> - filter light-stimulation trials; see implemented filter types below
+<p><tt>'maxtrialno', 5000</tt> - maximal number of light-stimulation trials included; if ther are more valid trials, they are randomly down-sampled</p>
+</blockquote>
+<p>Implemented event filters for <tt>'stim'</tt> events:</p>
+<blockquote>
+<p><tt>'BurstNPulse'</tt> - only light pulse trains with a specified number of pulses are used; this number has to be specified as a <tt>'BurstNPulse', n</tt> (numeric) parameter, value pair given as a struct (<tt>s.BurstNPulse = 1</tt>)</p>
+<p><tt>'BurstNPulse_maxPower'</tt> - the same as <tt>'BurstNPulse'</tt> but light bursts are further restricted to pulses with maximal power applied</p>
+<p><tt>'minNPulse_maxPower'</tt> - the light bursts with minimal number of pulses and maximal power are used</p>
+</blockquote>
+<h2>Reference</h2>
+ Endres DM, Schindelin JE (2003) A new metric for probability
+ distributions. IEEE Transactions on Information Theory 49:1858-1860.</p>
+<h2>See Also</h2>
+<p>
+<a href="tagging.html"><tt>tagging</tt></a>, <a href="stimes2binraster.html"><tt>stimes2binraster</tt></a>, <a href="filterTrials.html"><tt>filterTrials</tt></a>, <a href="JSdiv.html"><tt>JSdiv</tt></a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>quickanalysis2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">quickanalysis2</h1>
+<align="left">Analysis of tetrode data.
+<h2>Syntax</h2>
+<p><blockquote>
+<tt>quickanalysis2</tt><br />
+<tt>quickanalysis2(animalno,sessionid,sessionspec)</tt><br />
+<tt>quickanalysis2(animalno,sessionid,sessionspec,protocoltag)</tt></blockquote></p>
+<h2>Description</h2>
+<p><tt>quickanalysis2</tt> is designed as an offline analysis tool for tetrode data
+ and behavior, which can be executed in an unsupervised manner on a
+ daily bases. It gives a quick overview of the experiment including
+ response profiles of clustered neurons, light-triggered PSTH and
+ psychometric plots of behavior. It relies on CellBase data handling
+ system.</p>
+<p><tt>quickanalysis2(animalno,sessionid,sessionspec)</tt> performs the analysis
+ for a session specified by the first two input arguments. <tt>sessionspec
+</tt> should be a 1x3 logical array indicating the need for behavior,
+ recording and stimulation analysis.</p>
+<p><tt>quickanalysis2(animalno,sessionid,sessionspec,protocoltag)</tt> accepts a
+ <tt>protocoltag</tt> argument to allow calls to trial event conversion programs
+ for different versions of the behavioral protocol.</p>
+<h2>See Also</h2>
+<p>
+<a href="addnewcells.html"><tt>addnewcells</tt></a>, <a href="prealignSpikes.html"><tt>prealignSpikes</tt></a>, <a href="viewcell2b.html"><tt>viewcell2b</tt></a>
+</p>
+
+</body>
+</html>

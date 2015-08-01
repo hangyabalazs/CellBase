@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>MakeStimEvents2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">MakeStimEvents2</h1>
+<align="left">Create stimulus events structure.
+<h2>Description</h2>
+<p><tt>MakeStimEvents2(sessionpath)</tt> constructs and saves stimulus events
+ structure ('StimEvents') for the stimulation session in the folder
+ <tt>sessionpath.</tt> Stimulation pulses are detected as TTLs recorded by the
+ data acquisition system (e.g. Neuralynx) and their number is verified
+ by the log file of the stimulation control software. Note however, that
+ the recorded TTLs are the exclusive source of stimulus information.
+ Note also, that the Neuralynx Event file should first be converted to
+ Matlab <tt>.mat</tt> file before <tt>MakeStimEvents2</tt> can run.</p>
+<p>Stimulus time stamps (e.g. pulse onset and offset, burst onset and
+ offset, protocol start and end), time intervals (e.g. inter-burst
+ interval, burst duration, pulse duration), stimulation-related
+ statistics (e.g. frequency) are extracted/calculated from the recorded
+ TTL time stamps and event strings. The data are loaded in a structure
+ and saved under the name 'StimEvents.mat'.</p>
+<p>By using the <tt>MakeStimEvents2(sessionpath,parameter1,value1,...)</tt> syntax, 
+ the TTLs actually used during the recording as well as the name of
+ stimulus protocol file can be specified (default values provided):
+<blockquote>
+ <p><tt>'BurstStartNttl', 2</tt> - TTL for start of burst stimulation
+ (stimulation information sent to Neuralynx as directly 
+ executable event string)</p>
+ <p><tt>'ProtocolStartNttl', 1</tt> - TTL sent at the beginning of each
+ stimulation protocol</p>
+ <p><tt>'PulseNttl', 16384</tt> - TTL signalling pulse onset and offset time (TTL split between stimulation device and data acquisition
+ system)</p>
+ <p><tt>'PulseEventID', 0</tt> - event ID for pulse TTL in the recording system</p>
+ <p><tt>'ProtocolList', {'LaserStimProtocol2'; 'BackNForthTask2'}</tt> - names of simulation and behavior protocols; no action is implemented in the current version for behavior protocols.</p>
+</blockquote>
+</p>
+<h2>See Also</h2>
+<p>
+<a href="parseTTLs.html"><tt>parseTTLs</tt></a>
+</p>
+
+</body>
+</html>

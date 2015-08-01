@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>check_channel_validity</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">check_channel_validity</h1>
+<align="left">Check tetrode channels.
+<h2>Syntax</h2>
+<p><blockquote><tt>valid_channels = check_channel_validity(cellid)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>valid_channels = check_channel_validity(cellid)</tt> loads <tt>'Energy'</tt> property
+ for all spikes on tetrode of <tt>cellid</tt> and returns a 1-by-4 logical array
+ that is true for the tetrode channels that have a mean Energy higher
+ than an empirically decided threshold value.</p>
+<h2>See Also</h2>
+<p>
+<a href="LRatio.html"><tt>LRatio</tt></a>, <a href="LRatio2.html"><tt>LRatio2</tt></a>
+</p>
+
+</body>
+</html>

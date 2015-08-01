@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>finpos</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">finpos</h1>
+<align="left">Find trials with specific properties.
+<h2>Syntax</h2>
+<p><blockquote><tt>poscommon = findpos(trials,value)</tt><br>
+<tt>pos = findpositions(te.responsetype,[1 2],TE.StimDuration,40)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>poscommon = findpos(trials,value)</tt> finds the indices of trials
+ <tt>(poscommon)</tt> which have matching properties specified by the <tt>trials,
+ value</tt> pairs. Any number of such pairs can be passed. <tt>trials</tt> should
+ contain the field of the trial events structure which is to be
+ searched for the specific values.</p>
+<h2>Examples</h2>
+<p><blockquote><tt>pos = findpos(TE.ResponseType,[1 2],TE.StimDuration,40)</tt></blockquote></p>
+<h2>See Also</h2>
+<p>
+<a href="partition_trials.html"><tt>partition_trials</tt></a>
+</p>
+
+</body>
+</html>

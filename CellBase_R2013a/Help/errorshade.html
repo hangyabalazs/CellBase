@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>errorshade</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">errorshade</h1>
+<align="left">Shaded error bar plot.
+<h2>Syntax</h2>
+<p><blockquote><tt>h = errorshade(x,y,sd,linecolor);</tt><br>
+<tt>h = errorshade(x,y,sd,'linecolor',lclr,'linewidth',lw,'shadecolor',sclr);</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>h = errorshade(x,y,sd,linecolor)</tt> plots <tt>y</tt> against <tt>x</tt> in LineColor. A shaded error bar is added between <tt>y-sd</tt> and <tt>y+sd</tt>. Output returns the
+ handles for the line and the shaded error bar. If <tt>sd</tt> is a 2-by-N matrix, the two rows are used as upper and lower bound of the shade.</p>
+<p><tt>h = errorshade(x,y,sd,'linecolor',lclr,'linewidth',lw,'shadecolor',sclr) -  optional arguments LineWidth and ShadeColor default to 2 and grey. LineColor defaults to blue - you can use shortend styles as well ('r:').</p>
+<h2>See Also</h2>
+<p>
+<a href="plot_timecourse.html"><tt>plot_timecourse</tt></a>
+</p>
+
+</body>
+</html>

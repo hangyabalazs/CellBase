@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>plot_mclust_projections2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">plot_mclust_projections2</h1>
+<align="left">Plot feature data for clusters.
+<h2>Syntax</h2>
+<p><blockquote><tt>hs = plot_mclust_projections2(cellid,...)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>plot_mclust_projections2(cellid)</tt> plots feature data for a tagged cell
+ <tt>(cellid)</tt> and it's tetrode pairs in all projections. Tagged cluster is
+ shown in orange and light-evoked spikes are overlayed in blue. Time
+ period for light-evoked activity is selected automatically (see
+ <tt>findstimperiod).</tt> Only spikes from the beginning of the first to the end
+ of the last stimulation protocol are included. These default behaviors
+ can be modified using the following optional input arguments
+ (parameter, value pairs, with default values):</p>
+<blockquote>
+<p><tt>'stim_period'</tt>, [] - start and end of stimulation period after each light pulse</p>
+<p><tt>'feature_names', 'Energy'</tt> - features for which feature data are plotted; character or cell array</p>
+<p><tt>'marker', '+'</tt> - marker for the scatter plots</p>
+<p><tt>'marker_size', 2</tt> - marker size for the scatter plots</p>
+<p><tt>'usefastplot', true</tt> - use fast plotting method (downsample points to plot only one point per pixel; appears the same); faster, but zoom is not implemented (for saving in image formats, e.g. pdf or jpg); if <tt>false</tt>, full data is plotted (for viewing or
+ saving fig format)<p>
+<p><tt>'stimonly', true</tt> - only spikes from the beginning of the first to the end of the last stimulation protocol are selected for plotting; if <tt>false</tt>, all spikes are included</p>
+<p><tt>'plotlightspikes', true</tt> - if <tt>true</tt>, light-evoked spikes are 
+ superimposed</p>
+</blockquote>
+<p><tt>hs = plot_mclust_projections2(cellid,...)</tt> returns the handles of the
+ figures in <tt>hs</tt> struct. The fields of <tt>hs</tt> are named according to the
+ features and channels: <tt>HS.(XFeatureXChannel_YFeatureYChannel)</tt>, e.g.
+ <tt>HS.Amplitude1_Energy4</tt>.</p>
+<h2>Examples</h2>
+<p><blockquote><tt>plot_mclust_projections2(cellid,'feature_names',{'Amplitude','Energy'},...
+ 'stim_period',[0.002 0.004]);</tt></blockquote></p>
+<h2>See Also</h2>
+<p>
+<a href="plotwaveforms.html"><tt>plotwaveforms</tt></a>
+</p>
+
+</body>
+</html>

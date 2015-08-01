@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>acg</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">acg</h1>
+<align="left">Auto-correlation.
+<h2>Description</h2>
+<p><tt>acg</tt> calculates auto-correlations. Window size is set to +-500 ms with a 0.5 ms resolution. Maximum 50000 spikes are included to avoid memory problems. Segments are filtered with <tt>findSegs3</tt>. For details on the algorithm, see <tt>xcorr</tt>.</p> 
+<p>Three indeces are derived from the auto-correlogram (ACG). Burst index is calculated as the normalized difference between maximum ACG for lags 0-10 ms and mean ACG for lags 180-200 ms. The normalizing factor is the greater of the two numbers, yielding and index between -1 and 1 (see Royer et al., 2012). Theta index is calculated as the normalized difference between mean ACG for a +-25 ms window around the peak within lags 100 and 200 ms and the mean ACG for lags 180-200 and 65-85 ms.
+ Normalization is performed similarly as for the burst index. Refractory is calculated as full width half hight of the central gap in the smoothed ACG. Smoothing is performed by a 10 ms moving average.</p>
+<p><tt>acg(i)</tt> calls <tt>acg</tt> for cells defined by the cell ID list (or index set
+ to <tt>CELLIDLIST,</tt> see CellBase documentation) <tt>i.
+</tt> 
+<p>Optional input arguments (parameter-value pairs with default values):</p>
+<blockquote>
+<p><tt>'issave', false</tt> - controls saving behavior; plots and
+ auto-correlation matrices are saved only if <tt>'issave'</tt> is set to true</p>
+</blockquote>
+<h2>Reference</h2>
+<p>Royer S, Zemelmen BV, Losonczy A, Kim J, Chance F, Magee JC, Buzsaki G (2012) Control of timing, rate and bursts of hippocampal place cells by dendritic and somatic inhibition. Nat Neurosci 15:769-775</p>
+<h2>See Also</h2>
+<p>
+<a href="ccg.html"><tt>ccg</tt></a>, <a href="matlab:doc xcorr"><tt>xcorr</tt></a>
+</p>
+
+</body>
+</html>

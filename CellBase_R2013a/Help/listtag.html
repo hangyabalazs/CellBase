@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>listtag</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">listtag</h1>
+<align="left">List CellBase tags.
+<h2>Syntax</h2>
+<p><blockquote><tt>l = listtag(str)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>l = listtag(str)</tt> returns a cell array containing the specified tag from
+ CellBase. Options for <tt>str:
+</tt> 'properties', 'analysis', 'cell', 'rat'/'animal', 'session', 'tetrode'.
+ 'properties' and 'analysis' are searched in <tt>ANALYSES</tt>, others are
+ searched in <tt>CELLIDLIST</tt>. The 'allsession' option includes sessions without cells (e.g. behavior only) by searching the directory tree.</p>
+<h2>See Also</h2>
+<p>
+<a href="listdir.html"><tt>listdir</tt></a>, <a href="listfiles.html"><tt>listfiles</tt></a>
+</p>
+
+</body>
+</html>

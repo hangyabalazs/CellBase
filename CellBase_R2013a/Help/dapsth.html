@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>dapsth</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">dapsth</h1>
+<align="left">Spike density function with 'doubly adaptive' Gaussian kernel.
+<h2>Syntax</h2>
+<p><blockquote><tt>[psth_aconv psth_sd] = dapsth(binraster,dt)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[psth_aconv psth_sd] = dapsth(binraster,dt)</tt> computes the spike density function
+ 	with an adaptive Gaussian kernel optimized for local probability of
+ 	spiking. For near-zero spiking probability, the kernel is flat
+ 	resulting in a moving average. For a probability of 1, the kernel
+ 	converges to a Dirac delta. Note that the mapping of probabilities to
+ 	kernel width is arbitrary between the extremes. In this implementation,
+ 	the <tt>sd</tt> of the Gaussian probability density function is linearly mapped
+ 	on the reciprocal of the probabilities. Also, length of the integration
+ 	window is linearly mapped on probabilities, with long window
+ 	corresponding to low probability.</p>
+<h2>See Also</h2>
+<p>
+<a href="binraster2dapsth.html"><tt>binraster2dapsth</tt></a>, <a href="matlab:doc gausswin"><tt>gausswin</tt></a>
+</p>
+
+</body>
+</html>

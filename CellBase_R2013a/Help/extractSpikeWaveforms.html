@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>extractSpikeWaveforms</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">extractSpikeWaveforms</h1>
+<align="left">Peak-aligned waveforms.
+<h2>Syntax</h2>
+<p><blockquote><tt>wave = extractSpikeWaveforms(cellid,spiketimes)</tt><br />
+<tt>wave = extractSpikeWaveforms(cellid,spiketimes,param,value)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>wave = extractspikewaveforms(cellid,spiketimes)</tt> returns waveforms for 
+ selected spikes (<tt>spiketimes</tt>) of a given cell (<tt>cellid</tt>). Spikes are algined based on peak times of the tetrode channel with largest mean amplitude.</p>
+<p><tt>wave = extractSpikeWaveforms(cellid,spiketimes,param,value)</tt> accepts
+ additional optional input arguments in the form of parameter, value pairs (with default values):</p>
+<blockquote>
+<p><tt>'chans', 'all'</tt> - filter for tetrode channels (see below details of implmented filter types</p>
+<p><tt>'smooth', 'none'</tt> - controls smoothing of the waveforms; implemented only for average waveforms; default: no smoothing; alternative <tt>'spline'</tt>: spline interpolation</p>
+<p>'<tt>usemedian', false</tt> - if <tt>true</tt>, median is used for averaging waveforms instead of mean</p>
+</blockquote>
+<p>Filter types (possible values for <tt>'chans'</tt>):</p>
+<blockquote>
+<p><tt>'all'</tt> - all waveforms</p>
+<p><tt>'max'</tt> - all waveforms on largest channel</p>
+<p><tt>'min'</tt> - all waveforms on smallest channel</p>
+<p><tt>'mean_all'</tt> - mean/median waveform on all channels</p>
+<p><tt>'mean_max'</tt> - mean/median waveform on largest channel</p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="plotwaveforms.html"><tt>plotwaveforms</tt></a>
+</p>
+
+</body>
+</html>

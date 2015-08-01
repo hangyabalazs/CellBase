@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>findcellpos</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">findcellpos</h1>
+<align="left">Locate animal, session or tetrode positions in CellBase.
+<h2>Syntax</h2>
+<p><blockquote><tt>pos = findcellpos(cellid)</tt><br>
+<tt>pos = findcellpos('rat',ratid)</tt><br>
+<tt>pos = findcellpos('rat',ratid,'session',sessionid)</tt><br>
+<tt>pos = findcellpos('rat',ratid,'session',sessionid,'tetrode',tet)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>pos = findcellpos(cellid)</tt> returns the position of  <tt>cellid</tt> in
+ CELLIDLIST.</p>
+<p><tt>pos = findcellpos('rat',ratid)</tt> locates an animal in CELLIDLIST.
+ <tt>'animal'</tt> can be used as an alternative for <tt>'rat'</tt> in all sytaxes.</p>
+<p><tt>pos = findcellpos('rat',ratid,'session',sessionid)</tt> locates a session in
+ CELLIDLIST.</p>
+<p><tt>pos = findcellpos('rat',ratid,'session',sessionid,'tetrode',tet)</tt> 
+ locates a tetrode in CELLIDLIST.</p>
+<p><tt>findcellpos</tt> returns the matching position indices in CellBase for a
+ particular animal, session, cell or tetrode.</p>
+<h2>See Also</h2>
+<p>
+<a href="findallcells.html"><tt>findallcells</tt></a>, <a href="addcell.html"><tt>addcell</tt></a>
+</p>
+
+</body>
+</html>

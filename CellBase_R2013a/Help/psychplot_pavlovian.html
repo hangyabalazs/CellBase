@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>psychplot_pavlovian</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">psychplot_pavlovian</h1>
+<align="left">Plot performance.
+<h2>Description</h2>
+<p><tt>psychplot_gonogo(cellid)</tt> calculates performance and reaction time
+ variables and plots lick rasters. The session corresponding to the cell
+ given in <tt>cellid</tt> is selected.</p>
+<p><tt>psychplot_gonogo(sessionid)</tt> calculates performance and reaction time
+ variables for the session passed in <tt>sessionid. sessionid</tt> should be a
+ 1-by-2 cell array with the animal ID and the session ID.</p>
+<p>Additional input parameter-value pairs, with default values:</p>
+ <blockquote><p><tt>'valid_trials', 'all'</tt> - restrict the analysis to a set of trials</p>
+ <p><tt>'lastresponsestop', false</tt> - exclude trials after the last response of the animal</p>
+ <p><tt>'display', true</tt> - controls plotting</p></blockquote>
+<p>Output:</p>
+ <blockquote><p><tt>PerformanceR1 </tt>- lick probability for water in high prob. reward trials</p>
+ <p><tt>PerformanceR1O </tt>- lick probability for omissions in high prob. reward trials</p>
+ <p><tt>PerformanceR2 </tt>- lick probability for water in low prob. reward trials</p>
+ <p><tt>PerformanceR2O </tt>- lick probability for omissions in low prob. reward trials</p>
+ <p><tt>PerformanceP1 </tt>- lick probability for airpuff in high prob. punishment trials<p>
+ <p><tt>PerformanceP1O </tt>- lick probability for omissions in high prob. punishment trials</p>
+ <p><tt>PerformanceP2 </tt>- lick probability for airpuff in low prob. punishment trials</p>
+ <p><tt>PerformanceP2O </tt>- lick probability for omissions in low prob. punishment trials</p>
+ <p><tt>AnticipationR1 </tt>- lick probability in delay before water in high prob. reward trials</p>
+ <p><tt>AnticipationR1O </tt>- lick probability in delay before omissions in high prob. reward trials</p>
+ <p><tt>AnticipationR2 </tt>- lick probability in delay before water in low prob. reward trials</p>
+ <p><tt>AnticipationR2O </tt>- lick probability in delay before omissions in low prob. reward trials</p>
+ <p><tt>AnticipationP1 </tt>- lick probability in delay before airpuff in high prob. punishment trials</p>
+ <p><tt>AnticipationP1O </tt>- lick probability in delay before omissions in high prob. punishment trials</p>
+ <p><tt>AnticipationP2 </tt>- lick probability in delay before airpuff in low prob. punishment trials</p>
+ <p><tt>AnticipationP2O </tt>- lick probability in delay before omissions in low prob. punishment trials</p>
+ <p><tt>ReactionTimeR1 </tt>- reaction time to water in high prob. reward trials</p>
+ <p><tt>ReactionTimeR1O </tt>- reaction time to omissions in high prob. reward trials</p>
+ <p><tt>ReactionTimeR2 </tt>- reaction time to water in low prob. reward trials</p>
+ <p><tt>ReactionTimeR2O </tt>- reaction time to omissions in low prob. reward trials</p>
+ <p><tt>ReactionTimeP1 </tt>- reaction time to airpuff in high prob. punishment trials</p>
+ <p><tt>ReactionTimeP1O </tt>- reaction time to omissions in high prob. punishment trials</p>
+ <p><tt>ReactionTimeP2 </tt>- reaction time to airpuff in low prob. punishment trials</p>
+ <p><tt>ReactionTimeP2O </tt>- reaction time to omissions in low prob. punishment trials</p></blockquote>
+<h2>See Also</h2>
+<p>
+<a href="psychplot_gonogo.html"><tt>psychplot_gonogo</tt></a>
+</p>
+
+</body>
+</html>

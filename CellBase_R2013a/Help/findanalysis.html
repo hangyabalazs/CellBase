@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>findanalysis</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">findanalysis</h1>
+<align="left">Find an analysis in CellBase.
+<h2>Syntax</h2>
+<p><blockquote><tt>pos = findanalysis(fun)</tt><br>
+<tt>pos = findanalysis(propname)</tt><br>
+<tt>[pos anum] = findanalysis(fun)</tt><br>
+<tt>[pos anum] = findanalysis(propname)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>pos = findanalysis(fun)</tt> looks for an analysis function in
+ CellBase and returns matching positions in TheMatrix (0 for no match).</p>
+<p><tt>pos = findanalysis(propname)</tt> looks for a property in CellBase that
+ matches <tt>propname</tt> and returns the column number in TheMatrix of the
+ matching property.</p>
+<p><tt>[pos anum] = findanalysis(fun)</tt> and <tt>[pos anum] = findanalysis(propname)
+</tt> also returns the index of the relevant analysis in ANALYSES.
+ For properties the first number in ANUM is the position in the ANALYSES
+ variable and the second represents the position in propnames.</p>
+<p><tt>findanalysis</tt> returns 0 if no analysis or property found.</p>
+<h2>See Also</h2>
+<p>
+<a href="findprop.html"><tt>findprop</tt></a>, <a href="addanalysis.html"><tt>addanalysis</tt></a>
+</p>
+
+</body>
+</html>

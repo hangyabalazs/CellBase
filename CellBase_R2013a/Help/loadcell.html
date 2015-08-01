@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>loadcell</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">loadcell</h1>
+<align="left">Load spike & event times of a cell.
+<h2>Syntax</h2>
+<p><blockquote><tt>ts = loadcell(cellid)</tt><br>
+<tt>stimes = loadcell(cellid,'caller')</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>ts = loadcell(cellid)</tt> loads spike and trial event times into the base 
+ workspace and returns spike times <tt>ts</tt>.</p>
+<p><tt>stimes = loadcell(cellid,'caller')</tt> loads the variables into the caller
+ functions workspace.</p>
+<p>To make analysis routines generally usable, <tt>loadcell</tt> allows passing
+ variables other than a cell ID. If a numeric vector is passed instead of
+ a cell ID, then it is simply returned as an output without error. This
+ allows analysis routines to be called for a spike time vector without
+ using CellBase.</p>
+<h2>See Also</h2>
+<p>
+<a href="loadcb.html"><tt>loadcb</tt></a>
+</p>
+
+</body>
+</html>

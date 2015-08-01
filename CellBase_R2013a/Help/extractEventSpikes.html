@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>extractEventSpikes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">extractEventSpikes</h1>
+<align="left">Extract and align spikes in each trial relative to trial events.
+<h2>Syntax</h2>
+<p><blockquote><tt>[event_stimes,event_windows] = extractEventSpikes(cellid,events)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p>Input arguments:</p>
+<blockquote>
+<p><tt>cellid</tt> - ID of a unit in CellBase</p>
+<p><tt>events</tt> - N x 4 cell array of events (see <tt>defineEventsEpochs</tt>)</p>
+</blockquote>
+<p>Output arguments:</p>
+<blockquote>
+<p><tt>event_stimes</tt> - 1 x N cell array of 1 x TrialNum cell arrays of spike times relative to the first event trigger in <tt>'events'</tt>.</p>
+<p><tt>event_window</tt> - 1 x N cell array of 1 x TrialNum arrays noting the time window of extraction for each trial.</p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="prealignSpikes.html"><tt>prealignSpikes</tt></a>
+</p>
+
+</body>
+</html>

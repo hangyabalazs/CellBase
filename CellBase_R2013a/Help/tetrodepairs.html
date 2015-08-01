@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>tetrodepairs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">tetrodepairs</h1>
+<align="left">Find cells from the same tetrode in a session.
+<h2>Syntax</h2>
+<p><blockquote><tt>[number,tetrodepartners] = tetrodepairs(cellid)<br>
+[number,tetrodepartners] = tetrodepairs(cellid,includeself)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[number,tetrodepartners] = tetrodepairs(cellid)</tt> returns the total 
+ number of units on the same tetrode <tt>cellid</tt> as well as the list of
+ cell IDs from the same tetrode.</p>
+<p><tt>tetrodepairs(cellid,includeself)</tt> accepts a logical input argument
+ controling whether the unit for which the function was called is
+ included in the number and the list.</p>
+<h2>See Also</h2>
+<p>
+<a href="cellid2tags.html"><tt>cellid2tags</tt></a>
+</p>
+
+</body>
+</html>

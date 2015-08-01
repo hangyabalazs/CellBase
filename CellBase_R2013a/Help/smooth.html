@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>smooth</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">smooth</h1>
+<align="left">Smooth with a moving average.
+<h2>Syntax</h2>
+<p><blockquote><tt>[o s] = smooth(x,m,wn)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[o s] = smooth(x,m,wn)</tt> performs smoothing on <tt>x</tt> by averaging in a
+ sliding window of <tt>wn</tt> size. <tt>m</tt> describes the data type, i.e. <tt>'linear'</tt> or <tt>'circular'</tt>. Output is returned in <tt>o</tt> with standard error of the
+ smoothing in <tt>s</tt>.</p>
+<h2>See Also</h2>
+<p>
+<a href="matlab:doc conv"><tt>conv</tt></a>
+</p>
+
+</body>
+</html>

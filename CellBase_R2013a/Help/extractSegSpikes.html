@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>extractSegSpikes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">extractSegSpikes</h1>
+<align="left">Extract spikes between specific timestamps.
+<h2>Syntax</h2>
+<p><blockquote><tt>[selts, seltsind, selisi] = extractSegSpikes(cellid,segs)</tt><br />
+<tt>[selts, seltsind, selisi] = extractSegSpikes(spt,segs)</tt></blockquote></p>
+<h2>Description</h2>
+<p><tt>[selts, seltsind, selisi] = extractSegSpikes(cellid,segs)</tt> extracts timestamps for spikes of a cell <tt>(cellid)</tt> that lie between start (first row of <tt>segs)</tt> and end (second row of <tt>segs</tt>) points of given segments.</p>
+<p>Output arguments:</p>
+<blockquote>
+ <p><tt>selts:</tt> timestamps of the extracted spikes</p>
+ <p><tt>seltsind:</tt> indices of the timestamps with respect to all spikes in the cluster</p>
+ <p><tt>selisi:</tt> interspike intervals where more than one spike was found within a time segment; NaN is returned when there is only one spike</p>
+</blockquote>
+<p><tt>extractSegSpikes(spt,segs)</tt> overloads the function with numeric input in the first argument, implemented as spike times.</p>
+<h2>See Also</h2>
+<p>
+<a href="findSegs3.html"><tt>findSegs3</tt></a>, <a href="abs2reltimes.html"><tt>abs2reltimes</tt></a>
+</p>
+
+</body>
+</html>

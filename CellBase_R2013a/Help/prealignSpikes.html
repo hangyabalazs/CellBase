@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>prealignSpikes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">prealignSpikes</h1>
+<align="left">Align spikes to events and calculates rates for each epoch.
+<h2>Syntax</h2>
+<p><blockquote><tt>prealignSpikes(mycellids)</tt><br />
+<tt>prealignSpikes('all')</tt></blockquote></p>  
+<h2>Description</h2>
+<p><tt>prealignSpikes(mycellids)</tt> alignes spikes of cells corresponding to <tt>mycellids</tt> to multiple events. The results are saved in a .mat file (<tt>STIMES</tt>).<br />
+ <tt>STIMES</tt> data format:<br />
+ <tt>ST.CELLID</tt> - cell ID<br />
+ <tt>ST.EVENTS</tt> - EventLabel, EventTrigger1, EventTrigger2, Margin (see <tt>defineEventsEpochs_default</tt>)<br />
+ <tt>ST.EVENT_STIMES</tt> - spike times for corresponding events<br />
+ <tt>ST.EVENT_WINDOWS</tt> - time windows for corresponding events<br />
+ <tt>ST.EPOCHS</tt> - EpochLabel, ReferenceEvent, FixedWindow, RealWindow (see <tt>defineEventsEpochs_default</tt>)<br />
+ <tt>ST.EPOCH_RATES</tt> - firing rates for corresponding epochs.<br />
+ If the <tt>mycellids</tt> is 'all', then the function will run on all cells in CellBase.</p>
+<p>Additional parameter value pairs can be passed to the function. Optional input arguments (with default values):<br />
+<blockquote> 
+<p><tt>'ifsave', true</tt> - control saving</p>
+ <p><tt>'ifappend', true</tt> - if <tt>true</tt>, append new events to preexisting file</p>
+ <p><tt>'writing_behavior', []</tt> - if not empty, take precedence over <tt>'ifappend'</tt><br /> 
+&nbsp;&nbsp;&nbsp;&nbsp;<tt>'append'</tt> - append new events to preexisting file<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<tt>'replace'</tt> - attempt to replace new events only<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<tt>'overwrite'</tt> - replace file</p>
+ <p><tt>'FUNdefineEventsEpochs', @defineEventsEpochs_default</tt> - function that
+ is called to define events (you may create your own
+ event/epoch def. file, eg.: <tt>@defineEventsEpochs_adam1106</tt>)</p>
+ <p><tt>'filetype', 'event'</tt> - (<tt>'behav'</tt>) for behavior and <tt>'stim'</tt> for light
+ stimulation</p>
+ <p><tt>'events', []</tt> - events can be passed directly; definition file is
+ not used</p>
+ <p><tt>'epochs', []</tt> - epochs can be passed directly; definition file is
+ not used</p>
+</blockquote>
+<h2>Examples</h2>
+ <p><blockquote><tt>prealignSpikes(cellid,'FUNdefineEventsEpochs',...<br />
+@defineEventsEpochs_gonogo,'filetype','event','ifsave',1,'ifappend',0)</p>
+ <p>prealignSpikes(CELLIDLIST(190),'events',...<br />
+ {'PulseOnS' 'PulseOn' 'PulseOn' [0.0086 0.01]},'epochs',[],...<br />
+ 'filetype','stim','ifsave',1,'ifappend',1)</blockquote></p>
+<h2>See Also</h2>
+<p>
+<a href="viewcell2b.html"><tt>viewcell2b</tt></a>, <a href="plot_raster2a.html"><tt>plot_raster2a</tt></a>
+</p>
+
+</body>
+</html>

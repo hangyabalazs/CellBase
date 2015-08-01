@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>psych_gonogo2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">psych_gonogo2</h1>
+<align="left">Average performance and reaction time.
+<h2>Description</h2>
+<p><tt>psych_gonogo2(cellids,issave)</tt> calculates average performance and
+ reaction time for all sessions corresponding to <tt>cellids,</tt> per animal.
+ Sessions that contain light-stimulation are excluded.</p>
+ <p>Input parameters:</p>
+ <p><blockquote><tt>cellids</tt> - list of cell IDs or index set to <tt>CELLIDLIST</tt> (see CellBase documentation); if empty or not specified, all cells are selected from the CellBase</p>
+ <p><tt>issave -</tt> controls saving</p></blockquote>
+ <p>Plots:</p>
+ <p><blockquote>1. Average performance and reaction time per mouse for the sessions in which the cells <tt>(cellids)</tt> were recoreded. The sound intensities are normalized between 0 and 1 within each session. After averaging according to normalized intensities, the intensities are evenly distributed for plotting.</p>
+ <p>2. In another within-mouse average, all intermediate intensities are pooled within a session. For plotting, these intensities are displayed in the middle.</p>
+ <p>3. Grand average: average across mice from the second type of
+ within-mouse averages.</p></blockquote>
+<h2>See Also</h2>
+<p>
+<a href="psychplot_gonogo.html"><tt>psychplot_gonogo</tt></a>
+</p>
+
+</body>
+</html>

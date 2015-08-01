@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>reliability_latency_jitter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">reliability_latency_jitter</h1>
+<align="left">Reliability, latency and jitter of spiking.
+<h2>Syntax</h2>
+<p><blockquote><tt>[r l j] = reliability_latency_jitter(cellid)</tt><br>
+<tt>[r l j b m] = reliability_latency_jitter(cellid,...)</tt><br>
+<tt>[r l j b m a1 a2] = reliability_latency_jitter(cellid,...)</tt><br>
+<tt>[r l j b m a1 a2 spno] = reliability_latency_jitter(cellid,...)</tt><br>
+<tt>[r l j b m a1 a2 spno h] = reliability_latency_jitter(cellid,...)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[r l j] = reliability_latency_jitter(cellid)</tt> calculates the latency of spiking of a cell (<tt>cellid</tt>) after an event (default, <tt>'PulseOn'</tt>) <tt>(l)</tt>. It
+ also returns the standard deviation of spike times after finding the period of evoked spikes using <tt>ultimate_psth</tt> (<tt>j</tt>). Reliability of evoking spikes (proportion of events followed by evoked spikes) is returned in <tt>r</tt>.</p>
+<p><tt>[r l j b m] = reliability_latency_jitter(cellid,...)</tt> also returns baseline firing rate <tt>(b)</tt> and maximal firing rate in the test window <tt>(m)</tt>.</p>
+<p><tt>[r l j b m a1 a2] = reliability_latency_jitter(cellid,...)</tt> returns the start and end point of detected stimulation period (see <tt>ultimate_psth</tt> and <tt>findstimperiod)</tt>.</p>
+<p><tt>[r l j b m a1 a2 spno] = reliability_latency_jitter(cellid,...)</tt> returns the number of spikes detected for each valid trial (see <tt>efficiency</tt>).</p>
+<p><tt>[r l j b m a1 a2 spno h] = reliability_latency_jitter(cellid,...)</tt> returns figure handles for PSTH and raster plot in the structure <tt>h</tt> (if <tt>'display'</tt> is set to <tt>true</tt>).</p>
+<p>Optional parameter-value pairs, with default values:</p>
+<blockquote>
+<p><tt>'event_type', 'stim'</tt> - type of the aligning event, <tt>'stim'</tt> (stimulus events) or <tt>'trial'</tt> (trial events)</p>
+<p><tt>'event', 'PulseOn'</tt>- aligning event</p>
+<p><tt>'event_filter', 'none'</tt> - filter trials; see <tt>filterTrials</tt> for implemented filter types</p>
+<p><tt>'filterinput',[]</tt> - some filters require additional input; see <tt>filterTrials</tt> for details</p>
+<p><tt>'window', [-0.005 0.01]</tt> - time window relative to the event, in seconds; for determining the range of the PSTH, see
+ <tt>ultimate_psth</tt></p>
+<p><tt>'isadaptive', 1</tt> - 0, classic PSTH algorithm is applied; 1, adaptive PSTH is calculated (see <tt>apsth</tt>); 2, 'doubly adaptive' PSTH algorithm is used (see <tt>dapsth</tt>)</p>
+<p><tt>'baselinewin', [-0.005 0]</tt> - limits of the baseline window for PSTH statistics (see <tt>psth_stats</tt>), time relative to 0 in seconds</p>
+<p><tt>'testwin', [0 0.01]</tt> - limits of the test window for PSTH statistics (see <tt>psth_stats</tt>), time relative to 0 in seconds</p>
+<p><tt>'relative_threshold', 0.5</tt> - threshold used to assess start and end points of activation and inhibition intervals in <tt>psth_stats</tt>; in proportion of the peak-baseline difference (see <tt>psth_stats</tt>); it determines the window within which spikes will be considered <tt>'evoked'</tt></p>
+<p><tt>'jitterdefinition', 'all'</tt> - control how jitter is defined:<br />
+<blockquote> 
+ <tt>'all'</tt> - SD of spike times of all spikes<br />
+ <tt>'burst'</tt> - only first spikes are included in each trial<br />
+</blockquote>
+<p><tt>'display', false</tt> - controls plotting</p>
+</blockquote>
+<h2>Examples</h2>
+<blockquote>
+<p><tt>[e l j] = reliability_latency_jitter(cellid,'event','BurstOn');</tt></p>
+<p><tt>fi = struct('BurstNPulse',20);</tt><br />
+<tt>[e i j] = reliability_latency_jitter(cellid,...<br />
+ 'event_filter','BurstNPulse_maxPower','filterinput',fi);</tt></p>
+<p><tt>[E_burston L_burston J_burston B_burston M_burston Astart Aend] = ...<br />
+reliability_latency_jitter(cellid,'event','PulseOn');</tt></p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="ultimate_psth.html"><tt>ultimate_psth</tt></a>, <a href="extractSegSpikes.html"><tt>extractSegSpikes</tt></a>, <a href="efficiency.html"><tt>efficiency</tt></a>
+</p>
+
+</body>
+</html>

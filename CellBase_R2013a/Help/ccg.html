@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>ccg</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">ccg</h1>
+<align="left">Cross-correlation.
+<h2>Description</h2>
+<p><tt>ccg</tt> calculates cross-correlations. Window size is set to +-1000 ms with a 1 ms resolution. Maximum 50000 spikes are included to avoid memory problems. CCG is not calculated if one of the cells has less than 100 spikes. Segments are filtered with <tt>findSegs3. Minimal shift for shuffled CCGs is set to 1100 ms. For details on the algorithm, see <tt>somccg_conf_filter</tt>.</p>
+<p><tt>ccg(i)</tt> calls <tt>ccg</tt> for pairs of cells defined by the cell ID list (or index set to <tt>CELLIDLIST</tt>, see CellBase documentation) <tt>i</tt>. By default, non-tetrode pairs within the given list are selected for analysis.</p>
+<p>Optional input arguments (parameter-value pairs with default values):</p>
+<blockquote>
+<p><tt>'issave', false</tt> - controls saving behavior, plots and
+ cross-correlation matrices with confidence intervals are saved 
+ only if <tt>'issave'</tt> is set to true</p>
+<p><tt>'whichcells', 'nontetrodepairs'</tt> - method of pair selection;</p>
+<blockquote>
+<p><tt>'nontetrodepairs'</tt> selects cells from other tetrodes,</p>
+<p><tt>'tetrodepairs'</tt> selects cells from the same tetrode and</p>
+<p><tt>'allpairs'</tt> selects all cells from the session</p>
+</blockquote>
+<p><tt>'include', 'list'</tt> - by default, only pairs for which both cells are included in <tt>i</tt> are analyzed; if <tt>'include'</tt> is set to <tt>'cellbase'</tt>, all cells in CellBase that are paired with the ones in <tt>i</tt> according to <tt>'whichcells'</tt> are analyzed</p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="acg.html"><tt>acg</tt></a>, <a href="somccg_conf_filter.html"><tt>somccg_conf_filter</tt></a>,
+<a href="xcorr_wrand_filter.html"><tt>xcorr_wrand_filter</tt></a>
+</p>
+
+</body>
+</html>

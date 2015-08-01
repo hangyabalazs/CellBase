@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>selectcell</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">selectcell</h1>
+<align="left">Find cells satisfying certain criteria.
+<h2>Syntax</h2>
+<p><blockquote><tt>cellids = selectcell(selstr)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>cellids = selectcell(selstr)</tt> executes the "logical expression" in
+ <tt>selstr</tt> to find cell IDs matching a set of criteria.</p>
+<p>The "logical expression" is constructed of criteria based on the values
+ of particular properties (type listtag('property') for a list of all
+ properties in CellBase) connected with logical operators & (and) and | (or). For example '"Rate" > 5 | "Selectivity" > 0.2' will return cell IDs whose "Rate" is either greater than 5 or "Selectivity" is
+ greater than 0.2. "Rate" and "Selectivity" must be existing properties
+ in CellBase (they can be added using <tt>addanalysis</tt> or <tt>insertdata)</tt>.</p>
+<p>Operations including string properties are also supported, as in the
+ following example:<br />
+ <tt>selstr = ['ismember("Area1",{''GP'',''GP/SI'',''SI'',''IC'',''RT/IC'',''EP'',''EA'',''EAC''})&"PV+"==1&"ID_PC">20']; <br />
+ PV = selectcell(selstr);</tt></p>
+<h2>See Also</h2>
+<p>
+<a href="getvalue.html"><tt>getvalue</tt></a>, <a href="selecttrial.html"><tt>selecttrial</tt></a>
+</p>
+
+</body>
+</html>

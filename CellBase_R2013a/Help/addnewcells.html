@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>addnewcells</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">addnewcells</h1>
+<align="left">Add new cells to CellBase.
+<h2>Syntax</h2>
+<p><blockquote><tt>nm = addnewcells</tt><br>
+<tt>nm = addnewcells('prealign',true)</tt><br>
+<tt>nm = addnewcells('quiet',true)</tt><br>
+<tt>nm = addnewcells('dir',dr)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>nm = addnewcells</tt> adds new cells found in Cellbase directory structure
+ to CellBase calling <tt>findallcells.</tt> It calls <tt>addcell,</tt> which also performs
+ all the analyses. Number of newly added cells is returned.</p>
+<p><tt>nm = addnewcells('prealign',true)</tt> calls <tt>prealignSpikes</tt>.</p>
+<p><tt>nm = addnewcells('quiet',true)</tt> suppresses message displays.</p>
+<p><tt>nm = addnewcells('dir',dr)</tt> looks for new cells in <tt>dr</tt>. <tt>dr</tt> should contain the path downstream of the CellBase directory, e.g.<br>
+<tt>addnewcells('dir','n046\130101a\')</tt>
+</p>
+<h2>Examples</h2>
+<p><blockquote><tt>nm = addnewcells('dir','n046\130101a\')</tt></blockquote></p>
+
+<h2>See Also</h2>
+<p>
+<a href="findallcells.html"><tt>findallcells</tt></a>, <a href="addcell.html"><tt>addcell</tt></a>
+</p>
+
+</body>
+</html>

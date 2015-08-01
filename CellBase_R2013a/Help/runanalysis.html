@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>runanalysis</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">runanalysis</h1>
+<align="left">Run an analysis on CellBase.
+<h2>Syntax</h2>
+<p><blockquote><tt>r = runanalysis(fh,args,'cellids',c)</tt><br>
+<tt>r = runanalysis(fh,args,'cellids',c,'outputargs',op)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>r = runanalysis(fh,args,'cellids',c)</tt> executes an analysis function (passed by <tt>fh</tt>, function handle) and returns the result in a matrix (<tt>r</tt>)
+ with each row being a cell and each column a result of the analysis.
+ Input arguments to <tt>fh</tt> can be passed in <tt>args</tt>. The optional pair of input
+ arguments <tt>'cellids'</tt>, <tt>c</tt> determines which cell IDs the function will be
+ executed for; by default all cells of the CellBase are included (see
+ CellBase documentation). The <tt>'cellids'</tt>, <tt>c</tt> pair can appear at any
+ position of the input argument list.</p>
+<p><tt>r = runanalysis(fh,args,'cellids',c,'outputargs',op)</tt> accepts the
+ optional input argument pair <tt>'outputargs'</tt>, <tt>op</tt> that determines which
+ output arguments of <tt>fh</tt> should be included in <tt>r</tt> (by default, all outputs
+ of <tt>fh</tt> are included). This input argument pair can appear at any
+ position of the input argument list.</p>
+<h2>Examples</h2>
+<p><blockquote><tt>runanalysis(@Lratio,{'Energy','Peak'},[1:4],'cellids',CELLIDLIST(27))<br />
+ runanalysis(@Lratio,'cellids',CELLIDLIST(27),{'Energy','Peak'},[1:4],'outputargs',[1 2])</tt></blockquote></p>
+<h2>See Also</h2>
+<p>
+<a href="addanalysis.html"><tt>addanalysis</tt></a>
+</p>
+
+</body>
+</html>

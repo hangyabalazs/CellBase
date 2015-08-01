@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>plot_raster_psth</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">plot_raster_psth</h1>
+<align="left">Plot raster plots and PSTHs.
+<h2>Syntax</h2>
+<p><blockquote><tt>hs = plot_raster_psth(cellid)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>hs = plot_raster_psth(cellid)</tt> plots raster plots and PSTHs aligend to <tt>'BurstOn'</tt> and/or <tt>'PulseOn'</tt> events. Figure handles are returned in <tt>hs.
+</tt> Which rasters/PSTHs are plotted is controlled by the following optional input argument parameter-value pairs (with default values):</p>
+<blockquote>
+<p><tt>'BurstOn', true</tt> - if <tt>true</tt>, plot <tt>'BurstOn'</tt> raster and PSTH</p>
+<p><tt>'PulseOn', false</tt> - if <tt>true</tt>, plot <tt>'PulseOn'</tt> raster and PSTH</p>
+</blockquote>.
+<p>Output (fields of <tt>hs</tt> struct):</p>
+<blockquote>
+<p><tt>H_BurstOn</tt> - figure handle for <tt>'BurstOn'</tt> raster and PSTH</p>
+<p><tt>H_PulseOn</tt> - figure handle for <tt>'PulseOn'</tt> raster and PSTH</p>
+</blockquote>
+<h2>See Also</h2>
+<p>
+<a href="viewcell2b.html"><tt>viewcell2b</tt></a>, <a href="plot_raster2a.html"><tt>plot_raster2a</tt></a>
+</p>
+
+</body>
+</html>

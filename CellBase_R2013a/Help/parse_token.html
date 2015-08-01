@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>parse_token</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">parse_token</h1>
+<align="left">Parse arguments.
+<h2>Syntax</h2>
+<p><blockquote><tt>[exp2eval, values2match, condition, valid] = parse_token(intoken,allfields)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[exp2eval, values2match, condition, valid] = parse_token(intoken,allfields)
+</tt> parses input arguments to output strings <tt>exp2eval,</tt><tt>values2match</tt> and
+<tt>condition</tt>. A validity check is performed with its result returned in <tt>valid</tt>.</p>
+<p>Examples for <tt>intoken</tt>:<br />
+<tt>intoken = '#odorratio:{[0 20 80 100] [32 44 56 69]} & Correct';<br />
+intoken = '#Stimulus & Correct';<br />
+intoken = '#OdorRatio:{{[0 100] [32 68] [44 56]} {[0 100] [0 100] [32 68]}}'<br />
+intoken = '#OdorRatio:{[0 100] [32 44 56 68]}'</tt></p>
+<h2>See Also</h2>
+<p>
+<a href="parse_args.html"><tt>parse_args</tt></a>, <a href="partition_trials.html"><tt>partition_trials</tt></a>
+</p>
+
+</body>
+</html>

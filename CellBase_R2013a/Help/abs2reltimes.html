@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>abs2reltimes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">abs2reltimes</h1>
+<align="left">Calculate relative time windows relative to events.
+<h2>Syntax</h2>
+<p><blockquote><tt>reltimes = abs2reltimes(cellid,abstimes,event_type,event)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>reltimes = abs2reltimes(cellid,abstimes,event_type,event)</tt> calculates
+ time stamps <tt>(reltimes)</tt> corresponding to <tt>abstimes</tt> (absolute time stamps,
+ in seconds) relative to an event <tt>(event)</tt> for a given cell <tt>(cellid).
+ event_type</tt> should determine whether <tt>event</tt> is a field of stimulus events
+ ('stim') or trial events ('trial'). For each absolute time stamp, only
+ one relative time stamp is returned, relative to the closest event of
+ the specified type before it.</p>
+<h2>See Also</h2>
+<p>
+<a href="rel2abstimes.html"><tt>rel2abstimes</tt></a>, <a href="findSegs2.html"><tt>findSegs2</tt></a>
+</p>
+
+</body>
+</html>

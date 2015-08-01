@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>efficiency</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">efficiency</h1>
+<align="left">Efficiency of evoking spikes.
+<h2>Syntax</h2>
+<p><blockquote><tt>e = efficiency(cellid,stimes,event_type,event)</tt><br>
+<tt>e = efficiency(cellid,stimes,event_type,event,'valid_trials',vt)</tt><br>
+<tt>[e spno] = efficiency(cellid,stimes,event_type,event,'valid_trials',vt)</tt><br>
+<tt>[e spno t1] = efficiency(cellid,stimes,event_type,event,'valid_trials',vt)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>e = efficiency(cellid,stimes,event_type,event)</tt> calculates the proportion of events <tt>(event)</tt> that were followed by a spike <tt>(stimes)</tt> of a given cell <tt>(cellid)</tt>. <tt>event_type</tt> should determine whether <tt>event</tt> is a field of stimulus events (<tt>'stim'</tt>) or trial events (<tt>'trial'</tt>).</p>
+<p><tt>e = efficiency(cellid,stimes,event_type,event,'valid_trials',vt)
+</tt> filters the trials according to the <tt>'valid_trials'</tt>, <tt>tr</tt> parameter value pair.</p>
+<p><tt>[e spno] = efficiency(cellid,stimes,event_type,event,'valid_trials',vt)
+</tt> also returns the number of spikes detected for all valid trials (<tt>spno</tt>).</p>
+<p><tt>[e spno t1] = efficiency(cellid,stimes,event_type,event,'valid_trials',vt)
+</tt> returns a vector of spike times including only the first spike in each session (<tt>t1</tt>).</p>
+<h2>See Also</h2>
+<p>
+<a href="reliability_latency_jitter.html"><tt>reliability_latency_jitter</tt></a>
+</p>
+
+</body>
+</html>

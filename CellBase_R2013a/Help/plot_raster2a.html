@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>plot_raster2a</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">plot_raster2a</h1>
+<align="left">Plot spike raster.
+<h2>Syntax</h2>
+<p><blockquote><tt>h = plot_raster2a(stimes,time,valid_trials,comptrials,tags,eventtimes,window_margin,ev_windows,sort_var,param,value)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>h = plot_raster2a(stimes,time,valid_trials,comptrials,tags,eventtimes,window_margin,ev_windows,sort_var,param,value)
+</tt> plots a raster on an axis/subplot within a figure. 
+<p>Input arguments:</p>
+<blockquote>
+<p><tt>stimes</tt>: spike times</p>
+<p><tt>valid_trials</tt>: trials to include in the plot</p>
+<p><tt>comptrials</tt>: trial partitions, see <tt>partition_trials</tt></p>
+<p><tt>tags</tt>: tags corresponding to trial partitions, see <tt>partition_trials</tt></p>
+<p><tt>eventtimes</tt>: times of events to show</p>
+<p><tt>window_margin</tt>: a margin applied to all windows</p>
+<p><tt>ev_windows</tt>: time frames to use around the trigger stimuli</p>
+<p><tt>sort_var</tt>: trials are sorted according to this variable</p>
+</blockquote>
+<p>Additional parameter-value pairs can be passed to the function. See the
+ default parameter settings in the code to get a list of optional
+ parameters.
+ Handle of the output figure is returned as output argument.</p>
+<h2>See Also</h2>
+<p>
+<a href="viewcell2b.html"><tt>viewcell2b</tt></a>, <a href="partition_trials.html"><tt>partition_trials</tt></a>
+</p>
+
+</body>
+</html>

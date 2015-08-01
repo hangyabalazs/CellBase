@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>LRatio2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">LRatio2</h1>
+<align="left">L-ratio and Isolation Distance.
+<h2>Syntax</h2>
+<p><blockquote><tt>[dm lrc] = LRatio2(cellid,'feature_names',fn,'valid_channels',vc)</tt><br>
+<tt>[dm lrc valid_channels] = LRatio2(cellid,'feature_names',fn,'valid_channels',vc)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[dm lrc] = LRatio2(cellid,'feature_names',fn,'valid_channels',vc)
+</tt> calculates cluster quality measures (Isolation Distance, <tt>dm</tt>; L-ratio, <tt>lrc</tt>) for a given cell (<tt>cellid</tt>) using the given clustering
+ features (<tt>fn</tt>; default: <tt>{'Energy' 'WavePC1'}</tt>). <tt>vc</tt> is a 4-element 0-1
+ array determining which of the four tetrode channels were functional.
+ If it is omitted, the program defines it based on valid channels having
+ nonzero waveform energy.</p>
+<p><tt>[dm lrc valid_channels] = LRatio2(cellid,'feature_names',fn,'valid_channels',vc)
+</tt> also returns channel validity.</p>
+<h2>See Also</h2>
+<p>
+<a href="matlab:doc mahal"><tt>mahal</tt></a>
+</p>
+
+</body>
+</html>

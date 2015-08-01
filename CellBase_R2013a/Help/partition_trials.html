@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>partition_trials</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">partition_trials</h1>
+<align="left">Sort all trials to partitions.
+<h2>Syntax</h2>
+<p><blockquote><tt>[trials, tags, rtags, num_tags, partnum] = partition_trials(te,partitions)</tt><br>
+<tt>[trials, tags, rtags, num_tags, partnum] = partition_trials(te,partitions,validtrials)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[trials, tags, rtags, num_tags, partnum] = partition_trials(te,partitions)
+</tt> sorts all trials in <tt>te</tt> structure to nonoverlapping groups according to <tt>partitions</tt>. Partiotioned trials (<tt>trials</tt>) are returned with corresponding tags (<tt>tags</tt>, <tt>rtags</tt>) and number of elements in each
+ partition (<tt>partnum</tt>).</p>
+<p><tt>[trials, tags, rtags, num_tags, partnum] = partition_trials(te,partitions,validtrials)
+</tt> restricts the partitioning to valid trials.</p>
+<h2>See Also</h2>
+<p>
+<a href="viewcell2b.html"><tt>viewcell2b</tt></a>
+</p>
+
+</body>
+</html>

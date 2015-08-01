@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>psth_stats</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">psth_stats</h1>
+<align="left">Statistics for firing rate change.
+<h2>Syntax</h2>
+<p><blockquote><tt>stats = psth_stats(spt,psth,dt,win)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>psth_stats</tt> tests whether spike number after an event changes.</p>
+<p><tt>stats = psth_stats(spt,psth,dt,win)</tt> finds minimal/maximal firing as
+ minimum/maximum PSTH within 100 ms from time zero (determined by time
+ limits of the window around 0, <tt>win</tt> and temporal resolution, <tt>dt</tt>).
+Baseline firing is determined by mean firing probability from -250 ms 
+ to 0 using <tt>spt,</tt> the bin raster corrsponding to the PSTH. Next, the time
+ course of inhibition/activation is assessed by crossings of the
+ half-distence between the extreme and the baseline before and after the
+ minimum/maximum. This temporal window of inhibition/activation is then
+ used to find corresponding intervals around local extremes in the
+ baseline raster. Spike counts for baseline and spike counts in the
+ previously determined inhibition window are compared using Mann-Whitney
+ U-test (one-sided p-value is calculated; multiply it by 2 for two-sided
+ p-value).</p>
+<p>Default behavior of <tt>psth_stats</tt> can be modified by using a set of
+ paramter-value pairs as optional input parameters. The following
+ parameters are implemented (with default values):</p>
+<blockquote>
+<p><tt>'baselinewin', [-0.25 0]</tt> - limits of baseline window for statistical testing, time relative to 0 in seconds</p>
+<p><tt>'testwin', [0 0.1]</tt> - limits of test window for statistical testing, time relative to 0 in seconds</p>
+<p><tt>'relative_threshold', 0.5</tt> - threshold used to assess start and end points of activation and inhibition intervals; in proportion of the peak-baseline difference</p>
+<p><tt>'display', false</tt> - controls plotting.</p>
+</blockquote>
+<p>The output structure <tt>stats</tt> contains the following fields:</p>
+<blockquote>
+<p><tt>'baseline'</tt> - baseline firing probability</p>
+<p><tt>'minvalue'</tt> - minimal firing rate in the test window</p>
+<p><tt>'inhibition_start'</tt> - start time of inhibition in seconds</p>
+<p><tt>'inhibition_end'</tt> - end time of inhibition in seconds</p>
+<p><tt>'inhibition_peak'</tt> - peak time of inhibition in seconds</p>
+<p><tt>'inhibition_time'</tt> - duration of inhibition in seconds</p>
+<p><tt>'Wpi'</tt> - p-value for Mann-Whitney test for significant inhibition</p>
+<p><tt>'maxvalue'</tt> - maximal firing rate in the test window<p><tt>'activation_start'</tt> - start time of activation in seconds</p>
+<p><tt>'activation_end'</tt> - end time of activation in seconds</p>
+<p><tt>'activation_peak'</tt> - peak time of activation in seconds</p>
+<p><tt>'activation_time'</tt> - duration of activation in seconds</p>
+<p><tt>'Wpa'</tt> - p-value for Mann-Whitney test for significant activation</p>
+</blockquote>
+<p><b>Important note:</b> Please note that the baseline window is split to smaller windows of the size of the test window. Use baseline windows that are somewhat bigger than an integer multiple of the test window length. The baseline window will be cropped <i>before</i> the nearest integer multiple of the test window size. For instance, a test window of <tt>[0 0.1]</tt> and a baseline window of <tt>[-0.22 0]</tt> will result in an effective baseline window of <tt>[-0.2 0],</tt> corresponding to twice the size of the baseline window.</p>
+<h2>See Also</h2>
+<p>
+<a href="ultimate_psth.html"><tt>ultimate_psth</tt></a></p>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>extractEpochRates</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">extractEpochRates</h1>
+<align="left">Calculate spike rates in fixed or variable epochs.
+<h2>Syntax</h2>
+<p><blockquote><tt>[epoch_rate,epoch_dur,epoch_count] = extractEpochRates(event_stimes,event_windows,events,epochs)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p>event_stimes</tt> and <tt>event_windows</tt> are 1 x N cell arrays returned by <tt>extractEventSpikes.</tt> <tt>events</tt> and <tt>epochs</tt> are defined by <tt>defineEventsEpochs.</tt> It returns <tt>epoch_rate</tt>, <tt>epoch_dur</tt>, <tt>epoch_count</tt>, each of which are 1 x N cells arrays of 1 x NumTrials arrays.</p>
+<p>Using event windows, one can quickly calculate rates in different fixed windows without re-extracting all the spike times. To use the whole of a variable event (e.g. odor sampling or movement), use NaN for values in that row.</p>
+<h2>See Also</h2>
+<p>
+<a href="extractEventSpikes.html"><tt>extractEventSpikes</tt></a>, <a href="defineEventsEpochs_default.html"><tt>defineEventsEpochs_default</tt></a>, <a href="prealignSpikes.html"><tt>prealignSpikes</tt></a>
+</p>
+
+</body>
+</html>

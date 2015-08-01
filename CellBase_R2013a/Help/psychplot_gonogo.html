@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>psychplot_gonogo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">psychplot_gonogo</h1>
+<align="left">Plot psychometric performance.
+<h2>Syntax</h2>
+<p><blockquote><tt>[goperf ngperf gort ngrt] = psychplot_gonogo(cellid)</tt><br>
+<tt>[goperf ngperf gort ngrt] = psychplot_gonogo(sessionid)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[goperf ngperf gort ngrt] = psychplot_gonogo(cellid)</tt> calculates go and 
+ no-go performance (<tt>goperf</tt> and <tt>ngperf</tt>) as well as go and no-go reaction
+ time (<tt>gort</tt> and <tt>ngrt</tt>) for all different stimulus intensities in the
+ auditory go/no-go task. The session corresponding to the cell given in
+ <tt>cellid</tt> is selected.</p>
+<p><tt>[goperf ngperf gort ngrt] = psychplot_gonogo(sessionid)</tt> calculates
+ performance and reaction time for the session passed in <tt>sessionid.
+ sessionid</tt> should be a 1-by-2 cell array with the animal ID and the session ID.</p>
+<p>Additional input parameter-value pairs, with default values:</p>
+ <blockquote><p><tt>'valid_trials', 'all' </tt>- restrict the analysis to a set of trials</p>
+ <p><tt>'lastresponsestop', false </tt>- exclude trials after the last response of the animal</p>
+ <p><tt>'display', true </tt>- controls plotting; performance, median reaction time, reaction time cumulative density functions, difference between go and no-go performace and temporal evolution of blockwise performance are plotted</p></blockquote>
+<h2>See Also</h2>
+<p>
+<a href="psych_gonogo.html"><tt>psych_gonogo</tt></a>
+</p>
+
+</body>
+</html>

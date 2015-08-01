@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>spikeshapecorr</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">spikeshapecorr</h1>
+<align="left">Correlation of spontaneous and light-evoked spike shape.
+<h2>Syntax</h2>
+<p><blockquote><tt>r = spikeshapecorr(cellid)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>r = spikeshapecorr(cellid)</tt> calculates correlation coefficient between
+ the waveform of spontaneous and putative light-evoked spikes. It finds
+ the latency of putative light-evoked spikes as peaks of firing rate
+ after light pulses. The period for putative light-evoked spikes is
+ defined by half-hight crossings around the peak (see <tt>findStimPeriod</tt> for
+ details). If there is no detectable activation, 1 and 6 ms are used,
+ which include typical latencies of light-evoked spikes. Spontaneous
+ spikes are extracted from 2 s periods before light bursts. Waveforms
+ are restricted to 750 us (default of DigiLynx censored period). NaN is
+ returned if there are less than 2 evoked and/or spontaneous spikes.
+ Correlation is calculated for the channel with the largest spikes.</p>
+<h2>See Also</h2>
+<p>
+<a href="findStimPeriod.html"><tt>findStimPeriod</tt></a>, <a href="abs2reltimes.html"><tt>abs2reltimes</tt></a>, <a href="extractSegSpikes.html"><tt>extractSegSpikes</tt></a>, <a href="extractSpikeWaveforms.html"><tt>extractSpikeWaveforms</tt></a>
+</p>
+
+</body>
+</html>

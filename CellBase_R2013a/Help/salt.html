@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>salt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">salt</h1>
+<align="left">Stimulus-Associated spike Latency Test.
+<h2>Syntax</h2>
+<p><blockquote><tt>[p i] = salt(spt_baseline,spt_test,dt,wn)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[p i] = salt(spt_baseline,spt_test,dt,wn)</tt> calculates a modified version
+ of Jensen-Shannon divergence (see Endres and Schindelin, 2003) for
+ spike latency histograms.</p>
+<p>Input arguments:</p>
+<blockquote><p>
+<tt>spt_baseline</tt> - Discretized spike raster for stimulus-free baseline
+ period. <tt>N x M</tt> binary matrix with <tt>N</tt> rows for trials and <tt>M</tt> columns for spikes. Spike times have to be converted to a binary matrix with a temporal resolution provided in <tt>dt</tt>.</p>
+<p><tt>spt_test</tt> - Discretized spike raster for test period, i.e. after stimulus. <tt>N x M</tt> binary matrix with <tt>N</tt> rows for trials and <tt>M</tt> columns for spikes. Spike times have to be converted to a binary matrix with a temporal resolution provided in <tt>dt</tt>. The test segment has to excede the window size (<tt>wn</tt>). Spikes out of the window are disregarded.</p>
+<p><tt>dt</tt> - Time resolution of the discretized spike rasters in seconds.</p>
+<p><tt>wn</tt> - Window size for baseline and test windows in seconds (optional; default, 0.001 s).</p></blockquote>
+<p>Output arguments:</p>
+<blockquote><p>
+<tt>p</tt> - Resulting p-value for the Stimulus-Associated spike Latency Test.</p>
+<p><tt>i</tt> - Test statistic, difference between within baseline and test-to-baseline information distance values.</p></blockquote>
+<p>Briefly, the baseline binned spike raster <tt>(spt_baseline)</tt> is cut to non-overlapping epochs (window size determined by <tt>wn</tt>) and spike latency histograms for first spikes are computed within each epoch. A similar histogram is constructed for the test epoch (<tt>spt_test</tt>). Pairwise
+ information distance measures are calculated for the baseline
+ histograms to form a null-hypothesis distribution of distances. The distances of the test histogram and all baseline histograms are calculated and the median of these values is tested against the null-hypothesis distribution, resulting in a p-value (<tt>p</tt>).</p>
+<h2>Reference</h2>
+<p>Endres DM, Schindelin JE (2003) A new metric for probability
+ distributions. IEEE Transactions on Information Theory 49:1858-1860.</p>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>exportdata</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">exportdata</h1>
+<align="left">Export all data introduced to CellBase by the 'insertdata' function.
+<h2>Syntax</h2>
+<p><blockquote><tt>data = exportdata('var')</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>exportdata</tt> saves all variables from 'TheMatrix' which corresponds to
+ 'insertdata' in <tt>analyses</tt> to a cell table under the name
+ 'CellBase_InsertData' in the CellBase directory (see CellBase
+ documentation).</p>
+<p><tt>exportdata(filename)</tt> exports the data to a file named <tt>filename</tt> in the
+ current directory.</p>
+<p><tt>data = exportdata('var')</tt> exports the data to a variable instead of
+ saving.</p>
+<h2>See Also</h2>
+<p>
+<a href="insertdata.html"><tt>insertdata</tt></a>
+</p>
+
+</body>
+</html>

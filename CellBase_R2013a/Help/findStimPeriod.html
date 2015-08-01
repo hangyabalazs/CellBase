@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>findStimPeriod</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">findStimPeriod</h1>
+<align="left">Find time period of stimulated spikes.
+<h2>Syntax</h2>
+<p><blockquote><tt>[i1 i2] = findStimPeriod(cellid)</tt><br>
+<tt>[i1 i2 p] = findStimPeriod(cellid)</tt><br>
+<tt>[i1 i2 p h] = findStimPeriod(cellid)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[i1 i2] = findStimPeriod(cellid)</tt> seeks for an increase of firing rate after an event. First, the program calculates Spike Density Function by
+ convolving the event-aligned raster plots with a variable Gaussian
+ window. Second, it finds maximal firing as maximum
+ SDF within a window from the event. Baseline firing is determined by
+ mean pre-event firing probability. Next, the time course of activation
+ is assessed by half-baseline crossings before and after the maximum.
+ This temporal window of activation is then returned in <tt>i1</tt> (start) and
+ <tt>i2</tt> (end timestamp).</p>
+<p><tt>[i1 i2 p] = findStimPeriod(cellid)</tt> returns the peak time of activation
+ (in seconds) as third output argument <tt>(p)</tt>.</p>
+<p><tt>[i1 i2 p h] = findStimPeriod(cellid)</tt> plots the adaptive SDF and returns
+ the figure handle in <tt>h.</tt> Activation parameters are stored with the
+ figure as application data.</p>
+<p><tt>findStimPeriod</tt> accepts the following parameter, value pairs as optional
+ input arguments (with default values):</p>
+<blockquote>
+<p><tt>'event', 'PulseOn'</tt> - the event to which the window is locked</p>
+<p><tt>'window', [-0.005 0.01]</tt> - extent of baseline and test period relative to the event in seconds; in seconds</p>
+<p><tt>'margins', [-0.01 0.01]</tt> - margin in seconds used for extending the <tt>'window'</tt> for adaptive SDF calculation to reduce convolution edge effects; the SDF is later restricted to the <tt>'window'</tt></p>
+<p><tt>'dt', 0.0005</tt> - time resolution of the bin raster; in seconds</p>
+<p><tt>'display', false</tt> - control of plotting event-locked raster plot</p>
+<p><tt>'valid_trials', 'all'</tt> - filter for trials; default: include all trials; logical array or index set</p>
+</blockquote>
+<p>Note that <tt>utlimate_psth</tt> renders <tt>findStimPeriod</tt> obsolete.</p>
+<h2>See Also</h2>
+<p>
+<a href="ultimate_psth.html"><tt>ultimate_psth</tt></a>, <a href="findSegs3.html"><tt>findSegs3</tt></a>, <a href="abs2reltimes.html"><tt>abs2reltimes</tt></a>
+</p>
+
+</body>
+</html>

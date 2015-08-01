@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>CellBase variables</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #990000; 
+  font-size: 36;
+}
+h2 {
+  color: #990000;
+  font-size: 24;
+}
+h3 {
+  color: #990000;
+  font-size: 18;
+}
+h4 {
+  color: #990000;
+  font-size: 16;
+}
+
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">Core variables of CellBase</h1>
+<p>CellBase consists of 
+<ul>
+   <li>a collection of data files organized into a specific directory structure (see <a href="CellBase_setup.html">Installing CellBase</a> for more information)</li>
+   <li>three variables stored in a single .mat file containing the look-up tables of the data base (see <a href="#1">CellBase variables</a>)</li>
+   <li>a collection of .m files on the Matlab path for managing the database (see <a href="Cellbase_functions.html">Function reference</a>)</li></ul>
+
+<br>
+</p>
+<h2 align="left">CellBase variables<a name="1"></a></h2>
+<p>
+CellBase contains three core variables for managing the data. These variables are stored in a single .mat file. The name and path of this file is determined during the setup process (see <a href="CellBase_setup.html">Installing CellBase</a>). It is usually desirable to keep this file in the topmost CellBase folder.</p>
+
+<h3>CELLIDLIST</h3>
+<p><tt>CELLIDLIST</tt> is a cell array of strings containing the identifiers of all cells included in CellBase. The indexing of this array is used for corresponding entries in <a href="#2"><tt>TheMatrix</tt></a>. Use <a href="addnewcells.html"><tt>addnewcells</tt></a> and <a href="addcell.html"><tt>addcell</tt></a> to add cells to <tt>CELLIDLIST</tt>. Use <a href="delcell.html"><tt>delcell</tt></a> to remove cells from <tt>CELLIDLIST</tt>. Use <a href="findcell.html"><tt>findcell</tt></a> and <a href="findcellpos.html"><tt>findcellpos</tt></a> for searching in <tt>CELLIDLIST</tt>. Use <a href="iscellid.html"><tt>iscellid</tt></a> and <a href="validcellid.html"><tt>validcellid</tt></a> to check if a given ID exists in <tt>CELLIDLIST</tt>. Use <a href="listtag.html"><tt>listtag</tt></a> for a list of all animals, sessions or cells included in CellBase. <br />
+How to find a cell or a specific subset of cells? Cells of a speific animal, session, tetrode can be located by using <a href="findcell.html"><tt>findcell</tt></a>. For a given cell, cells on the same or on different tetrodes within the same session can be find by <a href="tetrodepairs.html"><tt>tetrodepairs</tt></a> and <a href="nontetrodepairs.html"><tt>nontetrodepairs</tt></a>. Cells with given properties can be searched for with <a href="selectcell.html"><tt>selectcell</tt></a>. 
+</p>
+
+<h3>TheMatrix<a name="2"></a></h3>
+<p>Data pertaining to individual cells are stored in <tt>TheMatrix</tt>. <tt>TheMatrix</tt> is a cell array with one row per cell, corresponding to the cell identifier in the same position of <tt>CELLIDLIST</tt>. <tt>TheMatrix</tt> has multiple columns for analysis results and other properties corresponding to analyses performed (see <a href="#3">ANALYSES</a>) or values entered through <a href="insertdata.html"><tt>insertdata</tt></a>. Use <a href="insertdata.html"><tt>insertdata</tt></a> to add analyses results or properties to <tt>TheMatrix</tt>. Use <a href="exportdata.html"><tt>exportdata</tt></a> to extract property values from <tt>TheMatrix</tt> and <a href="writedata.html"><tt>writedata</tt></a> to write <tt>CELLIDLIST</tt> and <tt>TheMatrix</tt> to Excel. Use <a href="listcell.html"><tt>listcell</tt></a> to obtain all entries from <tt>TheMatrix</tt> corresponding to a given cell. Use <a href="getvalue.html"><tt>getvalue</tt></a> to extract values corresponding to given cells, analyses and properties in <tt>TheMatrix</tt>. Use <a href="selectcell.html"><tt>selectcell</tt></a> to search for cells satisfying certain criteria.
+</p>     
+
+
+<h3>ANALYSES<a name="3"></a></h3>
+<p><tt>ANALYSES</tt> is a structure array storing information about all data analyses performed and added to <tt>TheMatrix</tt>. Every analyses has a corrsponding structure in <tt>ANALYSES</tt>, ordered according to the corresponding columns in <tt>TheMatrix</tt>. This structure has the following fields.
+<blockquote>
+<tt>funhandle</tt> - function handle of the corresponding analysis function. For data added by using <a href="insertdata.html"><tt>insertdata</tt></a>, this field is set to <tt>@insertdata</tt>.<br />
+<tt>varargin</tt> - potential input arguments to the analysis<br />
+<tt>propnames</tt> - names of the <tt>'properties'</tt> (any type of output matrix) calculated by the analysis. The number of properties matches the number of output arguments of the analysis.<br />
+<tt>columns</tt> - columns in <tt>TheMatrix</tt> corresponding to the analysis. The number of columns matches the number of output arguments of the analysis.<br />
+<tt>timestamp</tt> - date and time when the analysis was added to CellBase.
+</blockquote>
+Use <a href="insertdata.html"><tt>insertdata</tt></a> or <a href="addanalysis.html"><tt>addanalysis</tt></a> to add new analysis to the CellBase. Use <a href="runanalysis.html"><tt>runanalysis</tt></a> to run an analysis on the cells included in the CellBase but without adding it to <tt>ANALYSES</tt> and <tt>TheMatrix</tt>. Use <a href="delanalysis.html"><tt>delanalysis</tt></a> to remove an analysis from CellBase. Use <a href="findanalysis.html"><tt>findanalysis</tt></a> and <a href="findprop.html"><tt>findprop</tt></a> to find an analysis or property. Use <a href="listtag.html"><tt>listtag</tt></a> for a list of all properties or analyses.
+
+<h2>ANALYSES and properties</h2>
+<p>All columns in <tt>TheMatrix</tt> correspond to properties of different names. Each property is either generated by an analysis as a named output argument or added separately by <a href="insertdata.html"><tt>insertdata</tt></a>. This way properties generated outside the Matlab analysis framework can be added to CellBase and later queried and used by analysis functions (examples include anatomical information, cell identity or animal genotype). In case of properties added this way, the <tt>funhandle</tt> field in <tt>ANALYSES</tt> contains <tt>@insertdata</tt>.
+</p>
+
+<p><a href="CellBase_database_management.html">Database management</a>
+</p>
+<p><a href="CellBase_application.html">How to use CellBase</a>
+</p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>fname2cellid</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">fname2cellid</h1>
+<align="left">Convert filenames to cell IDs.
+<h2>Syntax</h2>
+<p><blockquote><tt>cellid = fname2cellid(filename)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>cellid = fname2cellid(filename)</tt> converts valid filenames into cellids
+ or returns empty if it fails.</p>
+<p>Valid filenames<br />
+(1) start with the default path or only include 'rat\session\unit.mat'<br />
+(2) unit 1 of tetrode 1 is called <tt>Sc1_1.mat</tt><br />
+(3) session name can only contain '.' or '_' characters but not both<br />
+(4) should be consistent across the database</p>
+<h2>See Also</h2>
+<p>
+<a href="findallcells.html"><tt>findallcells</tt></a>
+</p>
+
+</body>
+</html>

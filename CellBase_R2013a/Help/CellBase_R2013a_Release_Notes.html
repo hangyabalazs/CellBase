@@ -1,0 +1,73 @@
+<html><head><title>CellBase_R2013a Release Notes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #000000; 
+  font-size: 36;
+}
+h2 {
+  color: #666666;
+  font-size: 24;
+}
+h3 {
+  color: #990000;
+  font-size: 18;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">Release Notes</h1>
+
+<h2>Contents</h2>
+<div>
+   <ul>
+      <li><a href="#1">New features</a></li>
+      <li><a href="#2">Changes</a></li>
+      <li><a href="#3">Bug fixes</a></li>
+   </ul>
+</div>
+
+<h2>New features<a name="1"></a></h2>
+<ul>
+  <li>new database, data preprocessing and analysis functions</li>
+  <li>new functions include <a href="setvalue.html"><tt>setvalue</tt></a>, <a href="filterTrials.html"><tt>filterTrials</tt></a>, <a href="ultimate_psth.html"><tt>ultimate_psth</tt></a>, <a href="psth_stats.html"><tt>psth_stats</tt></a>, a set of functions for optical tagging analysis and many more</li>
+  <li>complete documentation</li>
+  <li>help headers, comments, code cleanup</li>
+  <li>input argument handling with <a href="matlab:doc inputParser"><tt>inputParser</tt></a> for most of the complex functions</li>
+  <li>new directory structure for <tt>.m</tt> files</li>
+  <li><a href="insertdata.html"><tt>insertdata</tt></a>, <a href="prealignSpikes.html"><tt>prealignSpikes</tt></a>, <a href="selectcell.html"><tt>selectcell</tt></a>, <a href="addanalysis.html"><tt>addanalysis</tt></a>, <a href="addcell.html"><tt>addcell</tt></a> - added functionalities</li>
+  <li>most of the functions updating CellBase save a time-stamped backup (like <a href="addanalysis.html"><tt>addanalysis</tt></a>, <a href="delanalysis.html"><tt>delanalysis</tt></a>, etc)</li>
+</ul>
+
+<h2>Changes<a name="2"></a></h2>
+<ul>
+  <li><tt>TheMatrix</tt> has been converted to a cell; it is kept compatible with previous versions (hopefully)</li>
+  <li>Time stamp conversion is handled by a new preference</li>
+  <li><a href="getvalue.html"><tt>getvalue</tt></a> returns values in the order of the cell IDs</li>
+  <li>output arguments of <a href="findanalysis.html"><tt>findanalysis</tt></a> and <a href="findprop.html"><tt>findprop</tt></a> were changed</li>
+</ul>
+
+<h2>Bug fixes<a name="3"></a></h2>
+<ul>
+  <li><a href="addcell.html"><tt>addcell</tt></a>: handling analyses when adding a new cell has been fixed</li>
+  <li><a href="partition_trials.html"><tt>partition_trials</tt></a>: NaNs are not considered a separate partition anymore</li>
+  <li><a href="MakeTrialEvents2_gonogo.html"><tt>MakeTrialEvents2_gonogo</tt></a>: TTLs parsed according to their channels</li>
+  <li><a href="findSegs2.html"><tt>findSegs2</tt></a> contained many bugs; <a href="findSegs3.html"><tt>findSegs3</tt></a> added, with hopefully most of the bugs eliminated; <tt>findSegs3</tt> renders <tt>findSegs2</tt> obsolete</li>
+  <li><a href="addanalysis.html"><tt>addanalysis</tt></a>: output arguments of an added analysis do not have to be wrapped in a cell array </li>
+</ul>
+
+<p><i>If you would like to find out more, please consult <a href="CELLBASE_editlog.html">CellBase editlog.</i></p>
+
+</body>
+</html>

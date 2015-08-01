@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>MakeTrialEvents2_gonogo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">MakeTrialEvents2_gonogo</h1>
+<align="left">Synchronize trial events to recording times. 
+<h2>Syntax</h2>
+<p><blockquote><tt>MakeTrialEvents2_gonogo(sessionpath)</tt><br />
+<tt>MakeTrialEvents2_gonogo(sessionpath,'StimNttl',TTL)</tt></blockquote></p> 
+<h2>Description</h2>
+<p><tt>MakeTrialEvents2_gonogo(sessionpath)</tt> loads Neuralynx events and adjusts
+ 	trial event times (trial-based behavioral data, see
+ <tt>	solo2trialevents4_auditory_gonogo)</tt> to the recorded time stamps. This
+ 	way the neural recordings and behavioral time stamps are in register.
+ 	Stimulus time TTL pulses are used for synchronization. The synchronized
+ 	trial events structure is saved under the name 'TrialEvents.mat'. This
+ 	file becomes the primary store of behavioral data for a particular
+ 	session; it is retrieved by <tt>loadcb</tt> via <tt>cellid2fnames.</tt> This default
+ 	file name is one of the preference settings of CellBase - type<br /> <tt>getpref('cellbase','session_filename')</tt>;</p>
+<p>
+<tt>MakeTrialEvents2_gonogo(sessionpath,'StimNttl',TTL)</tt> specifies the TTL channel which serves as the basis for synchronization.</p>
+<h2>See Also</h2>
+<p>
+<a href="solo2trialevents4_auditory_gonogo.html"><tt>solo2trialevents4_auditory_gonogo</tt></a>, <a href="loadcb.html"><tt>loadcb</tt></a>
+</p>
+
+</body>
+</html>

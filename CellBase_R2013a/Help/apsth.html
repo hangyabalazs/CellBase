@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>apsth</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">apsth</h1>
+<align="left">Spike density function with adaptive Gaussian kernel.
+<h2>Syntax</h2>
+<p><blockquote><tt>[psth_aconv psth_sd] = apsth(binraster,dt,time)</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[psth_aconv psth_sd] = apsth(binraster,dt,time)</tt> computes the spike density
+ 	function with an adaptive Gaussian kernel optimized for local
+ 	probability of spiking. For near-zero spiking probability, the kernel
+ 	is flat resulting in a moving average. For a probability of 1, the
+ 	kernel converges to a Dirac delta. Note that the mapping of
+ 	probabilities to kernel width is arbitrary between the extremes. In
+ 	this implementation, the <tt>alpha</tt> parameter of the <tt>gausswin</tt> function
+ 	(which is inversly related to the <tt>sd</tt> of the Gaussian window) is
+ 	linearly mapped to probabilities.</p>
+<h2>See Also</h2>
+<p>
+<a href="binraster2apsth.html"><tt>binraster2apsth</tt></a>, <a href="matlab:doc gausswin"><tt>gausswin</tt></a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>findsegs2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">findSegs2</h1>
+<align="left">Find segments of a session.
+<h2>Syntax</h2>
+<p><blockquote><tt>tseg = findSegs2(cellid)</tt><br>
+<tt>tseg = findSegs2(cellid,'segfilter',filtername)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>tseg = findSegs2(cellid)</tt> finds time segments for a given cell <tt>(cellid)
+</tt> and returns the start (first row of <tt>tseg</tt>) and end timestamps (second row of <tt>tseg</tt>); thus, every column of <tt>tseg</tt> corresponds to the start and end of a segment. Segments are selected based on a particular filter, which can be set via a <tt>'segfilter', filter type</tt> parameter value pair:<br />
+<tt>tseg = findSegs2(cellid,'segfilter',filtername)</tt><br /> The default <tt>filtername</tt> is <tt>'stim_excl'</tt> (see below).</p>
+<p>Filters currently implemented (possible values for <tt>filtername</tt>):</p>
+<blockquote>
+<p><tt>'stim_excl'</tt> - gaps between protocols excluding pulses during
+ behavior</p>
+<p><tt>'prestim'</tt> - pre-stimulus segments: from the offset of a pulse to the onset of the next</p>
+<p><tt>'stim'</tt> - stimulation segments during stimulation and behavior
+ protocols; note that <tt>'margin', 'min_int'</tt> and <tt>'max_int'</tt>
+ arguments are disregarded</p>
+<p><tt>'spont'</tt> - gaps between behav/stim protocols</p>
+<p><tt>'stim_excl_no_behavior'</tt> - segments between protocols and between light pulses</p>
+</blockquote>
+<p>To implement a new filter, a subfunction in the form <tt>[tseg g] = filtername(g,cellid)</tt> should be appended to the code. <tt>g</tt> is the structure containing the input arguments to <tt>findSegs2</tt>. Returning <tt>g</tt> from the subfunction makes it possible to force fixed values onto these arguments in a filter-dependent manner.</p>
+<p>Additional optional input arguments to <tt>findSegs2</tt> (parameter, value pairs, with their default values):</p>
+<blockquote>
+<p><tt>'margins', [1 -1]</tt> - define a margin around the events that will be excluded; in seconds</p>
+<p><tt>'min_int', 1</tt> - minimum interval length of time segment; in seconds</p>
+<p><tt>'max_int', Inf </tt>- maximum interval length of time segment; in seconds</p>
+<p><tt>'light_activation_duration', [0 1]</tt> - time window after light 
+ activation; in seconds</p>
+</blockquote>
+<p>Note that <tt>findSegs3</tt> renders <tt>findSegs2</tt> obsolete.</p>
+<h2>See Also</h2>
+<p>
+<a href="extractSegSpikes.html"><tt>extractSegSpikes</tt></a>
+</p>
+
+</body>
+</html>

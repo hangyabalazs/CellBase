@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>defineEventsEpochs_gonogo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">defineEventsEpochs_gonogo</h1>
+<align="left">Define events and epochs for spike extraction.
+<h2>Syntax</h2>
+<p><blockquote><tt>[events,epochs] = defineEventsEpochs_gonogo</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>[events,epochs] = defineEventsEpochs_gonogo</tt> defines events and epochs
+ for spike extraction.</p>
+<p><tt>events</tt> is a N x 4 cell array with columns corresponding to EventLabel,
+ EventTrigger1, EventTrigger2, Window. EventLabel is the name for
+ referencing the event. EventTrigger1 and EventTrigger2 are names of
+ TrialEvent variables (e.g. <tt>'LeftPortIn'</tt>). For fixed windows, the two
+ events are the same; for variable windows, they correspond to the start
+ and end events. Window specifies time offsets relative to the events;
+ e.g. events(1,:) = {'OdorValveOn','OdorValveOn','OdorValveOn',[-3 3]};</p>
+<p><tt>epoch</tt> is a N x 4 cell array with columns corresponding to EpochLabel, 
+ ReferenceEvent, Window, RealWindow. EventLabel is the name for 
+ referencing the epoch. ReferenceEvent should match an <tt>eventlabel</tt> in <tt>events</tt> (used for calculating the epoch rates). RealWindow is currently not implemented (allocated for later versions).</p>
+<p><tt>defineEventsEpochs_gonogo</tt> defines events and epochs for auditory go-nogo task.</p>
+<h2>See Also</h2>
+<p>
+<a href="MakeTrialEvents2_gonogo.html"><tt>MakeTrialEvents2_gonogo</tt></a>, <a href="defineEventsEpochs_default.html"><tt>defineEventsEpochs_default</tt></a>
+</p>
+
+</body>
+</html>

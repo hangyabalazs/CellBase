@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>rocarea</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">rocarea</h1>
+<align="left">Receiver-operator characteristic.
+<h2>Syntax</h2>
+<p><blockquote><tt>d = rocarea(x,y)</tt><br>
+<tt>[d p se] = rocarea(x,y,'bootstrap',n)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>d = rocarea(x,y)</tt> calculates area under ROC curve <tt>(d)</tt> for the samples <tt>x
+</tt> and <tt>y</tt>.</p>
+<p><tt>[d p se] = rocarea(x,y,'bootstrap',n)</tt> calculates permutation test p-value and bootstrap standard error <tt>(n,
+</tt> number of bootstrap samples).</p>
+<p>Optional input parameter-value paits (with default values):</p>
+<p><blockquote><tt>'bootstrap', 0 </tt>- size of bootstrap sample; 0 corresponds to no bootstrap analysis</p>
+<p><tt>'transform', 'none' </tt>- <tt>'swap'</tt>: rescales results between 0.5 - 1;
+ <tt>'scale' </tt>- rescales results between -1 to 1</p> <p><tt>'display', false</tt> - controls plotting of the ROC curve</blockquote>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>dynamicSpikeWindow</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">dynamicSpikeWindow</h1>
+<align="left">Restrict spike times to event windows.
+<h2>Syntax</h2>
+<p><blockquote><tt>st = dynamicSpikeWindow(st,ve,triggerevent,firstevent,lastevent)</tt><br>
+<tt>[st t1 t2] = dynamicSpikeWindow(st,ve,triggerevent,firstevent,lastevent)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>st = dynamicSpikeWindow(st,ve,triggerevent,firstevent,lastevent)
+</tt> excludes pre-aligned spikes (<tt>st</tt>) before a preceding (<tt>firstevent</tt>) and after a following (<tt>lastevent</tt>) event. Trial or stimulus events (<tt>ve</tt>) and
+ the name of the trigger event for the pre-alignment (<tt>triggerevent</tt>) should be passed onto the function. No restriction is applied for empty <tt>firstevent</tt> or <tt>lastevent</tt>.</p>
+<p><tt>[st t1 t2] = dynamicSpikeWindow(st,ve,triggerevent,firstevent,lastevent)
+</tt> also returns start and end time stamps for all trials.</p>
+<h2>See Also</h2>
+<p>
+<a href="prealignSpikes.html"><tt>prealignSpikes</tt></a>
+</p>
+
+</body>
+</html>

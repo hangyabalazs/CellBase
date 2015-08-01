@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Programming in CellBase</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #990000; 
+  font-size: 36;
+}
+h2 {
+  color: #990000;
+  font-size: 24;
+}
+h3 {
+  color: #990000;
+  font-size: 18;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+
+<h1 align="left">Programming in CellBase<a name="1"></h1>
+<h2 align="left">Modular structure</h2>
+<p>
+CellBase is designed to have a modular structure to allow expansion and add-ons. The 'Functions' subdirectory in the CellBase directory tree reflects this modularity.</p> 
+
+<h2 align="left">CellBase modules<a name="2"></a></h2>
+
+<p>The database functions include the core functionalities of data handling (see <a href="CellBase_functions.html#2">Function reference</a>). Although all CellBase functions are editable, altering the database functions is not recommended. In case of editing existing database functions or adding new ones, it is recommended to attempt maintaining compatibility across versions of CellBase. <br />
+
+<br>
+
+Helper functions include relatively general functions developed for CellBase (see <a href="CellBase_functions.html#6">Function reference</a>). They are called by database and other CellBase functions. They might prove useful when developing CellBase. As with the database functions, exercise caution if editing them, because it may compromise compatibility and change the functionality of other CellBase prorgrams. <br />
+
+<br>
+
+Data processing, analysis and plotting function modules are related to data analysis and visualization (see <a href="CellBase_functions.html#7">Function reference</a>). These modules are more flexible. Analysis related functions may be added or existing ones may be customized based on analysis needs and personal preferences.</p>
+
+<h2 align="left">Basic principles of analysis functions<a name="3"></a></h2>
+
+<p>Typical analysis functions work on single cell data. Thus, their first input argument is a cell ID or a list of cell IDs. This is a requirement for compaibility with <a href="addanalysis.html"><tt>addanalysis</tt></a>, <a href="runanalysis.html"><tt>runanalysis</tt></a> and other analysis interface functions (see <a href="CellBase_functions.html#4">Function reference</a> and <a href="CellBase_database_management.html#2">Add/remove analysis</a>). Other input arguments may include mandatory input arguments and optional parameter-value pairs. Input arguments may be parsed using <a href="matlab:doc inputParser"><tt>inputParser</tt></a> (recommended) or <a href="parse_args.html"><tt>parse_args</tt></a>. Specific neural or behavioral data is typically obtained by using <a href="loadcb.html"><tt>loadcb</tt></a> to load CellBase variables (see <a href="CellBase_variables.html">CellBase variables</a>), neural data (all spikes or spikes aligned to behavioral or stimulus events), behavioral data (trial events) or stimulation information (stimulus events, see <a href="CellBase_application.html">Using CellBase</a>). All CellBase functions are open source. It is worth to explore some CellBase analysis functions to appriciate the general layout and style of CellBase programming (see e.g. <a href="tagging.html"><tt>tagging</tt></a> for a typical example).
+</p>
+
+<h2 align="left">Update CellBase<a name="4"></a></h2>
+
+<p>An online CellBase edit log is maintained for CellBase developers. Please put all your edits in the log file.<br>
+When a CellBase function is edited or added, the documentation should be updated accordingly. This includes 
+<ul>
+<li>creating an html document for the function in the Help folder of CellBase (<a href="createdoc.html"><tt>createdoc</tt></a> generates an html file from the header help paragraph of the m file)</li>
+<li>adding all new functions to the Function reference (CellBase_functions.html and helpfuncbycat.xml)</li>
+<li>updating other help files as necessary.</li>
+</ul>
+</p>
+
+<p><a href="CellBase_application.html">How to use CellBase</a>
+</p>
+<p><a href="CellBase_database_management.html">Database management</a>
+</p>
+<p><a href="CellBase_variables.html">Core variables of CellBase</a>
+</p>
+
+
+
+</body>
+</html>

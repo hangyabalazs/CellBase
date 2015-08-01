@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>selecttrial</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">selecttrial</h1>
+<align="left">Execute logical expression to filter trials.
+<h2>Syntax</h2>
+<p><blockquote><tt>trials = selecttrial(te,selstr)</tt><br>
+<tt>valid_trials = selecttrial(te,'hit==1|falsealarm==1');</tt></blockquote>
+</p>
+<h2>Description</h2>
+<p><tt>trials = selecttrial(te,selstr)</tt> returns the trial indices (for trial
+ structure <tt>te)</tt> satisfying the required criteria set up by <tt>selstr,</tt> which
+ should be a logical expression.</p>
+<h2>Example</h2>
+<p><blockquote><tt>valid_trials = selecttrial(TE,'Hit==1|FalseAlarm==1');</tt></blockquote></p>
+<h2>See Also</h2>
+<p>
+<a href="filterTrials.html"><tt>filterTrials</tt></a>, <a href="parseValidTrials.html"><tt>parseValidTrials</tt></a>
+</p>
+
+</body>
+</html>

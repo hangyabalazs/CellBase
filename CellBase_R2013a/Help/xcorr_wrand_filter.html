@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>xcorr_wrand_filter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">xcorr_wrand_filter</h1>
+<align="left">Cross-correlation function estimates.
+<h2>Syntax</h2>
+<p><blockquote><tt>c = xcorr_wrand_filter(a,b)</tt><br>
+<tt>[c,lags] = xcorr_wrand(...)</tt><br>
+<tt>[c,lags,rccg] = xcorr_wrand_filter(sr,cutoff,x,y,maxlag,scaleopt,randvec)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>c = xcorr_wrand_filter(a,b),</tt> where <tt>a</tt> and <tt>b</tt> are length <tt>m</tt> vectors <tt>(m>1),
+</tt> returns the length <tt>2*M-1</tt> cross-correlation sequence <tt>c</tt>. If <tt>a</tt> and <tt>b</tt> are
+ of different length, the shortest one is zero-padded. <tt>c</tt> will be a row vector if <tt>a</tt> is a row vector, and a column vector if <tt>a</tt> is a column
+ vector.</p>
+<p><tt>xcorr_wrand_filter</tt> produces an estimate of the correlation between two
+ random (jointly stationary) sequences:
+ <tt>C(m) = E[A(n+m)*conj(B(n))] = E[A(n)*conj(B(n-m))]</tt>
+ It is also the deterministic correlation between two deterministic signals.</p>
+<p><tt>xcorr_wrand_filter(a),</tt> when <tt>a</tt> is a vector, is the auto-correlation
+ sequence. <tt>xcorr_wrand_filter(a),</tt> when <tt>a</tt> is an M-by-N matrix, is a large
+ matrix with <tt>2*m-1</tt> rows whose <tt>n^2</tt> columns contain the cross-correlation
+ sequences for all combinations of the columns of <tt>a.</tt> The zeroth lag of
+ the output correlation is in the middle of the sequence, at element or
+ row <tt>m</tt>.</p>
+<p><tt>xcorr_wrand_filter(...,maxlag)</tt> computes the (auto/cross) correlation
+ over the range of lags: <tt>-maxlag</tt> to <tt>maxlag,</tt> i.e., <tt>2*maxlag+1</tt> lags. If
+ missing, default is <tt>maxlag = m-1</tt>.</p>
+<p><tt>[c,lags] = xcorr_wrand(...)</tt> returns a vector of lag indices <tt>(lags)</tt>.</p>
+<p><tt>xcorr_wrand_filter(...,scaleopt),</tt> normalizes the correlation according
+ to <tt>scaleopt:</p>
+<blockquote>
+<p><tt>'biased'</tt> - scales the raw cross-correlation by <tt>1/M</tt>.</p>
+<p><tt>'unbiased'</tt> - scales the raw correlation by <tt>1/(M-abs(lags))</tt>.</p>
+<p><tt>'coeff'</tt> - normalizes the sequence so that the auto-correlations at zero lag are identically 1.0.</p>
+<p><tt>'none'</tt> - no scaling (this is the default).</p>
+</blockquote>
+<p><tt>[c,lags,rccg] = xcorr_wrand_filter(sr,cutoff,x,y,maxlag,scaleopt,randvec)</tt> or <tt> xcorr_wrand_filter(sr,cutoff,x,y,maxlag,randvec)</tt> uses <tt>randvec</tt> to
+ calculate shifted cross-correlations (<tt>rccg</tt>), which can be used for confidence interval calculations. <tt>randvec</tt> should contain numbers greater than <tt>maxlag</tt> but less than 10000. The rows of RCCG correspond to the elements of <tt>randvec</tt>. Shifted cross-correlations are calculated from
+ full cross-correlogram high-pass filtered at <tt>cutoff</tt> [Hz] (to remove drifts and comodulation by slow oscillations; recommendation for short-range CCGs: 4 Hz). The low-pass filtered cross-correlogram is added back to the confidence limits. The sampling rate should be given in <tt>sr</tt>.</p>
+<h2>See Also</h2>
+<p>
+<a href="matlab:doc xcorr"><tt>xcorr</tt></a>, <a href="matlab:doc xcov"><tt>xcov</tt></a>, <a href="matlab:doc corrcoef"><tt>corrcoef</tt></a>, <a href="matlab:doc conv"><tt>conv</tt></a>, <a href="matlab:doc cconv"><tt>cconv</tt></a>, <a href="matlab:doc cov"><tt>cov</tt></a>, <a href="matlab:doc xcorr2"><tt>xcorr2</tt></a>
+</p>
+
+</body>
+</html>

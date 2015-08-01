@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>How to use Cellbase</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #990000; 
+  font-size: 24;
+}
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="center">How to use CellBase</h1>
+<p> NOTE: as you will notice, this part of the documantation is underdeveloped, to put it mildly. Feel free to improve (edit CellBase_application.html).</p>
+
+<p>CellBase can be installed by calling <a href="initcb.html">initcb<a>. See <a href="CellBase_setup.html">Initializing CellBase</a> for more details on setup.
+</p>
+
+</p>
+
+<h2>Contents</h2>
+<div>
+   <ul>
+      <li><a href="#1">Data preprocessing</a></li>
+      <li><a href="#2">Waveforms</a></li>
+      <li><a href="#3">Insert data</a></li>
+   </ul>
+</div>
+<h2>Data preprocessing<a name="1"></a></h2>
+<p>NOTE: all timestamps should be in seconds after preprocessing!</p>
+<p>Neuralynx To Matlab conversion:
+1. CSC Conversion will be done with renaming in the new convention. 3 variables are stored. Samples: Vector of voltage fluctuations of the LFP, downsampled to 1000Hz by default.
+dt: Time unit.<br/>
+ts: First Timestamp of the voltage trace. You reconstruct the whole timeseries by using dt and number of samples<br/>
+2. Events<br/>
+3. Position: VT1.nev will be renamed POSITION.mat</p>
+
+<p><tt>MakeStimEvents</tt><br/>
+Put all light stimulation events into trial based structure.</p>
+
+<p><tt>MakeTrialEvents</tt><br/>
+Put all behavior events into trial based structure.</p>
+
+<p><tt>PrealignSpikes</tt><br/>
+Spikes are aligned to all events defined in <tt>defineEventsEpochs</tt> and stored as a structure.
+E.g. EVENTSPIKES1_1.mat will contain the spikes from Tetrode 2 unit 1 aligned to all behavioral events, while STIMSPIKES1_1.mat will contain spikes from the same unit aligned to stimulation events.
+
+<p><tt>PrealignWaves</tt>
+Prealigs CSCs to various behavioral and stimulation events specified in <tt>defineEventsEpochs</tt>.
+File naming follows the convention:<br/>
+EVENTWAVES#c#.mat.<br/>
+STIMWAVES#c#.mat
+</p>
+
+<br>
+<h2>Waveforms<a name="2"></a></h2>
+<p><tt>get_mclust_waveforms4</tt><br/>
+Needs to use <tt>LoadTT_NeuralynxNTT</tt> function to load waveform data. It will be convenient to only load the waveforms for the given cluster since the Ntt file stores all waveforms for all events on that tetrode.<br/>
+Also, there are Help Memory errors for many high firing rate neurons.</p>
+
+<p><tt>precalcwaveforms</tt> can crash because of memory problems. It is best to run it on 1 cell at a time within a try-catch loop. E.g.</p>
+<p><tt>no_waveform_cells = {};<br/>
+for icell = 1:length(allcells)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cellid = allcells(icell);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;try<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;precalcwaveforms(cellid,'overwrite',0,'ifsave',1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;catch<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_waveform_cells = [no_waveform_cells cellid];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+end</tt></p>
+
+<br>
+<h2>Insert data<a name="3"></a></h2>
+<p>You can add the 'no_waveform_cells' to the database with the descriptor 0 for no waveformdata. E.g.<tt><br/>
+<br>
+cellidlist = ['propnames' allcells];<br/>
+[y,i] = intersect(allcells,no_waveform_cells);<br/>
+descriptor_wv = ones(length(allcells),1);<br/>
+descriptor_wv(i) = 0;<br/>
+datatoinsert = cell(length(allcells)+1,2);<br/>
+datatoinsert(:,1) = cellidlist;<br/>
+datatoinsert{1,2} = 'waveformdata';<br/>
+for i = 2:size(datatoinsert,1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;datatoinsert{i,2} = descriptor_wv(i-1);<br/>
+end<br/>
+insertdata(datatoinsert)</tt><br/>
+<br>
+
+<tt>listtag('prop')</tt> will show you a new property and <tt>getvalue('waveformdata')</tt> will get you the values for all cells.</p>
+
+<p>Note: Insertdata should be used to input other properties such as depth, cluster quality into database. This can be acheived easier by entering the data onto a excel spreadsheet and importing into cellbase.</p>
+
+<p><tt>script_MakeTrialEvents2</tt><br/>
+Run this script to go through each session in the database and calculate <tt>MakeTrialEvents</tt>. It also tries to plot behavioral epochs for the various trial conditions. Namely large and small reward, and omissions.</p>
+
+</body>
+</html>

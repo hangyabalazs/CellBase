@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>lightcluster</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">lightcluster</h1>
+<align="left">Clustering of light-evoked spikes.
+<h2>Syntax</h2>
+<p><blockquote>
+<tt>[d l] = lightcluster(cellid)</tt><br>
+<tt>[d l pref pref2] = lightcluster(cellid)</tt><br>
+<tt>[d l pref pref2 valid_channels] = lightcluster(cellid)</tt><br>
+</blockquote></p>
+<h2>Description</h2>
+<p><tt>[d l] = lightcluster(cellid)</tt> analyzes whether the light-evoked spikes
+ of a putative tagged cell <tt>(cellid)</tt> are separated from other
+ light-evoked spikes. It returns cluster quality indices (Isolation
+ Distance, <tt>d;</tt> L-ratio, <tt>l)</tt> for the distance of light-evoked spikes of
+ <tt>cellid</tt> compared with all light-evoked spikes (i.e. cluster quality
+ indices restricted to light-evoked spikes).</p>
+<p><tt>[d l pref pref2] = lightcluster(cellid)</tt> returns preferential occurrance
+ of light-evoked spikes in the tagged cluster with respect to all spikes
+ <tt>(pref)</tt> or with respect to out-of-cluster spikes <tt>(pref2)</tt>.</p>
+<p><tt>[d l pref pref2 valid_channels] = lightcluster(cellid)</tt> also returns
+ channel validity.</p>
+<h2>See Also</h2>
+<p>
+<a href="LRatio.html"><tt>LRatio</tt></a>, <a href="LRatio2.html"><tt>LRatio2</tt></a>
+</p>
+
+</body>
+</html>
