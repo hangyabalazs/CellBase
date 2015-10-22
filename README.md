@@ -5,7 +5,7 @@ CellBase was developed at Cold Spring Harbor Laboratory (1 Bungtown
 Road, Cold Spring Harbor, New York 11724, United States) in the
 laboratories of Drs Zachary F. Mainen and Adam Kepecs. Core programing
 was performed by Adam Kepecs. Additional development was carried out by
-Zachary F Mainen, Ranade Sachin, Balazs Hangya among other members of
+Zachary F Mainen, Sachin P Ranade, Balazs Hangya among other members of
 the Kepecs lab. The documentation was written by Balazs Hangya.
 
 The purpose of CellBase is to provide a Matlab (Mathworks Inc.) based
