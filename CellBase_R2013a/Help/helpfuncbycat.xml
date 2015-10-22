@@ -2,6 +2,7 @@
 <tocitem target="CellBase_functions.html">Functions 
   <tocitem target="CellBase_functions.html#1">Setup
 	<tocitem target="initcb.html"><name>initcb</name><purpose>Initialize CellBase</purpose></tocitem>
+	<tocitem target="mountcb.html"><name>mountcb</name><purpose>Mount CellBase</purpose></tocitem>
   </tocitem>
 
   <tocitem target="CellBase_functions.html#2">Databse functions
