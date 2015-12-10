@@ -62,21 +62,13 @@ if ~strcmp(ext,'.mat')
 end
 
 if isempty(ratname) || isempty(session) || isempty(tu)
-   % disp('FNAM2CELLID: Filename could not be parsed correctly.') 
+   disp('FNAME2CELLID: Filename could not be parsed correctly.') 
    cellid = 0;
    return
-elseif ~isempty(pos_u) && ~isempty(pos_p)
-    disp('FNAM2CELLID: Cannot use both periods and underscore in session names.');
+elseif ~isempty(pos_u) || ~isempty(pos_p)
+    disp('FNAME2CELLID: Filename could not be parsed correctly.');
     cellid = 0;
-    return    
-elseif ~isempty(pos_u)   % there were underscores in the sessions
-    session = strrep(session,'_','.');   % replace them with .'s
-    setpref('cellbase','session_separator','_');  % note this as a preference
-elseif ~isempty(pos_p)
-    setpref('cellbase','session_separator','.');
-else
-    % there is no separator, which is OK
-    setpref('cellbase','session_separator','');
+    return
 end
 
 cellid = sprintf('%s_%s_%d.%d',ratname,session,tu(1),tu(2));

@@ -34,7 +34,6 @@ function [fname_spikes,fname_events] = cellid2fnames(cellid,filename,CSC_chan)
 % Get CellBase preferences
 cellbase_datapath = getpref('cellbase','datapath');
 session_fname = getpref('cellbase','session_filename');
-sep = getpref('cellbase','session_separator');
 if ispref('cellbase','StimEvents_filename')
 	stim_fname = getpref('cellbase','StimEvents_filename');
 end
@@ -46,9 +45,6 @@ continuous_channel = 'CSC';
 
 % Create unit filename
 tetrodeunit = sprintf('%s%d_%d.mat',cellbase_cell_pattern,tetrode,unit);
-
-% Create session directory name
-session = strrep(session,'.',sep);    % if there were underscores then get them back
 
 % Create names
 if nargin < 2   % if filename was not specified
