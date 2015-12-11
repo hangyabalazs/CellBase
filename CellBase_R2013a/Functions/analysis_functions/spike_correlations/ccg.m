@@ -58,17 +58,6 @@ seglim = 300;
 sr = 1000;      % sampling rate
 wn = 1000 * sr / 1000;    % 2 * 1000 ms window
 
-% Input argument check
-if nargin < 1
-    loadcb   % load CellBase
-    cellids = CELLIDLIST; 
-else
-    if isnumeric(cellids)
-        loadcb   % load CellBase
-        cellids = CELLIDLIST(cellids);
-    end
-end
-
 % Cell pairs
 PairOfCells = cell(0,2);
 numCells = length(cellids);  % number of cells
