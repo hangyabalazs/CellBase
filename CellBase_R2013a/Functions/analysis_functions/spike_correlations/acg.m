@@ -92,7 +92,7 @@ for iC = 1:numCells   % loop through the cells
         disp('Could not extract the segment.');
     end
     
-    ncc = loadcb(cell,'SPIKES');   % use all spikes
+%     ncc = loadcb(cell,'SPIKES');   % use all spikes
         
     if length(ncc) > limit_spikes(2);      % crop if too long to avoid out of memory
         ncc = ncc(1:limit_spikes(2));
