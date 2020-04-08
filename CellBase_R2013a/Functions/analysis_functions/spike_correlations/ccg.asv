@@ -34,16 +34,16 @@ function ccg(cellids,window,varargin)
 %       'longsegments', false - if true, only the longest segment is
 %           analyzed after filtering
 %       'seglim', 0.3 - if 'longsegments' is 'true', CCG is calculated if
-%           the longest segment reaches 'seglim' (in seconds)
+%           the longest segment reaches 'seglim'
+
+Maximum 50000 spikes are included to avoid memory
+%   problems. CCG is not calculated if one of the cells has less than 100
+%   spikes. Segments are filtered with FINDSEGS3. 
 %
-%   Examples for possible segment filters:
-%         tseg = findSegs3(cell1,'segfilter','stimfb_excl_nb',...
-%             'light_activation_duration',[-5 5],'margins',[0 0]);
-%         tseg = findSegs3(cell1,'segfilter','prestim3');
-%         tseg = findSegs3(cell1,'segfilter','fb_incl_nb',...
-%             'feedback_duration',[-0.5 0.5],'margins',[0 0],'min_int',0);
-%         tseg = findSegs3(cell1,'segfilter','cue_incl_nb',...
-%             'feedback_duration',[-1.5 0],'margins',[0 0],'min_int',0);
+%   CCG(I) calls CCG for pairs of cells defined by the cell ID list 
+%   (or index set to CELLIDLIST, see CellBase documentation) I. By default,
+%   non-tetrode pairs within the given list are selected for analysis.
+%   Optional input arguments (parameter-value pairs with default values):
 %
 %   See also ACG, SOMCCG_CONF_FILTER and XCORR_WRAND_FILTER.
 
@@ -136,6 +136,13 @@ for iP = 1:numPairs   % loop through pairs of cells
     else
         tseg = findSegs3(cell1,'segfilter',g.segfilter,...
             g.filterinput{:});  % find time segments
+%         tseg = findSegs3(cell1,'segfilter','stimfb_excl_nb',...
+%             'light_activation_duration',[-5 5],'margins',[0 0]);  % find time segments
+%         tseg = findSegs3(cell1,'segfilter','prestim3');  % find time segments
+%         tseg = findSegs3(cell1,'segfilter','fb_incl_nb',...
+%             'feedback_duration',[-0.5 0.5],'margins',[0 0],'min_int',0);  % find time segments
+%         tseg = findSegs3(cell1,'segfilter','cue_incl_nb',...
+%             'feedback_duration',[-1.5 0],'margins',[0 0],'min_int',0);  % find time segments
         ltseg = tseg(2,:) - tseg(1,:);  % length of the segments
         if g.longsegments   % use the longest segment if it's longer than the threshold ('seglim')
             seginx = find(ltseg==max(ltseg));
@@ -151,14 +158,14 @@ for iP = 1:numPairs   % loop through pairs of cells
     end
     
     % Implement upper spike number limits
-    if length(ncc1) > limit_spikes(2)     % crop if too long to avoid out of memory
+    if length(ncc1) > limit_spikes(2);      % crop if too long to avoid out of memory
         ncc1 = ncc1(1:limit_spikes(2));
     end
-    if length(ncc2) > limit_spikes(2)
+    if length(ncc2) > limit_spikes(2);
         ncc2 = ncc2(1:limit_spikes(2));
     end
     
-    if length(ncc1) > limit_spikes(1) && length(ncc2) > limit_spikes(1)     % implement minimum number of spikes
+    if length(ncc1) > limit_spikes(1) && length(ncc2) > limit_spikes(1)     % minimum 100 spikes
         [H1, ccr, lwr, upr, rccg] = somccg_conf_filter(ncc1,ncc2,wn,1100);    % 1->2
         xl = xlim;   % put the cell IDs in the plot
         yl = ylim;
@@ -168,7 +175,7 @@ for iP = 1:numPairs   % loop through pairs of cells
             ncl1 = regexprep(cell1,'\.','_');
             ncl2 = regexprep(cell2,'\.','_');
             fnm = ['CCG_' ncl1 '_' ncl2 '.fig'];
-            saveas(H1,fullfile(g.resdir,fnm))   % save CCG plot
+            saveas(H1,fullfile(resdir,fnm))   % save CCG plot
             close(H1)
         end
         CCR(iP,:) = ccr;   % cross-correlogram
@@ -182,7 +189,7 @@ for iP = 1:numPairs   % loop through pairs of cells
     % Save
     if g.issave
         if isequal(mod(iP,50),0)   % save after every 50 pairs to prevent data loss
-            save(fullfile(g.resdir,fnm),'PairOfCells','CCR','LCCR','UCCR','MeanH0','SDH0','SegmentLength')
+            save(fullfile(resdir,fnm),'PairOfCells','CCR','LCCR','UCCR','MeanH0','SDH0','SegmentLength')
             disp('Autosave done.')
         end
     end
@@ -193,5 +200,5 @@ close(wb)   % eliminate progress indicator
 
 % Save
 if g.issave
-    save(fullfile(g.resdir,fnmm),'PairOfCells','CCR','LCCR','UCCR','MeanH0','SDH0','SegmentLength')
+    save(fullfile(resdir,fnmm),'PairOfCells','CCR','LCCR','UCCR','MeanH0','SDH0','SegmentLength')
 end

@@ -121,7 +121,7 @@ for iC = 1:numCells   % loop through the cells
                 continue
             end
         end
-        SegmentLength(iC) = sum(ltseg);  % cumulative length of the segments
+        SegmentLength(iP) = sum(ltseg);  % cumulative length of the segments
         ncc = extractSegSpikes(cell,tseg);   % find spikes in the time segments
     end
     
@@ -157,9 +157,9 @@ for iC = 1:numCells   % loop through the cells
         if g.issave   % save figure
             ncl = regexprep(cell,'\.','_');
             fnm = ['ACG_' ncl '.fig'];
-            saveas(H1,fullfile(g.resdir,fnm))   % save CCG plot
+            saveas(H1,fullfile(resdir,fnm))   % save CCG plot
             fnm2 = ['ACG_' ncl '.jpg'];
-            saveas(H1,fullfile(g.resdir,fnm2))   % save CCG plot
+            saveas(H1,fullfile(resdir,fnm2))   % save CCG plot
             close(H1)
         end
         CCR(iC,:) = ccr;   % auto-correlogram
@@ -170,7 +170,7 @@ for iC = 1:numCells   % loop through the cells
     % Save
     if g.issave
         if isequal(mod(iC,50),0)   % save after every 50 pairs to prevent data loss
-            save(fullfile(g.resdir,fnm),'cellids','CCR','SCCR','lags',...
+            save(fullfile(resdir,fnm),'cellids','CCR','SCCR','lags',...
                 'SegmentLength','BurstIndex','Refractory','ThetaIndex')
             disp('Autosave done.')
         end
@@ -182,7 +182,7 @@ close(wb)   % eliminate progress indicator
 
 % Save
 if g.issave
-    save(fullfile(g.resdir,fnmm),'cellids','CCR','SCCR','lags',...
+    save(fullfile(resdir,fnmm),'cellids','CCR','SCCR','lags',...
         'SegmentLength','BurstIndex','Refractory','ThetaIndex')
 end
 
@@ -235,6 +235,6 @@ thpeak = ccr(lags>=100&lags<=200);   % ACG first theta peak
 ploc = lags(find(lags>=100,1,'first')+pl-1);   % peak location
 mthp = mean(ccr(lags>=ploc-25&lags<ploc+25));
 
-thtrough = ccr((lags>=225&lags<=275)|(lags>=65&lags<=85));   % ACG first theta trough
+thtrough = ccr((lags>=180&lags<=200)|(lags>=65&lags<=85));   % ACG first theta trough
 mtht = mean(thtrough);
 thinx = (mthp - mtht) / max(mthp,mtht);   % theta index

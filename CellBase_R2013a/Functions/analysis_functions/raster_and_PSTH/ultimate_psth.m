@@ -6,7 +6,7 @@ function [psth spsth spsth_se tags spt stats] = ultimate_psth(cellid,event_type,
 %   also returned.
 %
 %   [PSTH SPSTH SPSTH_SE TAGS] = ULTIMATE_PSTH(CELLID,EVENT_TYPE,EVENT,WINDOW,VARARGIN)
-%   returns partition tags (TAGS) corrsponding to PSTHs when trials are 
+%   returns partition tags (TAGS) corrsponding to PSTHs when trials are
 %   partitioned; see PARTITION_TRIALS.
 %
 %   [PSTH SPSTH SPSTH_SE TAGS SPT] = ULTIMATE_PSTH(CELLID,EVENT_TYPE,EVENT,WINDOW,VARARGIN)
@@ -25,8 +25,8 @@ function [psth spsth spsth_se tags spt stats] = ultimate_psth(cellid,event_type,
 %       CELLID: defines the cell (see CellBase documentation) or session
 %           (for lick-PSTH)
 %       EVENT: the event to which the PSTH is aligned; if EVENT is a cell
-%           array of two strings, the first event is used for the PSTH 
-%           and binraster before 0 and the second event is used for the 
+%           array of two strings, the first event is used for the PSTH
+%           and binraster before 0 and the second event is used for the
 %           PSTH and binraster after 0; if EVENT is a function handle, the
 %           function is called for CELLID to define the aligning event
 %           (dynamic event definition)
@@ -39,7 +39,7 @@ function [psth spsth spsth_se tags spt stats] = ultimate_psth(cellid,event_type,
 %   parameters are implemented (with default values):
 %   	'dt', 0.001 - time resolution in seconds
 %       'sigma', 0.02 - smoothing kernel for the smoothed PSTH, in seconds
-%       'margin',[-0.01 0.01] margins for PSTH calculation to get rid of 
+%       'margin',[-0.01 0.01] margins for PSTH calculation to get rid of
 %           edge effect due to smoothing
 %       'event_filter', 'none' - filter light-stimulation trials; see
 %           FILTERTRIALS for implemented filter types
@@ -48,7 +48,7 @@ function [psth spsth spsth_se tags spt stats] = ultimate_psth(cellid,event_type,
 %       'maxtrialno', 5000 - maximal number of trials included; if ther are
 %           more valid trials, they are randomly down-sampled
 %       'first_event', [] - event name used to exclude spikes before
-%           previous event 
+%           previous event
 %       'last_event', [] - event name used to exclude spikes after
 %           following event
 %       'parts', 'all' - partitioning the set of trials; input to
@@ -58,7 +58,7 @@ function [psth spsth spsth_se tags spt stats] = ultimate_psth(cellid,event_type,
 %           PSTH is calculated (see APSTH); 2, 'doubly adaptive' PSTH
 %           algorithm is used (see DAPSTH)
 %   	'baselinewin', [-0.25 0] - limits of baseline window for
-%           statistical testing (see PSTH_STATS), time relative to 0 in 
+%           statistical testing (see PSTH_STATS), time relative to 0 in
 %           seconds
 %   	'testwin', [0 0.1] - limits of test window for statistical testing
 %           (see PSTH_STATS), time relative to 0 in seconds
@@ -261,9 +261,34 @@ end
 
 % Output statistics
 if g.dostats
-    stats = psth_stats(spt,psth,g.dt,window,...
-        'baselinewin',g.baselinewin,'testwin',g.testwin,'display',g.display,...
-        'relative_threshold',g.relative_threshold);
+    switch g.isadaptive
+        case {0,false}
+            statpsth = spsth;   % use smoothed PSTH for finding activation and inhibition windows in psth_stats
+        case {1,2,true}
+            statpsth = psth;   % use adaptive Spike Density Function for finding activation and inhibition windows in psth_stats
+    end
+    if NumPartitions > 1
+        stats = cell(1,NumPartitions);   % return multiple stats if partitioning
+        for iP = 1:NumPartitions  
+            sts = psth_stats(spt{iP} ,statpsth(iP,:),g.dt,window,...
+                'baselinewin',g.baselinewin,'testwin',g.testwin,'display',g.display,...
+                'relative_threshold',g.relative_threshold);
+            stats{iP} = sts;
+            stats{iP}.tag = tags{iP};   % partition tag
+            if g.display
+                stats{iP}.figure_handle = gcf;   % store figure handles
+                stats{iP}.axis_handle = gca;
+            end
+        end
+    else
+        stats = psth_stats(spt,statpsth,g.dt,window,...
+            'baselinewin',g.baselinewin,'testwin',g.testwin,'display',g.display,...
+            'relative_threshold',g.relative_threshold);
+        if g.display
+            stats.figure_handle = gcf;
+            stats.axis_handle = gca;
+        end
+    end
 end
 
 % -------------------------------------------------------------------------

@@ -46,7 +46,7 @@ MN = min(min(PSTH(:,pos2disp)));
 RANGE = (MX-MN);
 MX = MX + RANGE * 0.25;
 MN = MN - RANGE * 0.25;
-alim = [par.window(1) par.window(2) MN MX+2*eps];
+alim = [par.window(1) par.window(2) MN MX+200*eps];
 
 % Focus figure 
 if strcmp(get(par.FigureNum,'Type'),'axes'),
@@ -102,8 +102,8 @@ end
 
 % Legend
 if ~isempty(par.Legend)
-    l_leg = legend(par.Legend(NumPlots),1);
-    set(l_leg,'box','off','FontSize',8,'Color','none','XColor','w','YColor','w');
+    l_leg = legend(par.Legend(NumPlots),'NorthEast');
+    set(l_leg,'box','off','FontSize',8,'Color','none');
 end
 set(gca,'XTickLabelMode','auto','XColor','k','YTickLabelMode','auto','YColor','k','YTickMode','auto');
 axis(alim);

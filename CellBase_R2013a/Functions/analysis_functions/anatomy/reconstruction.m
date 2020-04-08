@@ -12,91 +12,91 @@ function reconstruction(cellids)
 %   Edit log: BH 9/22/13
 
 % Load atlas images (Franklin & Paxinos, 3rd edition)
-I.p0p86 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bp0p86.tif');
+I.p0p86 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bp0p86.tif');
 corners.p0p86 = [46 962; 40 569];
 corner_coordinates.p0p86 = [-4.75 4.75; 0.5 6];
 dedicated_handle.p0p86 = 21;
 isactive.p0p86 = false;
 
-I.p0p74 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bp0p74.tif');
+I.p0p74 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bp0p74.tif');
 corners.p0p74 = [47 964; 47 575];
 corner_coordinates.p0p74 = [-4.75 4.75; 0.5 6];
 dedicated_handle.p0p74 = 22;
 isactive.p0p74 = false;
 
-I.p0p62 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bp0p62.tif');
+I.p0p62 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bp0p62.tif');
 corners.p0p62 = [51 967; 49 577];
 corner_coordinates.p0p62 = [-4.75 4.75; 0.5 6];
 dedicated_handle.p0p62 = 23;
 isactive.p0p62 = false;
 
-I.p0p50 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bp0p50.tif');
+I.p0p50 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bp0p50.tif');
 corners.p0p50 = [53 970; 53 584];
 corner_coordinates.p0p50 = [-4.75 4.75; 0.5 6];
 dedicated_handle.p0p50 = 24;
 isactive.p0p50 = false;
 
-I.m0p34 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm0p34.tif');
+I.m0p34 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm0p34.tif');
 corners.m0p34 = [89 1701; 75 1008];
 corner_coordinates.m0p34 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m0p34 = 1;
 isactive.m0p34 = false;
 
-I.m0p46 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm0p46.tif');
+I.m0p46 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm0p46.tif');
 corners.m0p46 = [91 1703; 87 1020];
 corner_coordinates.m0p46 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m0p46 = 2;
 isactive.m0p46 = false;
 
-I.m0p58 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm0p58.tif');
+I.m0p58 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm0p58.tif');
 corners.m0p58 = [89 1701; 78 1011];
 corner_coordinates.m0p58 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m0p58 = 3;
 isactive.m0p58 = false;
 
-I.m0p70 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm0p70.tif');
+I.m0p70 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm0p70.tif');
 corners.m0p70 = [97 1709; 81 1014];
 corner_coordinates.m0p70 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m0p70 = 4;
 isactive.m0p70 = false;
 
-I.m0p82 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm0p82.tif');
+I.m0p82 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm0p82.tif');
 corners.m0p82 = [115 1727; 100 1033];
 corner_coordinates.m0p82 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m0p82 = 5;
 isactive.m0p82 = false;
 
-I.m0p94 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm0p94.tif');
+I.m0p94 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm0p94.tif');
 corners.m0p94 = [102 1714; 77 1010];
 corner_coordinates.m0p94 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m0p94 = 6;
 isactive.m0p94 = false;
 
-I.m1p06 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm1p06.tif');
+I.m1p06 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm1p06.tif');
 corners.m1p06 = [99 1711; 100 1033];
 corner_coordinates.m1p06 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m1p06 = 7;
 isactive.m1p06 = false;
 
-I.m1p22 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm1p22.tif');
+I.m1p22 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm1p22.tif');
 corners.m1p22 = [93 1705; 83 1016];
 corner_coordinates.m1p22 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m1p22 = 8;
 isactive.m1p22 = false;
 
-I.m1p34 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm1p34.tif');
+I.m1p34 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm1p34.tif');
 corners.m1p34 = [80 1692; 69 1002];
 corner_coordinates.m1p34 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m1p34 = 9;
 isactive.m1p34 = false;
 
-I.m1p46 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm1p46.tif');
+I.m1p46 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm1p46.tif');
 corners.m1p46 = [84 1696; 86 1019];
 corner_coordinates.m1p46 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m1p46 = 10;
 isactive.m1p46 = false;
 
-I.m1p58 = imread('d:\Dropbox\anatomy\NB\Matlab_reco\Bm1p58.tif');
+I.m1p58 = imread('d:\Dropbox\_anatomy\NB\Matlab_reco\Bm1p58.tif');
 corners.m1p58 = [89 1701; 83 1016];
 corner_coordinates.m1p58 = [-4.75 4.75; 0.5 6];
 dedicated_handle.m1p58 = 11;

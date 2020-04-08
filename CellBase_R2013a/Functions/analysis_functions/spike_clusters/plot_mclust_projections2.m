@@ -19,6 +19,8 @@ function HS = plot_mclust_projections2(cellid,varargin)
 %           but zoom is not implemented (for saving in image formats, e.g.
 %           pdf or jpg); if false, full data is plotted (for viewing or
 %           saving fig format)
+%       'MClust_PlotSkipPoints', 0 - disregard the largest N values on x 
+%           and y axes for plotting (prevent rescaling by large noise)
 %       'stimonly', true - only spikes from the beginning of the first to
 %           the end of the last stimulation protocol are selected for
 %           plotting; if false, all spikes are included
@@ -51,6 +53,7 @@ addParamValue(prs,'feature_names',{'Energy'},@(s)iscell(s)|ischar(s))  % names o
 addParamValue(prs,'marker','+')  % marker for the plots
 addParamValue(prs,'marker_size',2,@isnumeric)  % marker size for the plots
 addParamValue(prs,'usefastplot',true,@(s)islogical(s)|ismember(s,[0 1]))  % fast plotting (no zoom)
+addParamValue(prs,'MClust_PlotSkipPoints',0,@isnumeric)  % disregard the largest N values on x and y axes
 addParamValue(prs,'stimonly',true,@(s)islogical(s)|ismember(s,[0 1]))  % restrict to period between first and last light pulse
 addParamValue(prs,'plotlightspikes',true,@(s)islogical(s)|ismember(s,[0 1]))  % plot light-evoked spikes
 parse(prs,cellid,varargin{:})
@@ -64,8 +67,10 @@ ST = loadcb(cellid,'Stimevents');
 pon = ST.PulseOn(~isnan(ST.PulseOn));
 
 % Load spikes from Ntt file.
-Nttfn = cellid2fnames(cellid,'Ntt');
-all_spikes = LoadTT_NeuralynxNT(Nttfn);
+% Nttfn = cellid2fnames(cellid,'Ntt');
+Nttfn = cellid2fnames(cellid,'OE');
+% all_spikes = LoadTT_NeuralynxNT(Nttfn);
+all_spikes = LoadTT_Intan(Nttfn);
 TIMEFACTOR = getpref('cellbase','timefactor');    % scaling factor to convert spike times into seconds
 all_spikes = all_spikes * TIMEFACTOR;
 val_spk_i = [find(all_spikes >= pon(1),1,'first') ...
@@ -149,7 +154,14 @@ for k = 1:NumComb
         g.feature_names{scnd(1)} num2str(scnd(2))];
     HS.(namestr) = figure('Position',[624 126 1092 852]);
     hold on
-    axis([min(xdata) max(xdata)+1 min(ydata) max(ydata)+1])
+    sx = sort(xdata);
+    mnx = sx(1);
+    mxx = sx(end-g.MClust_PlotSkipPoints);   % disregard the largest N values on x axis
+    sy = sort(ydata);
+    mny = sy(1);
+    mxy = sy(end-g.MClust_PlotSkipPoints);   % disregard the largest N values on y axis
+
+    axis([mnx mxx+1 mny mxy+1])
     xlabel([g.feature_names{fst(1)} ': ' num2str(fst(2))])
     ylabel([g.feature_names{scnd(1)} ': ' num2str(scnd(2))])
     

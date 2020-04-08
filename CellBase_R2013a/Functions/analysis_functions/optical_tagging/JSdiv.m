@@ -7,7 +7,7 @@ function D = JSdiv(P,Q)
 %   HARMONICMEAN.
 
 % Input argument check
-error(nargchk(2,2,nargin))
+narginchk(2,2)
 if abs(sum(P(:))-1) > 0.00001 || abs(sum(Q(:))-1) > 0.00001
     error('Input arguments must be probability distributions.')
 end

@@ -24,4 +24,4 @@ wf_prop = wf_prop.FeatureData;
 
 % Channel is valid if Energy is not zero
 mne = mean(wf_prop,1);
-valid_channels = abs(mne) > 150;
+valid_channels = abs(mne) > 0;

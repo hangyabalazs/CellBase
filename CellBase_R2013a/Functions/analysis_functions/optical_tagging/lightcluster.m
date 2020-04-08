@@ -38,8 +38,10 @@ end
 [r s t] = cellid2tags(cellid);
 
 % Load spikes from Ntt file.
-Nttfn = cellid2fnames(cellid,'Ntt');
-all_spikes = LoadTT_NeuralynxNT(Nttfn);
+% Nttfn = cellid2fnames(cellid,'Ntt');
+% all_spikes = LoadTT_NeuralynxNT(Nttfn);
+Nttfn = cellid2fnames(cellid,'OE');
+all_spikes = LoadTT_Intan(Nttfn);
 TIMEFACTOR = getpref('cellbase','timefactor');    % scaling factor to convert spike times into seconds
 all_spikes = all_spikes * TIMEFACTOR;
 spk = loadcb(cellid,'Spikes');

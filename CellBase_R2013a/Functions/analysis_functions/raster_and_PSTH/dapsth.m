@@ -52,7 +52,7 @@ ts = sort(allspks)';
 
 % Calculate adaptive SDF with variable Gaussian Kernel #2
 agvd = zeros(tno,tl);
-prob = nanmean(binraster) / (dt * 1000);
+prob = nanmean(binraster,1) / (dt * 1000);
 mltp = binraster;
 mltp(~isnan(mltp)) = 1;
 % figure

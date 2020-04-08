@@ -86,6 +86,8 @@ switch g.eventtype
         SP = loadcb(cellid,'EVENTSPIKES');
 end
 trigger_pos = findcellstr(SP.events(:,1),g.TriggerName);
+fld = fieldnames(TE);
+TENumTrials = length(TE.(fld{1}));
 
 % TriggerName mismatch
 if trigger_pos == 0
@@ -99,6 +101,9 @@ end
 
 % Spike times
 alltrials = 1:size(SP.event_stimes{1},2);
+if ~isequal(length(alltrials),TENumTrials)
+    error('Number of trials in TrialEvents and EVENTSPIKES must be the same.')
+end
 stimes  = SP.event_stimes{trigger_pos}(alltrials);
 if strcmp(g.BurstPSTH,'on'),
     stimes = detect_bursts(stimes);

@@ -25,15 +25,15 @@ dbstop if error
 % Input argument check
 error(nargchk(0,2,nargin))
 if nargin < 2
-    issave = false;
+    issave = true;
 end
-skipclusterquality = true;
+skipclusterquality = false;
 
 % Directories
 global DATAPATH
 fs = filesep;
-resdir = [DATAPATH 'NB' fs 'tagging_newdata' fs];
-xlsname = [resdir fs 'tagging_newdata.xls'];   % write results to excel file
+resdir = [DATAPATH 'HDBpavlovian' fs 'tagging' fs];
+xlsname = [resdir fs 'tagging.xls'];   % write results to excel file
 
 % Load CellBase
 loadcb
@@ -42,16 +42,15 @@ loadcb
 nmc = length(CELLIDLIST);  
 if nargin < 1
     I = 1:nmc;
+end
+if isnumeric(I)
+    I = CELLIDLIST(I);   % index set to CELLIDLIST
+elseif ischar(I)
+    I = {I};   % only one cellID passed
+elseif iscellstr(I)
+    % list of cell IDs
 else
-    if isnumeric(I)
-        I = CELLIDLIST(I);   % index set to CELLIDLIST
-    elseif ischar(I)
-        I = {I};   % only one cellID passed
-    elseif iscellstr(I)
-        % list of cell IDs
-    else
-        error('tagging:inputArg','Unsupported format for cell IDs.')
-    end
+    error('tagging:inputArg','Unsupported format for cell IDs.')
 end
 
 % Call 'Lratio', 'nbisstim', 'spikeshapecorr'

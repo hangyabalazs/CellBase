@@ -37,11 +37,11 @@ end
 
 % Animal, session
 if nargin < 2
-    sessionID = '150508a';
+    sessionID = '121210a';
 end
 if nargin < 1
-    animalID2 = 'nb074';
-    animalID = 'n074';
+    animalID2 = 'nb046';
+    animalID = 'n046';
 else
     animalID2 = ['nb0' num2str(animalNO)];
     animalID = ['n0' num2str(animalNO)];
@@ -88,8 +88,8 @@ if isbeh
         eval(evalstr)
     end
     if isrec
-%         MakeTrialEvents2_gonogo(fullpth)  % synchronize
-        MakeTrialEvents2_gonogo(fullpth,'StimNttl',32)  % synchronize
+        MakeTrialEvents2_gonogo(fullpth)  % synchronize
+%         MakeTrialEvents2_gonogo(fullpth,'StimNttl',32)  % synchronize
     end
 end
 
@@ -251,3 +251,4 @@ if isbeh
     fnm = [resdir2 sessionID '_PSYCHPLOT2.fig'];
     saveas(H,fnm)
 end
+close all
