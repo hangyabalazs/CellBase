@@ -141,6 +141,7 @@
 	<tocitem target="LRatio.html"><name>LRatio</name><purpose>L-ratio and Isolation Distance</purpose></tocitem>
 	<tocitem target="LRatio2.html"><name>LRatio2</name><purpose>L-ratio and Isolation Distance</purpose></tocitem>
 	<tocitem target="plot_mclust_projections2.html"><name>plot_mclust_projections2</name><purpose>Plot feature data for clusters</purpose></tocitem>
+	<tocitem target="mclust_projection_preview.html"><name>mclust_projection_preview</name><purpose>Plot feature data for clusters</purpose></tocitem>
 	<tocitem target="plotwaveforms.html"><name>plotwaveforms</name><purpose>Plot spontaneous and/or light-evoked spike shape</purpose></tocitem>
   </tocitem>
 
@@ -169,6 +170,7 @@
 	<tocitem target="lightcluster.html"><name>lightcluster</name><purpose>Clustering of light-evoked spikes</purpose></tocitem>
 	<tocitem target="tagging.html"><name>tagging</name><purpose>Cluster quality and tagging index</purpose></tocitem>
 	<tocitem target="taggedprop.html"><name>taggedprop</name><purpose>Properties of putative tagged neurons</purpose></tocitem>
+	<tocitem target="lightpsth.html"><name>lightpsth</name><purpose>Spike times aligned to photostimulation</purpose></tocitem>
   </tocitem>
 
   <tocitem target="CellBase_functions.html#13">Analysis functions - spike correlations
