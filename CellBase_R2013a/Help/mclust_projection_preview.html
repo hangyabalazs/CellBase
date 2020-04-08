@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>mclust_projection_preview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body {
+  background-color: white;
+  margin:1px;
+}
+h1 {
+  color: #990000; 
+  font-size: 30;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: #990000;
+  font-size: 20;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+pre.codeinput {
+  margin-left: 30px;
+}
+bld {
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000001">
+<h1 align="left">mclust_projection_preview</h1>
+<align="left">Plot feature data for clusters.
+<h2>Description</h2>
+<p><tt>mclust_projection_preview(sessionid)</tt> plots feature data for a recording
+ session <tt>(sessionid)</tt>. Spikes are plotted in Energy feature space and
+ light-evoked spikes are overlayed in blue. Time period for light-evoked
+ activity is either selected automatically (see <tt>findstimperiod)</tt> or fixed
+ from 1 to 7 ms post stimulus (default). The default
+ behaviors can be modified using the following optional input arguments
+ (parameter, value pairs, with default values):
+ <blockquote>
+ <p><tt>'stim_period', [0.001 0.007]</tt> - start and end of stimulation period after each light pulse; set to empty for auto-detection</p>
+ <p><tt>'feature_names', 'Energy' </tt>- features for which feature data are plotted; character or cell array</p>
+ <p><tt>'marker', '+' </tt>- marker for the scatter plots </p>
+ <p><tt>'marker_size', 2 </tt>- marker size for the scatter plots </p>
+ <p><tt>'usefastplot', true</tt> - fast plotting method (downsample points to plot only one point per pixel; appears the same); faster, but zoom is not implemented (for saving in image formats, e.g. pdf or jpg); if false, full data is plotted (for viewing or saving fig format)</p>
+ <p><tt>'stimonly', true</tt> - only spikes from the beginning of the first to
+ the end of the last stimulation protocol are selected for plotting; if false, all spikes are included</p>
+ <p><tt>'plotlightspikes', true </tt>- if true, light-evoked spikes are superimposed</p>
+ </blockquote>
+<h2>Example</h2>
+ <p><blockquote><tt>mclust_projection_preview({'n084' '150622a'},'feature_names',...
+ {'Amplitude','Energy'},'stim_period',[0.002 0.004]);</tt></blockquote></p>
+<h2>See Also</h2>
+<p>
+<a href="plot_mclust_projections2.html"><tt>plot_mclust_projections2</tt></a>
+</p>
+
+</body>
+</html>
