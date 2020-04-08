@@ -25,14 +25,16 @@ end
     MClust_Directory = fliplr(t2);
 %     MClust_FDdn = [sessionpath '\FD\'];
     MClust_FDdn = [sessionpath];
-    featureList = {'Amplitude'; 'Energy'; 'Time'};
-    MClust_ClusterSeparationFeatures = {'Amplitude'; 'Energy'};
+    featureList = {'Amplitude'; 'Energy'; 'Time'; 'WavePC1'}; %% {'Amplitude'; 'Energy'; 'Time'; 'WavePC1'}
+    MClust_ClusterSeparationFeatures = {'Energy' ;'WavePC1'}; %% {'Energy' ;'WavePC1'}
     MClust_ChannelValidity = [1 1 1 1];
     MClust_TTdn=sessionpath;
     
     %Constant
-    MClust_NeuralLoadingFunction=char([MClust_Directory 'LoadingEngines\LoadTT_NeuralynxNT']);
-    MClust_TText = '.ntt';
+%     MClust_NeuralLoadingFunction=char([MClust_Directory 'LoadingEngines\LoadTT_NeuralynxNT']);
+    MClust_NeuralLoadingFunction=char([MClust_Directory 'LoadingEngines\LoadTT_Intan']);
+%     MClust_TText = '.ntt';
+    MClust_TText = '.mat';
     MClust_FDext = '.fd';
     MClust_TTData = [];      % data from tt file
     MClust_FeatureSources = {}; % <filenames, number pairs> for finding features in fd files
