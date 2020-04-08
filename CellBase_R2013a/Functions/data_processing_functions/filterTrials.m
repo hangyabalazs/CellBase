@@ -28,11 +28,19 @@ function valid_trials = filterTrials(cellid,varargin)
 %           over a 10 go-trial moving window)
 %       'selectGoRT' - GoRT is limited to a percentile range; 'filterinput'
 %           specifies the lower and upper percentile threshold
+%       'selectGoRT_tuning' - GoRT is limited to a percentile range within 
+%           a given stimulus intensity; 'filterinput' specifies the 
+%           stimulus intensity as well as lower and upper percentile 
+%           threshold (1x2 cell array)
 %       'restrictGoRT' - GoRT is limited to a certain ranges; 'filterinput'
 %           specifies start and end of allowed intervals (2-by-N matrix)
 %       'selectNoGoRT' - NoGoRT is limited to a percentile range;
 %           'filterinput' specifies the lower and upper percentile 
 %           threshold
+%       'selectNoGoRT_tuning' - NoGoRT is limited to a percentile range within 
+%           a given stimulus intensity; 'filterinput' specifies the 
+%           stimulus intensity as well as lower and upper percentile 
+%           threshold (1x2 cell array)
 %       'restrictNoGoRT' - NoGoRT is limited to a certain ranges;
 %           'filterinput' specifies start and end of allowed intervals
 %           (2-by-N matrix)
@@ -112,11 +120,19 @@ function valid_trials = main(VE,event,event_filter,filterinput)
 % Filter trials
 switch event_filter
     case 'minNPulse_maxPower'
+        if all(isnan(VE.PulsePower))
+            warning('filterTrials: PulsePower not implemented.')
+            VE.PulsePower = ones(size(VE.PulsePower));
+        end
         minfreq = min([VE.BurstNPulse]);
         maxpow = max([VE.PulsePower]);
         inx = ~isnan(VE.(event)) & VE.BurstNPulse==minfreq & VE.PulsePower==maxpow;
         valid_trials = find(inx);
     case 'BurstNPulse_maxPower'
+        if all(isnan(VE.PulsePower))
+            warning('filterTrials: PulsePower not implemented.')
+            VE.PulsePower = ones(size(VE.PulsePower));
+        end
         maxpow = max([VE.PulsePower]);
         inx = ~isnan(VE.(event)) & VE.BurstNPulse==filterinput.BurstNPulse & VE.PulsePower==maxpow;
         valid_trials = find(inx);
@@ -148,6 +164,16 @@ switch event_filter
         rts = rts(~isnan(rts));   % all RT values
         rtthres = prctile(rts,prcthres*100);   % RT threshold
         valid_trials = find(VE.GoRT>=rtthres(1)&VE.GoRT<=rtthres(2));   % RTs of the percentile interval
+    case 'selectGoRT_tuning'
+        intensityfilter = filterinput{1};   % select stimulus intensity
+        valid_trials0 = selecttrial(VE,['StimulusDuration==' num2str(intensityfilter)]);
+        prcthres = filterinput{2};   % percentile threshold
+        rts0 = VE.GoRT;
+        rts = rts0(valid_trials0);   % percentile cutoffs within given stim intensity
+        rts = rts(~isnan(rts));   % all RT values
+        rtthres = prctile(rts,prcthres*100);   % RT threshold
+        valid_trials = find(VE.GoRT>=rtthres(1)&VE.GoRT<=rtthres(2));   % RTs of the percentile interval
+        valid_trials = intersect(valid_trials,valid_trials0);   % restricted RT percentiles within given stim. intensity
     case 'restrictGoRT'
         win = filterinput;   % percentile threshold
         valid_trials = [];
@@ -160,6 +186,16 @@ switch event_filter
         rts = rts(~isnan(rts));   % all RT values
         rtthres = prctile(rts,prcthres*100);   % RT threshold
         valid_trials = find(VE.NoGoRT>=rtthres(1)&VE.NoGoRT<=rtthres(2));   % RTs of the percentile interval
+    case 'selectNoGoRT_tuning'
+        intensityfilter = filterinput{1};   % select stimulus intensity
+        valid_trials0 = selecttrial(VE,['StimulusDuration==' num2str(intensityfilter)]);
+        prcthres = filterinput{2};   % percentile threshold
+        rts0 = VE.NoGoRT;
+        rts = rts0(valid_trials0);   % percentile cutoffs within given stim intensity
+        rts = rts(~isnan(rts));   % all RT values
+        rtthres = prctile(rts,prcthres*100);   % RT threshold
+        valid_trials = find(VE.NoGoRT>=rtthres(1)&VE.NoGoRT<=rtthres(2));   % RTs of the percentile interval
+        valid_trials = intersect(valid_trials,valid_trials0);   % restricted RT percentiles within given stim. intensity
     case 'restrictNoGoRT'
         win = filterinput;   % percentile threshold
         valid_trials = [];

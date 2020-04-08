@@ -8,8 +8,8 @@ function MakeTrialEvents2_gonogo(sessionpath,varargin)
 %	trial events structure is saved under the name 'TrialEvents.mat'. This
 %	file becomes the primary store of behavioral data for a particular
 %	session; it is retrieved by LOADCB via CELLID2FNAMES. This default
-%	file name is one of the preference settings of CellBase - type 
-%   getpref('cellbase','session_filename');
+%	file name is one of the preference settings of CellBase - type
+%   getpref('cellbase','session_filename').
 %
 %   MAKETRIALEVENTS2_GONOGO(SESSIONPATH,'StimNttl',TTL) specifies the TTL
 %   channel which serves as the basis for synchronization.
@@ -17,20 +17,20 @@ function MakeTrialEvents2_gonogo(sessionpath,varargin)
 %   See also SOLO2TRIALEVENTS4_AUDITORY_GONOGO and LOADCB.
 
 % Parse input arguments
-default_args = {...
-    'StimNttl',     8192;...
-    'WaterNttl',    -32768;...
-    };
-[g, error] = parse_args(default_args,varargin{:});
+% default_args = {...
+%     'StimNttl',     8192;...
+%     'WaterNttl',    -32768;...
+%     };
+% [g, error] = parse_args(default_args,varargin{:});
 
-% Load converted Neuralynx event file 
-if ~isdir(sessionpath),
+% Load converted raw event file 
+if ~isdir(sessionpath)
     error('Session path is WRONG');
 end
 try
-    load([sessionpath 'EVENTS.mat'])   % load Neuralynx events
+    load([sessionpath 'EVENTS.mat'])   % load raw events
 catch    
-    error('EVENTS file not found; make sure Nlx files have been converted.');
+    error('EVENTS file not found; make sure raw files have been converted.');
 end
 
 % Load trial events structure
@@ -38,28 +38,34 @@ SE_filename = [sessionpath filesep 'TE.mat'];
 TE = load(SE_filename);
 
 % Parse TTLs and find TTL onset times
-% son = find(Events_Nttls==g.StimNttl);
-[parsed_ttls onttl offttl] = parseTTLs(Events_Nttls); %#ok<ASGLU,NASGU>
-inx = size(onttl,2) - log2(g.StimNttl);
-son = find(onttl(:,inx));   % TTL onset times (stimulus onset)
+% % son = find(Events_Nttls==g.StimNttl);
+% [parsed_ttls onttl offttl] = parseTTLs(Events_Nttls); %#ok<ASGLU,NASGU>
+% inx = size(onttl,2) - log2(g.StimNttl);
+% son = find(onttl(:,inx));   % TTL onset times (stimulus onset)
+% son2 = Events_TimeStamps(son);   % stimulus onset time recorded by the recording system (Neuralynx)
 
 % Synchronization
 TE2 = TE;
-son2 = Events_TimeStamps(son);   % stimulus onset time recorded by the recording system (Neuralynx)
+son2 = event';   % stimulus onset time recorded by the recording system (OE)
 ts = TE.StimulusOn + TE.TrialStart;   % stimulus onset in absolut time recorded by the behavior control system
 
 % Match timestamps - in case of mismatch, try to fix
 if ~ismatch(ts,son2)
-    % note: obsolete due the introduction of TTL parsing
     son2 = clearttls(son2); % eliminate recorded TTL's within 0.5s from each other - broken TTL pulse
     if ~ismatch(ts,son2)
-        son2 = tryinterp(ts,son2); % interpolate missing TTL's or delete superfluous TTL's up to 10 erroneous TTl's
+        son2 = trytomatch(ts,son2);  % try to match time series by shifting
         if ~ismatch(ts,son2)
-            son2 = trytomatch(ts,son2);  % try to match time series by shifting
-            if ~ismatch(ts,son2)  % TTL matching failure
-                error('MakeTrialEvents:TTLmatch','Matching TTLs failed.')
+            [ts keepinx] = trytomatch2(ts,son2);  % try to match time series by shifting
+            TE2 = shortenTE(TE2,keepinx);
+            if ~ismatch(ts,son2)
+                son2 = tryinterp(ts,son2); % interpolate missing TTL's or delete superfluous TTL's up to 10 erroneous TTl's
+                if ~ismatch(ts,son2)  % TTL matching failure
+                    error('MakeTrialEvents:TTLmatch','Matching TTLs failed.')
+                else
+                    warning('MakeTrialEvents:TTLmatch','Missing TTL interpolated.')
+                end
             else
-                warning('MakeTrialEvents:TTLmatch','Missing TTL interpolated.')
+                warning('MakeTrialEvents:TTLmatch','Shifted TTL series.')
             end
         else
             warning('MakeTrialEvents:TTLmatch','Shifted TTL series.')
@@ -82,7 +88,7 @@ end
 TE2.TrialStart = son2 - sto;
 
 % Save synchronized 'TrialEvents' file
-if ~isempty(TE2.TrialStart),
+if ~isempty(TE2.TrialStart)
     save([sessionpath filesep 'TrialEvents.mat'],'-struct','TE2')
 else
     error('MakeTrialEvents:noOutput','Synchronization process failed.');
@@ -93,7 +99,7 @@ function I = ismatch(ts,son2)
 
 % Check if the two time series match notwithstanding a constant drift
 clen = min(length(ts),length(son2));
-I = abs(max(diff(ts(1:clen)-son2(1:clen)))) < 0.001;  % the difference between the timestamps on 2 systems may have a constant drift, but it's derivative should still be ~0
+I = abs(max(diff(ts(1:clen)-son2(1:clen)))) < 0.05;  % the difference between the timestamps on 2 systems may have a constant drift, but it's derivative should still be ~0
 
 % note: abs o max is OK, the derivative is usually a small neg. number due
 % to drift of the timestamps; max o abs would require a higher tolerance
@@ -132,7 +138,40 @@ end
 mn = min(abs(minx));
 minx2 = find(abs(minx)==mn);
 minx2 = minx2(1);   % find minimal difference = optimal shift
-son2 = son2(minx2:min(minx2+length(ts)-1,length(son2)));
+if mn < 0.2
+    son2_temp = son2(minx2:min(minx2+length(ts)-1,length(son2)));
+    if length (son2_temp) < (len-10)
+        warning ('Lost too many TTL-s.')
+    else
+        son2 = son2_temp;
+    end
+    
+end
+
+% -------------------------------------------------------------------------
+function [ts keepinx] = trytomatch2(ts,son2)
+
+% Try to match time series by shifting
+keepinx = [];
+len = length(son2) - 15;
+minx = nan(1,len);
+for k = 1:len
+    minx(k) = max(diff(son2(1:15)-ts(k:k+14)));  % calculate difference in the function of shift
+end
+mn = min(abs(minx));
+minx2 = find(abs(minx)==mn);
+minx2 = minx2(1);   % find minimal difference = optimal shift
+if mn < 0.2
+    keepinx = minx2:length(ts);
+    %     ts = ts(minx2:min(minx2+length(son2)-1,length(ts)));
+    ts_temp = ts(keepinx);
+    if length (ts_temp) < (len-10)
+        warning ('Lost too many TTL-s.')
+    else
+        ts = ts_temp;
+    end
+    
+end
 
 % -------------------------------------------------------------------------
 function son2 = clearttls(son2)

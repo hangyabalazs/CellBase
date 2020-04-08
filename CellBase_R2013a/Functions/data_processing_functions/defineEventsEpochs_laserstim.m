@@ -27,7 +27,8 @@ function [events,epochs] = defineEventsEpochs_laserstim
 % Define events and epochs
 %              EventLabel       EventTrigger1    EventTrigger2  Window
 i = 1;
-events(i,:) = {'BurstOn',       'BurstOn',      'BurstOn',      [-6 6]};   i = i + 1;  
+events(i,:) = {'BurstOn',       'BurstOn',      'BurstOn',      [-6 6]};   i = i + 1;
+events(i,:) = {'PulseOn',       'PulseOn',         'PulseOn',   [-3 3]};   i = i + 1;
 events(i,:) = {'PreBurstIBI',   'PrevBurstOff', 'BurstOn',      [0 0]};    i = i + 1;  
 events(i,:) = {'BurstPeriod',   'BurstOn',      'BurstOff',     [0 0]};    i = i + 1;  
 events(i,:) = {'NextBurstIBI',  'BurstOff',     'NextBurstOn',  [0 0]};    i = i + 1;  
@@ -36,7 +37,7 @@ events(i,:) = {'NextBurstIBI',  'BurstOff',     'NextBurstOn',  [0 0]};    i = i
 events(i,:) = {'PreBurstIBI2',  'PrevBurstOff', 'BurstOn',      [-1 0]};   i = i + 1;  
 events(i,:) = {'BurstPeriod2',  'BurstOn',      'BurstOff',     [-1 0]};   i = i + 1;  
 events(i,:) = {'NextBurstIBI2', 'BurstOff',     'NextBurstOn',  [-1 0]};   i = i + 1;  
-events(i,:) = {'OmitPulse',     'OmitPulse',    'OmitPulse',    [-6 6]};   i = i + 1;  
+% events(i,:) = {'OmitPulse',     'OmitPulse',    'OmitPulse',    [-6 6]};   i = i + 1;  
 events(i,:) = {'ZeroPulse',     'ZeroPulse',    'ZeroPulse',    [-6 6]};   i = i + 1;
 
 % Define epochs for rate calculations

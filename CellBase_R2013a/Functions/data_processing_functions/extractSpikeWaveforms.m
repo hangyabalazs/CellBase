@@ -39,9 +39,9 @@ if nargin < 2 || isempty(SpikeTimes) || isequal(SpikeTimes,'all')
 end
 
 % Load waveform data (Ntt file)
-Nttfile = cellid2fnames(cellid,'ntt');
+Nttfile = cellid2fnames(cellid,'OE');
 TIMEFACTOR = getpref('cellbase','timefactor');    % scaling factor to convert spike times into seconds
-[all_spikes all_waves] = LoadTT_NeuralynxNT(Nttfile);
+[all_spikes all_waves] = LoadTT_Intan(Nttfile);
 [junk junk2 evoked_inx] = intersect(SpikeTimes,all_spikes*TIMEFACTOR);
 if ~isequal(junk,SpikeTimes)   % internal check for spike times
     error('extractSpikeWaveforms:SpikeTimeMismatch','Mismatch between extracted spike times and Ntt time stamps.')
@@ -95,15 +95,18 @@ mx = maxchannel(wv);     % mx: largest channel
 % Align spikes to peak
 n = size(wv,1);    % number of spikes
 aligned_wv = nan(n,4,96);   % extended waveforms
+splen = size(wv,3) - 1;
+minx = nan(1,n);
 for k = 1:n
-     [mval,minx] = max(wv(k,mx,:));
-     shift = 40 - minx;   % shift is decided based on the largest channel
-     aligned_wv(k,mx,shift:shift+31) = wv(k,mx,:);
+     [mval,minx(k)] = max(wv(k,mx,:));
+     shift = 40 - minx(k);   % shift is decided based on the largest channel
+     aligned_wv(k,mx,shift:shift+splen) = wv(k,mx,:);
      for oc = setdiff(1:4,mx)   % align other channels with the same shift
-         aligned_wv(k,oc,shift:shift+31) = wv(k,oc,:);
+         aligned_wv(k,oc,shift:shift+splen) = wv(k,oc,:);
      end
 end
-aligned_wv = aligned_wv(:,:,32:63);     % transform back to original size
+ploc = 40 - round(mean(minx));
+aligned_wv = aligned_wv(:,:,ploc:ploc+splen);     % transform back to original size
 
 % -------------------------------------------------------------------------
 function smoothed_wv = wvsmooth(wv)
