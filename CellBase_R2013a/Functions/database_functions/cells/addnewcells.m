@@ -83,11 +83,13 @@ if NUM_newcellids > 0
         end
         for iNuCell = 1:length(new_cellids)
             try
-                prealignSpikes(new_cellids(iNuCell),'events',{behav_events},'epochs',{behav_epochs},'filetype','behav')
+                %                 prealignSpikes(new_cellids(iNuCell),'events',{behav_events},'epochs',{behav_epochs},'filetype','behav')
+                prealignSpikes(new_cellids(iNuCell),'FUNdefineEventsEpochs',@defineEventsEpochs_pavlovian,'filetype','event','ifsave',1,'ifappend',0)
             catch
             end
             try
-                prealignSpikes(new_cellids(iNuCell),'events',{stim_events},'epochs',{stim_epochs},'filetype','stim')
+                %                 prealignSpikes(new_cellids(iNuCell),'events',{stim_events},'epochs',{stim_epochs},'filetype','stim')
+                prealignSpikes(new_cellids(iNuCell),'FUNdefineEventsEpochs',@defineEventsEpochs_laserstim,'filetype','stim','ifsave',1,'ifappend',0)
             catch
             end
         end
@@ -98,6 +100,9 @@ if NUM_newcellids > 0
             NUM_ADDED = NUM_ADDED + 1;
         end
     end   %iC
+clear global CELLIDLIST ANALYSES TheMatrix
+cellbase_fname = getpref('cellbase','fname');
+load(cellbase_fname);
 else   %NUM_newcellids
     if ~g.quiet
         disp('No new cells found.')

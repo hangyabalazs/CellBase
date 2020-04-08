@@ -70,7 +70,7 @@ for i = 1: NumAnal
             catch
 %                 property_values = {nan(length(columns),1)};
                 property_values = num2cell(nan(nargout(funhandle),1));
-                if size(TheMatrix,1) > 1 && any(cellfun(@ischar,TheMatrix(1,columns)))
+                if size(TheMatrix,1) > 1 && any(cellfun(@ischar,num2cell(TheMatrix(1,columns))))
                     charinx = cellfun(@ischar,TheMatrix(1,columns));   % for character type properties, initialize with empty matrix
                     property_values(charinx) = {''};
                 end
@@ -89,14 +89,16 @@ for i = 1: NumAnal
     end
     property_values = property_values(:);  % vector standardized
     if iscell(TheMatrix)   % insert into TheMatrix
-        if isfield(ANALYSES,'output_subset') && ~isempty(ANALYSES(i).output_subset)
+        if isfield(ANALYSES,'output_subset') && ~isempty(ANALYSES(i).output_subset) ...
+                && ~all(cellfun(@isnan,property_values))
             TheMatrix(NewCell,columns) = property_values(ANALYSES(i).output_subset);
         else
             TheMatrix(NewCell,columns) = property_values(1:length(columns));
         end
     else
         
-        if isfield(ANALYSES,'output_subset') && ~isempty(ANALYSES(i).output_subset)
+        if isfield(ANALYSES,'output_subset') && ~isempty(ANALYSES(i).output_subset) ...
+                && ~all(cellfun(@isnan,property_values))
             TheMatrix(NewCell,columns) = cell2mat(property_values(ANALYSES(i).output_subset));
         else
             TheMatrix(NewCell,columns) = cell2mat(property_values(1:length(columns)));

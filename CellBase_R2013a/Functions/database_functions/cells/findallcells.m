@@ -38,36 +38,15 @@ for rdir = 1:length(ratdir)   % animal loop
     sessiondir = [{''} listdir(char(ratpath))];
     for sdir = 1:length(sessiondir)   % session loop
         
-        % Added options for specifying an cut directory below the session
-        % directory
-        if ispref('cellbase','group')
+        % Use cell_pattern property
+        fullsessiondir = fullfile(ratpath,char(sessiondir(sdir)));
+        if ispref('cellbase','cell_pattern')
             cell_pattern = getpref('cellbase','cell_pattern');
             
-            % Deal with hierarchy of cut directories
-            cut_dirs = getpref('cellbase','group');
-            if iscell(cut_dirs)
-                % there is more than one cut directory specified,
-                % return the first existing directory (ie cut directories are in order of
-                % preference)
-                for n = 1:length(cut_dirs)
-                    cdir = fullfile(ratpath,char(sessiondir(sdir)),cut_dirs{n});
-                    if exist(cdir,'file')
-                        fullsessiondir = cdir;
-                        break
-                    end
-                    % no cut directory found, use route
-                    fullsessiondir = fullfile(ratpath,char(sessiondir(sdir)));
-                end
-            else
-                % only one cut directory set
-                fullsessiondir = fullfile(ratpath,char(sessiondir(sdir)),cut_dirs);
-            end
-            
-            % Now check for cells
-            cellfiles = listfiles(fullfile(fullsessiondir,cell_pattern));
+            % Check for cells
+            cellfiles = listfiles(fullsessiondir,[cell_pattern '(\d)_(\d).mat']);
         else
-            fullsessiondir = fullfile(ratpath,char(sessiondir(sdir)));
-            cellfiles = listfiles(fullsessiondir,'.mat');
+            cellfiles = listfiles(fullsessiondir,'TT(\d)_(\d).mat');
         end
         
         % Convert filenames to cell IDs

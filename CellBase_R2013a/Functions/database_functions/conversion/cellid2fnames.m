@@ -13,6 +13,7 @@ function [fname_spikes,fname_events] = cellid2fnames(cellid,filename,CSC_chan)
 %       'Spikes', 'cell_pattern' preference is used to generate .mat filename
 %       'tfile', 'cell_pattern' preference is used to generate .t filename
 %       'Ntt', .Ntt filename is returned
+%       'OE', open ephys filename is returned
 %       'wv', 'cell_pattern' preference is used to return *wv.mat filename
 %       'quality', *ClusterQual.mat filename is returned
 %       'Waveform', waveform data filename is returned
@@ -67,6 +68,8 @@ else
         fname_unit = sprintf('%s%d_%d.t',cellbase_cell_pattern,tetrode,unit);
     elseif strncmpi(filename,'Ntt',3)
         fname_unit = sprintf('TT%d.ntt',tetrode);
+    elseif strncmpi(filename,'OE',2)
+        fname_unit = sprintf('TT%d.mat',tetrode);
     elseif strncmpi(filename,'wv',2)
         fname_unit = sprintf('%s%d_%d-wv.mat',cellbase_cell_pattern,tetrode,unit);
     elseif strncmpi(filename,'quality',4)

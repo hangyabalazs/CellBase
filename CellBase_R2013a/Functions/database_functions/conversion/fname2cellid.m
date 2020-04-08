@@ -5,7 +5,7 @@ function   cellid = fname2cellid(fname)
 %
 %   Valid filenames
 %   (1) start with the default path or only include 'rat\session\unit.mat'
-%   (2) unit 1 of tetrode 1 is called Sc1_1.mat 
+%   (2) unit 1 of tetrode 1 is called Sc1_1.mat
 %   (3) session name can only contain '.' or '_' characters but not both
 %   (4) should be consistent across the database
 %
@@ -62,14 +62,19 @@ if ~strcmp(ext,'.mat')
 end
 
 if isempty(ratname) || isempty(session) || isempty(tu)
-   disp('FNAME2CELLID: Filename could not be parsed correctly.') 
-   cellid = 0;
-   return
+    disp('FNAME2CELLID: Filename could not be parsed correctly.')
+    cellid = 0;
+    return
 elseif ~isempty(pos_u) || ~isempty(pos_p)
     disp('FNAME2CELLID: Filename could not be parsed correctly.');
     cellid = 0;
     return
+elseif length(tu) < 2
+    disp('FNAME2CELLID: Filename could not be parsed correctly.');
+    cellid = 0;
+    return
 end
+
 
 cellid = sprintf('%s_%s_%d.%d',ratname,session,tu(1),tu(2));
 %disp(cellid)

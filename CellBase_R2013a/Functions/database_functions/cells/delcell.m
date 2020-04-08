@@ -46,7 +46,6 @@ dsr = regexprep(dsr,':','_');
 backup_name = fullfile(pth,[fnm '_' dsr ext]);
 copyfile(cb,backup_name)    % make backup before overwriting
 save(cb,'TheMatrix','ANALYSES','CELLIDLIST');
-clear global CELLIDLIST ANALYSES TheMatrix
 
 % Feedback
 if ischar(cellid)
@@ -55,3 +54,4 @@ else
     donestr = sprintf('DELCELL done.\n Cellids: %s to %s deleted. %d cells remain.\n',char(cellid(1)),char(cellid(end)),length(CELLIDLIST));
 end
 disp(donestr);
+clear global CELLIDLIST ANALYSES TheMatrix

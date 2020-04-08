@@ -27,6 +27,8 @@ function  addanalysis(funhandle,varargin)
 %   (N-by-2 cell array). These are be passed on to the analysis function.
 %
 %   Examples:
+%   addanalysis(@cellid2vals,'property_names',{'RatId','DateNum','Tetrode','Unit'});
+%   
 %   addanalysis(@LRatio2,'property_names',{'ID_PC','Lr_PC'},'arglist',{'fea
 %   ture_names' {'WavePC1' 'Energy'}})
 %

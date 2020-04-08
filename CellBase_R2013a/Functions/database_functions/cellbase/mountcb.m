@@ -55,6 +55,7 @@ setpref('cellbase','StimEvents_filename','StimEvents.mat');
 setpref('cellbase','cell_pattern','TT');
 setpref('cellbase','filesep',filesep);
 setpref('cellbase','timefactor',timefactor);
+clear global CELLIDLIST ANALYSES TheMatrix
 
 % Store cellbases to allow multiple instances
 if ispref('cellbase','cellbases')

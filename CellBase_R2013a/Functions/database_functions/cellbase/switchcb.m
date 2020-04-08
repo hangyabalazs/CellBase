@@ -32,7 +32,7 @@ if d ~= 0
     setpref('cellbase','datapath',datapath);
     %this may be annoying functionality
     %changes the path of fname to the new path
-    [pathstr,name,ext,v] = fileparts(fname);
+    [pathstr,name,ext] = fileparts(fname);
     fname = fullfile(datapath,[name ext]);
     f = uigetfile({'*.mat','MAT-files (*.mat)'},'Select the main database file',fname);
     if f ~=0
