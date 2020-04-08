@@ -16,7 +16,7 @@ function t = valuecrossing(x,y,v,opt)
 %   hangyab@koki.hu
 
 % Input argument check
-error(nargchk(3,4,nargin))
+narginchk(3,4)
 if nargin == 3
     opt = 'both';
 end
