@@ -47,16 +47,22 @@ function [psth spsth spsth_se tags spt stats] = ultimate_psth(cellid,event_type,
 %           FILTERTRIALS for details
 %       'maxtrialno', 5000 - maximal number of trials included; if ther are
 %           more valid trials, they are randomly down-sampled
+%       'data_type', 'real' - ultimate_psth handles virtual/simulated data;
+%           set this property to 'virtual' to analyze simulated spikes
 %       'first_event', [] - event name used to exclude spikes before
 %           previous event
 %       'last_event', [] - event name used to exclude spikes after
 %           following event
+%       'spike_def' [] - if it is set to 'burst', only bursts, when set to
+%           'single', only single spikes are used
 %       'parts', 'all' - partitioning the set of trials; input to
 %           PARTITION_TRIALS, see details therein (default, no
 %           partitioning)
 %       'isadaptive', 1 - 0, classic PSTH algorithm is applied; 1, adaptive
 %           PSTH is calculated (see APSTH); 2, 'doubly adaptive' PSTH
 %           algorithm is used (see DAPSTH)
+%       'forcesmoothedstat', false - if true, smoothe PSTH is used for
+%           calculating PSTH_STATS, even in the adaptive cases
 %   	'baselinewin', [-0.25 0] - limits of baseline window for
 %           statistical testing (see PSTH_STATS), time relative to 0 in
 %           seconds
@@ -75,7 +81,7 @@ function [psth spsth spsth_se tags spt stats] = ultimate_psth(cellid,event_type,
 %   balazs.cshl@gmail.com
 %   07-May-2012
 
-%   Edit log: BH 7/5/12, 8/12/12, 8/27/12, 12/12/13, 5/20/14
+%   Edit log: BH 7/5/12, 8/12/12, 8/27/12, 12/12/13, 5/20/14, 11/25/20
 
 % Default arguments
 prs = inputParser;
@@ -88,13 +94,16 @@ addRequired(prs,'window',@(s)isnumeric(s)&isequal(length(s),2))  % time window r
 addParamValue(prs,'event_filter','none',@(s)ischar(s)|iscellstr(s))   % filter events based on properties
 addParamValue(prs,'filterinput',[])   % some filters need additional input
 addParamValue(prs,'maxtrialno',5000)   % downsample events if more than 'maxtrialno'
+addParameter(prs,'data_type','real',@ischar)   % data type ('real' or 'virtual')
 addParamValue(prs,'first_event','',@(s)isempty(s)|ischar(s))   % exclude spikes before previous event
 addParamValue(prs,'last_event','',@(s)isempty(s)|ischar(s))   % exclude spikes after following events
+addParamValue(prs,'spike_def','',@(s)isempty(s)|ischar(s))   % use bursts or single spikes
 addParamValue(prs,'dt',0.001,@isnumeric)   % time resolution of the binraster, in seconds
 addParamValue(prs,'sigma',0.02,@isnumeric)     % smoothing kernel for the smoothed PSTH
 addParamValue(prs,'margin',[-0.1 0.1])  % margins for PSTH calculation to get rid of edge effect due to smoothing
 addParamValue(prs,'parts','all')   % partition trials
 addParamValue(prs,'isadaptive',true,@(s)islogical(s)|ismember(s,[0 1 2]))   % use adaptive PSTH algorithm
+addParamValue(prs,'forcesmoothedstat',false,@islogical)   % use smoothed PSTH for PSTH STATS, even if adaptive
 addParamValue(prs,'baselinewin',[-0.25 0],@(s)isnumeric(s)&isequal(length(s),2))  % time window relative to the event for stat. testing, in seconds
 addParamValue(prs,'testwin',[0 0.1],@(s)isnumeric(s)&isequal(length(s),2))  % time window relative to the event for stat. testing, in seconds
 addParamValue(prs,'relative_threshold',0.5,@(s)isnumeric(s)&s>=-1&s<=1)   % threshold used to assess interval limits in PSTH_STATS; negative thresholds selects the full window
@@ -115,7 +124,13 @@ switch event_type
         % Load stimulus events
         try
             VE = loadcb(cellid,'StimEvents');   % load events
-            VS = loadcb(cellid,'STIMSPIKES');   % load prealigned spikes
+            if strcmp(g.data_type,'real')
+                VS = loadcb(cellid,'STIMSPIKES');   % load prealigned spikes
+            elseif strcmp(g.data_type,'virtual')
+                VS = loadcb(cellid,'STIMVSPIKES');   % load prealigned virtual spikes
+            else
+                error('MATLAB:CellBase:ultimate_psth','Unsupported data type.')
+            end
         catch ME
             disp('There was no stim protocol for this session.')
             error(ME.message)
@@ -126,7 +141,19 @@ switch event_type
         % Load trial events
         try
             VE = loadcb(cellid,'TrialEvents');   % load events
-            VS = loadcb(cellid,'EVENTSPIKES');   % load prealigned spikes
+            if strcmp(g.spike_def, 'burst')
+                VS = loadcb(cellid,'BURSTSPIKES');   % load prealigned spikes
+            elseif  strcmp(g.spike_def, 'single')
+                VS = loadcb(cellid,'SINGLESPIKES');   % load prealigned spikes
+            else
+                if strcmp(g.data_type,'real')
+                    VS = loadcb(cellid,'EVENTSPIKES');   % load prealigned spikes
+                elseif strcmp(g.data_type,'virtual')
+                    VS = loadcb(cellid,'EVENTVSPIKES');   % load prealigned virtual spikes
+                else
+                    error('MATLAB:CellBase:ultimate_psth','Unsupported data type.')
+                end
+            end
         catch ME
             disp('There was no behavioral protocol for this session.')
             error(ME.message)
@@ -204,10 +231,10 @@ else
             NumTrials = length(VE.LickIn);
             stimes = arrayfun(@(s)VE.LickIn{s}-VE.(event)(s),1:NumTrials,'UniformOutput',false);   % lick times
             triggerevent = event;
-%             if ~isequal(g.event_filter,'none')
-%                 error('Trial filters not implemented for lick PSTH.')
-%             end
-%             valid_trials = 1:NumTrials;
+            %             if ~isequal(g.event_filter,'none')
+            %                 error('Trial filters not implemented for lick PSTH.')
+            %             end
+            %             valid_trials = 1:NumTrials;
             valid_trials = filterTrials(cellid,'event_type',event_type,'event',event,...
                 'event_filter',g.event_filter,'filterinput',g.filterinput);   % filter trials
             
@@ -265,11 +292,15 @@ if g.dostats
         case {0,false}
             statpsth = spsth;   % use smoothed PSTH for finding activation and inhibition windows in psth_stats
         case {1,2,true}
-            statpsth = psth;   % use adaptive Spike Density Function for finding activation and inhibition windows in psth_stats
+            if ~g.forcesmoothedstat
+                statpsth = psth;   % use adaptive Spike Density Function for finding activation and inhibition windows in psth_stats
+            else
+                statpsth = spsth;   % use smoothed PSTH even in the adaptive cases if forced
+            end
     end
     if NumPartitions > 1
         stats = cell(1,NumPartitions);   % return multiple stats if partitioning
-        for iP = 1:NumPartitions  
+        for iP = 1:NumPartitions
             sts = psth_stats(spt{iP} ,statpsth(iP,:),g.dt,window,...
                 'baselinewin',g.baselinewin,'testwin',g.testwin,'display',g.display,...
                 'relative_threshold',g.relative_threshold);

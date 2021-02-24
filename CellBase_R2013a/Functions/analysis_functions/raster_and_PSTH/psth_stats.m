@@ -108,12 +108,12 @@ time = win(1):dt:win(2);
 % Spiking probability
 sptb = spt(:,1:st);    % st < time 0
 sptt = spt(:,st+1:end);   % st+1 = time 0
-probb = sum(sptb) / tno;   % spiking prob. (strictly) before time 0
+probb = sum(sptb,1) / tno;   % spiking prob. (strictly) before time 0
 
 % Inhibition time
 baseline_prob = mean(probb(WNb(1):WNb(2))) / dt;  % spikes/sec (was spikes/bin before)
 minafter = min(psth(WNt(1):WNt(2)));
-if minafter > baseline_prob     % putative inhibition, if it goes below baseline
+if (minafter > baseline_prob) || isnan(minafter)     % putative inhibition, if it goes below baseline
     inhibition_start = NaN;
     inhibition_end = NaN;
     inhibition_peak = NaN;
@@ -189,7 +189,7 @@ end
 
 % Activation time
 maxafter = max(psth(WNt(1):WNt(2)));
-if maxafter < baseline_prob     % putative activation, if firing goes above baseline
+if (maxafter < baseline_prob) || isnan(maxafter)     % putative activation, if firing goes above baseline
     activation_start = NaN;
     activation_end = NaN;
     activation_peak = NaN;
