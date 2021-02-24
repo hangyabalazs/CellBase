@@ -19,8 +19,12 @@ function R = spikeshapecorr(cellid)
 %   1 Bungtown Road, Cold Spring Harbor
 %   balazs.cshl@gmail.com
 
+% DAQ
+daq = 'DigiLynx';  %#ok<NASGU> % old version
+daq = 'open_ephys';  % new default
+
 % Latency of stimulated spikes
-[lim1 lim2] = findStimPeriod(cellid);   % find putative stimulated period
+[lim1, lim2] = findStimPeriod(cellid);   % find putative stimulated period
 if isnan(lim1) || isnan(lim2)
     lim1 = 0.001;   % no activation detected
     lim2 = 0.006;
@@ -38,7 +42,14 @@ wave_spont = extractSpikeWaveforms(cellid,selts_spont,'chans','mean_max');    % 
 
 % Correlation
 if length(selts_evoked) > 1 && length(selts_spont) > 1   % if there are waveforms to calculate corr. for
-    sr = 32552;     % DigiLynx sampling rate
+    switch daq
+        case 'open_ephys'
+            sr = 30000;     % open ephys default sampling rate
+        case 'DigiLynx'
+            sr = 32552;     % DigiLynx sampling rate
+        otherwise
+            error('MATLAB:CellBase:spikeshapecorrDAQ','DAQ not supported.')
+    end
     rng = round(0.00075*sr);    % number of data points in 750 us (default censored period of DigiLynx)
     pr = corrcoef(wave_spont(1:rng),wave_evoked(1:rng));
     R = pr(1,2);

@@ -60,7 +60,7 @@ end
 % Directories
 global DATAPATH
 fs = filesep;
-resdir = [DATAPATH 'NB' fs 'taggedprop_newdata' fs];
+resdir = [DATAPATH 'HDBpavlovian' fs 'taggedprop_newdata' fs];
  
 % Load CellBase
 load(getpref('cellbase','fname'),'CELLIDLIST');
