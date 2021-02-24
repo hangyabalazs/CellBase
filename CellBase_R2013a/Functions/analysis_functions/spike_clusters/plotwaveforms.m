@@ -48,7 +48,11 @@ function out = plotwaveforms(cellid,varargin)
 %   balazs.cshl@gmail.com
 %   07-May-2012
 
-%   Edit log: BH 5/7/12
+%   Edit log: BH 5/7/12, 12/15/20
+
+% DAQ
+daq = 'DigiLynx';  %#ok<NASGU> % old version
+daq = 'open_ephys';  % new default
 
 % Input arguments
 prs = inputParser;
@@ -151,7 +155,14 @@ if g.correlation
         mx = maxchannel(wave_spont);     % mx: largest channel
         mnmx_spont = nanmean(squeeze(wave_spont(:,mx,:)));
         mnmx_evoked = nanmean(squeeze(wave_evoked(:,mx,:)));
-        sr = 32552;     % DigiLynx sampling rate
+        switch daq
+            case 'open_ephys'
+                sr = 30000;     % open ephys default sampling rate
+            case 'DigiLynx'
+                sr = 32552;     % DigiLynx sampling rate
+            otherwise
+                error('MATLAB:CellBase:spikeshapecorrDAQ','DAQ not supported.')
+        end
         rng = round(0.00075*sr);    % number of data points in 750 us (default censored period of DigiLynx)
         pr = corrcoef(mnmx_spont(1:rng),mnmx_evoked(1:rng));
         out.R = pr(1,2);
@@ -172,4 +183,4 @@ function mx = maxchannel(wv)
 % Find largest channel
 mean_wv = squeeze(nanmean(wv,1));   % mean waveform
 amx = max(max(mean_wv));     % absolut maximum of mean waveforms
-[mx my] = find(mean_wv==amx,1,'first');     %#ok<NASGU> % mx: largest channel
+[mx, my] = find(mean_wv==amx,1,'first');     %#ok<NASGU> % mx: largest channel
