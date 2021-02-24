@@ -1,4 +1,4 @@
-function acg(cellids,window,varargin)
+function [CCR, lags] = acg(cellids,window,varargin)
 %ACG   Auto-correlation.
 %   ACG(CELLIDS,WINDOW) calculates auto-correlations at 0.5 ms resolution 
 %   for a given window size (WIN). For details on the algorithm, see XCORR. 
@@ -194,7 +194,7 @@ sr = 1000;
 nc = ncc * sr;
 mn = nc(1);  % only relative spike times count; avoid out of memory
 nc = nc - mn;
-nc(nc<0.5) = [];  % drop spikes before 0.5 ms(!) to avoid error in line 39
+nc(nc<res/2) = [];  % drop spikes in the first few ms - their indices would be rounded to zero below
 wn2 = wn / 1000;    % window size in seconds
 
 % Auto-correlogram
